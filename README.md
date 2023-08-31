@@ -1,2 +1,2 @@
 # LinuxPracticeProjects
-1st PBL Project on the Darey.io DevOps Course
+This is the 1st PBL Project on the Darey.io DevOps Course
