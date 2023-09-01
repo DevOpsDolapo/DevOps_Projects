@@ -75,6 +75,29 @@ The **cat** command lists, merges, and writes out the content of a file
 *Below, the **cat** command is used to merge the contents of file, file1, and file2 and store the output in file3:*
 ![Task5 - the cat command is used to merge the contents of file, file1, and file2](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/26ce1d4c-52b1-4056-b778-2817000b2dca)
 
+### Task 6 - cp (copy)
+
+The **cp** command is used to copy files and directories along with their contents
+
+*The **cp** command used to copy a file to the test_directory folder on the Desktop:*
+![Task6 - the cp command used to copy a file to a folder in the Desktop directory](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/7f727bbc-b68f-45e0-96e3-ec5f616d2422)
+
+*The **cp** command used to copy files to the Desktop:*
+
+![Task6 - the cp command used to copy files to the Desktop directory](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/8fb0adb3-941f-4087-ae7e-73430e7a14ed)
+
+*The **cp** command is also used to copy the contents of one file to another file as shown below:*
+![Task6 - the cp command used to copy the contents of one file to another file](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/283b0b01-ed0a-4702-b208-a851488e22df)
+
+*With the -R (recursive) flag, the **cp** command is used to copy an entire directory or the contents of a directory to another directory. In this case, we're copying the contents of Desktop directory to the test_folder directory in Documents:*
+![Task6 - using cp with the -R flag](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/d87833a3-252a-4cfd-b574-b55822ee9abc)
+
+*Confirming the contents of the Desktop directory:*
+
+![Task6 - confirming contents of the Desktop directory](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/73143cb6-11f6-4f75-9e53-21ee0acaefe4)
+
+
+
 
 
 
