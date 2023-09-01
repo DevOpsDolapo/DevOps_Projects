@@ -6,7 +6,7 @@
 
 The **sudo** command lets you perform tasks requiring administrative or root permissions.
 
-Command: **sudo apt upgrade**
+Command: `sudo apt upgrade`
 
 Being the first time running the **sudo apt upgrade** command on the Linux machine, it upgraded the operating system packages and libraries.
 
