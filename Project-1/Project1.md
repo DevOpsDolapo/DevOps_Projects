@@ -58,10 +58,24 @@ The **ls** command can also be used with flags to specify certain options and ou
 *The **ls -a** (using the -a flag) command allows us to see visible and hidden files/folders in any directory. In Linux, hiddens files and folders are denoted by a .(dot) preceeding the file or folder name:*
 ![Task 4 - ls -a command shows visible and hidden files](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/73b1029a-ecce-4179-9753-d3452d9441d4)
 
-
-
 *The **ls -lh** (using the -lh flag) command shows files and directories listed in a human-readable format along with their sizes:*
 ![Task 4 - ls -lh command shows files and directories listed in a human-readable format with their sizes](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/6f395cec-faa3-4ef0-9e7a-ae6a63a1a4bf)
+
+### Task 5 - cat (concatenate)
+
+The **cat** command lists, merges, and writes out the content of a file
+
+*The **cat** command is used to list the content of three different files (file, file1, and file2):*
+![Task5 - the cat command lists the content of three different files (file, file1, and file2)](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/da05d974-62aa-4ead-a2ee-3ece68b44b58)
+
+*The **tac** command displays the content of file2 in reverse order:*
+
+![Task5 - the cat command displays the content of file2 in reverse order](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/52a84e45-cd13-4667-9918-0ad7ef7bff4c)
+
+*Below, the **cat** command is used to merge the contents of file, file1, and file2 and store the output in file3:*
+![Task5 - the cat command is used to merge the contents of file, file1, and file2](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/26ce1d4c-52b1-4056-b778-2817000b2dca)
+
+
 
 
 
