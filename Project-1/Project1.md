@@ -96,6 +96,41 @@ The **cp** command is used to copy files and directories along with their conten
 
 ![Task6 - confirming contents of the Desktop directory](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/73143cb6-11f6-4f75-9e53-21ee0acaefe4)
 
+### Task 7 - mv (move)
+
+The **mv** command allows us to move and rename files and directories
+
+*The **mv** command used to move files and directory from Desktop to the first_folder directory in Documents:*
+![Task7 - mv command moves files and directory on Desktop to the first_folder directory in Documents](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/7a21ede5-30b1-4919-b744-adb151d2ee39)
+
+*The **mv** command used to rename test_directory to renaming_directory:*
+![Task7 - mv command to rename test_directory to renaming_directory](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/98bab244-7801-4dbd-b34e-2a910512a489)
+
+*The **mv** command used to rename file3 to file_renamed:*
+![Task7 - mv command to rename file3 to file_renamed](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/d18357c6-b91d-48aa-a2f3-4688b5329d14)
+
+### Task 8 - mkdir (make directory)
+
+The **mkdir** command is used to create one or more folders (directories). The command is also used to set permissions for the created directories at the same time. It is important that the relevant user has the necessary permissions to create entries in the parent directory or they would get a permission denied error.
+
+***mkdir** command creates a directory august in the Desktop directory:*
+
+![Task8 - mkdir command creates a directory august in the Desktop directory](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/4be890cf-fc62-4772-89cc-d800241f9b8d)
+
+The **mkdir** command also works with flags. Some of the flags used with this command are as follows;
+
+***mkdir -p** or -parents (allows a user to create a directory September2023 between two existing directories):*
+![Task8 - mkdir -p command creates a directory september2023 in the Documents directory](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/80807bfa-6f9d-43f0-a860-a6085a97dfef)
+
+***mkdir -m** (allows the user to set permissions on a directory at the time of creation). For instance, to create a directory Aug2023 with full read, write, execute permissions:*
+
+![Task8 - mkdir -m command creates a directory Aug2023 with full permissions (777)](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/394343eb-1479-462c-8b85-b1a866c17332)
+
+***mkdir -v** (the verbose flags prints a message when a directory is created):*
+
+![Task8 - mkdir -v command creates a directory and prints a message](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/80f9dcd0-796b-4d77-8d83-a02739654962)
+
+
 
 
 
