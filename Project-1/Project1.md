@@ -2,7 +2,7 @@
 
 ## This project aims to help the student gain valuable experience working with Linux commands in the Linux terminal
 
-#### Task 1 - sudo 
+### Task 1 - sudo 
 
 The **sudo** command lets you perform tasks requiring administrative or root permissions.
 
@@ -13,7 +13,7 @@ Being the first time running the **sudo apt upgrade** command on the Linux machi
 *Below is a screenshot showing the command and the start of the upgrade process:*
 ![Task1 - showing the sudo apt upgrade command and its execution](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/89ba5672-4fd0-4a8f-9f9b-c90722eebd3e)
 
-#### Task 2 - pwd (present working directory)
+### Task 2 - pwd (present working directory)
 
 The **pwd** command shows the full path of a user's current working directory.
 
@@ -24,7 +24,7 @@ The **pwd** command shows the full path of a user's current working directory.
 
 ![Task 2 - showing pwd command in documents directory](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/b74bc6f0-6e7a-4de8-be2d-f972562c6990)
 
-#### Task 3 - cd (change directory)
+### Task 3 - cd (change directory)
 
 The **cd** command allows you to navigate through linux directories (folders)
 
@@ -42,7 +42,7 @@ The pictures below show the results of running the cd command to switch between 
 
 ![Task 3 - command to move one directory up](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/875f7c25-c893-4e77-8c4b-67e8c467842b)
 
-#### Task 4 - ls (list)
+### Task 4 - ls (list)
 
 The ls command is used to list files and directories within the system
 
@@ -55,10 +55,10 @@ The ls command is used to list files and directories within the system
 
 The **ls** command can also be used with flags to specify certain options and outcomes from our results.
 
-*The **ls -a** (using the -a flag) command allows us to see visible and hidden files and folders in any directory:*
+*The **ls -a** (using the -a flag) command allows us to see visible and hidden files/folders in any directory. In Linux, hiddens files and folders are denoted by a .(dot) preceeding the file or folder name:*
 ![Task 4 - ls -a command shows visible and hidden files](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/73b1029a-ecce-4179-9753-d3452d9441d4)
 
-In Linux, hiddens files and folders are denoted by a .(dot) preceeding the file or folder name.
+
 
 *The **ls -lh** (using the -lh flag) command shows files and directories listed in a human-readable format along with their sizes:*
 ![Task 4 - ls -lh command shows files and directories listed in a human-readable format with their sizes](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/6f395cec-faa3-4ef0-9e7a-ae6a63a1a4bf)
