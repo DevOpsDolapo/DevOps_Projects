@@ -130,6 +130,19 @@ The **mkdir** command also works with flags. Some of the flags used with this co
 
 ![Task8 - mkdir -v command creates a directory and prints a message](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/80f9dcd0-796b-4d77-8d83-a02739654962)
 
+### Task 9 - rmdir (remove directory)
+
+This command is used to permanently delete an empty directory. It is important that the relevant user has the necessary sudo permissions in the parent directory or they would get a permission denied error.
+
+*Using **rmdir** to delete an empty directory from the Desktop:*
+
+![Task9 - rmdir command deletes a directory from the Desktop](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/4c752988-b730-45c8-a7c1-f2997998480d)
+
+*Using **rmdir -p** to delete the test directory within first_directory directory:*
+![Task9 - rmdir -p command deletes test directory within first_directory directory](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/d9e12f90-2c5f-4a24-8666-3656bc87f5bd)
+
+
+
 
 
 
