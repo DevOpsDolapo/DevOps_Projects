@@ -15,7 +15,7 @@ Being the first time running the **sudo apt upgrade** command on the Linux machi
 
 ### Task 2 - pwd (present working directory)
 
-The **pwd** command shows the full path of a user's current working directory.
+The `pwd` command shows the full path of a user's current working directory.
 
 *The picture below shows the outcome of running the command when a user is in the Desktop directory:*
 ![Task 2 - showing pwd command in desktop directory](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/dfef6c4e-fda4-411c-ab91-d749d61c4039)
