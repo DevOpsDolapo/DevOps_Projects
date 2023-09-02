@@ -158,6 +158,29 @@ Using the rm command with the -i flag for confirmation before a delete operation
 Using the rm command with the -f (force) flag to delete without confirmation:
 ![Alt text](<Images/Task10 - rm command with the -f (force) flag to delete without confirmation.JPG>)
 
+### Task 11 - touch 
+
+The `touch` command is used to create a file which can be populated with details.
+
+Below, the touch command used to create a file in the Documents directory:
+![Alt text](<Images/Task11 - touch command.JPG>)
+
+### Task 12 - locate
+
+The `locate` command is used to determine the location of a file within the system.
+
+Sometimes the locate program is not installed during the initial OS installation, so it needs to be installed by running the command `sudo apt install plocate` as shown below:
+![Alt text](<Images/Task12 - plocate installation.JPG>)
+
+Below, the locate command showing all the locations on the system that have 'file2' as part of the file name:
+![Alt text](<Images/Task12 - the locate command.JPG>)
+
+### Task 13 - find
+
+The `find` command is used to search for files within a particular directory
+
+Below, the find command is used with the -name flag to search for the file named 'fade' in the Desktop directory:
+![Alt text](<Images/Task13 - the find command with the -name flag.JPG>)
 
 
 
