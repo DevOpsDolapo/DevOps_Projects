@@ -187,7 +187,29 @@ Also, the find command can be used with the *-name* flag to search without speci
 
 ### Task 14 - grep (global regular expression print)
 
-The grep command allows us to find a particular word within a file. Once it find matches, it prints out lines containing the specified pattern.
+The `grep` command allows us to find a particular word within a file. Once it find a match or matches, it prints out lines containing the specified pattern.
+
+The grep command used to find the word zip within a file:
+![Alt text](<Images/Task14 - the grep command.JPG>)
+
+### Task 15 - df
+
+The `df` command is used to report the disk space usage on a system. 
+
+The `df -h` command shows the disk space usage details in a human-reacable format:
+![Alt text](<Images/Task15 - df command with the -h flag.JPG>)
+
+Using the *-m* flag shows disk space sizes in megabytes:
+![Alt text](<Images/Task15 - df command with the -m flag.JPG>)
+
+Using the *-k* flag shows disk space sizes in kilobytes:
+![Alt text](<Images/Task15 - df command with the -k flag.JPG>)
+
+The df -T command shows the filesystem type on the system's disk partitions:
+![Alt text](<Images/Task15 - df command with the -T flag.JPG>)
+
+
+
 
 
 
