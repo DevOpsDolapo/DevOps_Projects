@@ -179,8 +179,18 @@ Below, the locate command showing all the locations on the system that have 'fil
 
 The `find` command is used to search for files within a particular directory
 
-Below, the find command is used with the -name flag to search for the file named 'fade' in the Desktop directory:
+Below, the find command is used with the *-name* flag to search for the file named 'fade' in the Desktop directory:
 ![Alt text](<Images/Task13 - the find command with the -name flag.JPG>)
+
+Also, the find command can be used with the *-name* flag to search without specifying a directory:
+![Alt text](<Images/Task13 - the find -name command.JPG>)
+
+### Task 14 - grep (global regular expression print)
+
+The grep command allows us to find a particular word within a file. Once it find matches, it prints out lines containing the specified pattern.
+
+
+
 
 
 
