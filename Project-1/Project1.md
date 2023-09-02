@@ -205,8 +205,43 @@ Using the *-m* flag shows disk space sizes in megabytes:
 Using the *-k* flag shows disk space sizes in kilobytes:
 ![Alt text](<Images/Task15 - df command with the -k flag.JPG>)
 
-The df -T command shows the filesystem type on the system's disk partitions:
+The *df -T* command shows the filesystem type on the system's disk partitions:
 ![Alt text](<Images/Task15 - df command with the -T flag.JPG>)
+
+### Task 16 - du
+
+The `du` command is used to determine the size of a file, directory, or contents of a directory. Where necessary, you would need to specify a path for the file or directory you're trying to check.
+
+Using the du command without flags shows individual directories and their sizes:
+![Alt text](<Images/Task16 - du command.JPG>)
+
+Using the du command with the flags *-c*, *-h*, *-s* shows the total size of a file or directory in human readable format:
+![Alt text](<Images/Task16 - du command with the -chs flag.JPG>)
+
+### Task 17 - head
+
+The `head` command shows the first ten lines in a file.
+
+Running the `head` command on a file:
+![Alt text](<Images/Task17 - head command.JPG>)
+
+Running the `head` command with the -6 option to show the first six lines in a file:
+
+![Alt text](<Images/Task17 - head command with the -6 flag.JPG>)
+
+### Task 18 - tail
+
+The `tail` command is the opposite of the `head` command. This command displays the last ten lines in a file.
+
+Just like with the `head` command, using the `tail` command with the -n option displays the number of lines indicated by the value of n.
+
+Running the tail command:
+![Alt text](<Images/Task18 - tail command.JPG>)
+
+Running the tail command with the -6 option:
+![Alt text](<Images/Task18 - tail command with the -6 option.JPG>)
+
+### Task 19 - 
 
 
 
