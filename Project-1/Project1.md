@@ -142,6 +142,21 @@ This command is used to permanently delete an empty directory. It is important t
 *Using **rmdir -p** to delete the test directory within first_directory directory:*
 ![Task9 - rmdir -p command deletes test directory within first_directory directory](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/d9e12f90-2c5f-4a24-8666-3656bc87f5bd)
 
+### Task 10 - rm (remove or delete)
+
+The `rm` command is used to delete files and directories. It's essential for a user to have the necessary write permissions before attempting this command. It's important to note that operations carried out using the rm command cannot be undone.
+
+Using rm command to delete a file:
+![Alt text](<Images/Task10 - rm command to delete a file.JPG>)
+
+Using rm command to delete a directory (this requires the -r (recursive) flag to delete directories and their contents recursively):
+![Alt text](<Images/Task10 - rm -r command to delete a directory and its contents.JPG>)
+
+Using the rm command with the -i flag for confirmation before a delete operation:
+![Alt text](<Images/Task10 - rm command with the -i flag for confirmation before a delete operation.JPG>)
+
+Using the rm command with the -f (force) flag to delete without confirmation:
+![Alt text](<Images/Task10 - rm command with the -f (force) flag to delete without confirmation.JPG>)
 
 
 
