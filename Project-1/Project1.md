@@ -463,6 +463,18 @@ The `su` or switch user command allows us to switch between users or to an admin
 Executing *su* command to switch to administrative user 'root':
 ![Alt text](<Images/Task38 - executing su command to switch to root user.JPG>)
 
+### Task 39 - htop
+
+Just like the `top` command, `htop` monitors system resources and processes in real-time. However, `htop` is interactive, unlike the 'top' command.
+
+*htop* did not come pre-installed. So, it has to be installed as follows:
+![Alt text](<Images/Task39 - installing htop.JPG>)
+
+Running the *htop* command:
+![Alt text](<Images/Task39 - htop command execution.JPG>)
+
+The display after running the *htop* command:
+![Alt text](<Images/Task39 - result of running the htop command.JPG>)
 
 
 
