@@ -403,7 +403,16 @@ Using *useradd* command to create a user *vboxuser04* and the *passwd* command t
 The `userdel` command is used to delete a user account.
 
 Using *userdel*:
+![Alt text](<Images/Task34 - userdel command to delete user account vboxuser01.JPG>)
 
+### Task 35 - apt-get
+
+The `apt-get` command is used for handling Advanced Package Tool (APT) libraries in Linux. It allows you to manage, update, install, and remove software and their dependencies. This command requires root or sudo privileges.
+
+Executing the *apt-get update* command:
+![Alt text](<Images/Task35 - using the apt-get command to update packages.JPG>)
+
+### Task 36 - 
 
 
 
