@@ -449,7 +449,19 @@ To make 't' the alias for the *top* command:
 Running *t* command:
 ![Alt text](<Images/Task37 - executing t for the top command.JPG>)
 
+Conversely, the unalias command deletes an existing alias.
 
+Running the *unalias* command on 't':
+![Alt text](<Images/Task37 - executing the unalias command on t.JPG>)
+
+It should be noted that both commands have to be executed in the same terminal window. 
+
+### Task 38 - su (switch user)
+
+The `su` or switch user command allows us to switch between users or to an administrative user.
+
+Executing *su* command to switch to administrative user 'root':
+![Alt text](<Images/Task38 - executing su command to switch to root user.JPG>)
 
 
 
