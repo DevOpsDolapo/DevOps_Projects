@@ -241,7 +241,41 @@ Running the tail command:
 Running the tail command with the -6 option:
 ![Alt text](<Images/Task18 - tail command with the -6 option.JPG>)
 
-### Task 19 - 
+### Task 19 - diff (difference)
+
+The `diff` command displays the parts that do not match after comparing the contents of two files line by line.
+
+The syntax is `diff file1 file2`
+
+Running diff on two files 'test' and 'test1':
+![Alt text](<Images/Task19 - diff command.JPG>)
+
+Running the diff command with the -u flag:
+![Alt text](<Images/Task19 - diff command with the -u flag.JPG>)
+
+### Task 20 - tar
+
+The `tar` command is used to archive multiple files and directories into a TAR file. This operation is similar to the Zip operation in Windows. 
+
+While the -c flag is used to create an archive, the -x flag is used to extract an archive. The -v flag stands for verbose and it displays the details of the operation.
+
+Using the tar command to create an archive from the contents of the Documents directory:
+![Alt text](<Images/Task20 - tar command to create an archive.JPG>)
+
+Using the tar command to extract the archive created ealier:
+![Alt text](<Images/Task20 - tar command to extract an archive.JPG>)
+
+### Task 21 chmod
+
+The `chmod` command is used to 
+
+
+
+
+
+
+
+
 
 
 
