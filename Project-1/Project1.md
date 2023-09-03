@@ -416,7 +416,19 @@ Executing the *apt-get update* command:
 
 `nano`, `vi`, and `jed` are text editors that allow users to edit and manage files. nano and vi come pre-installed with the operating system while jed has to be installed manually.
 
-Using *nano*:
+Running *nano* on a file named 'Fade':
+![Alt text](<Images/Task36 - nano command executed on a file named Fade.JPG>)
+
+The *nano* command editor:
+![Alt text](<Images/Task36 - result of nano command.JPG>)
+
+Running *vi* on the file named 'Fade':
+![Alt text](<Images/Task36 - vi command executed on a file named Fade.JPG>)
+
+The *vi* command editor:
+![Alt text](<Images/Task36 - result of vi command.JPG>)
+
+Because the jed editor does not come pre-installed, it has to be installed as below:
 
 
 
