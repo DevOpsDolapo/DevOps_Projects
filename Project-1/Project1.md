@@ -382,7 +382,32 @@ Files unzipped into the current directory where the archive resides:
 Files unzipped into a specified directory:
 ![Alt text](<Images/Task32 - unzip command to extract files and folders into a specified directory in the Documents folder.JPG>)
 
-### Task 33 - 
+### Task 33 - hostname
+
+The `hostname` command is used to query a system's hostname.
+
+My system's hostname is displayed as ubuntuserver:
+![Alt text](<Images/Task33 - hostname command.JPG>)
+
+Using the hostname command with the -i flag displays the system's ip address:
+
+![Alt text](<Images/Task33 - hostname -i command.JPG>)
+
+### Task 34 - useradd & userdel
+
+The `useradd` command is used to create a new user account. After creating the account, you can add a password to it using the passwd command. Root or sudo privileges are required to execute `useradd`.
+
+Using *useradd* command to create a user *vboxuser04* and the *passwd* command to create a password for it:
+![Alt text](<Images/Task34 - useradd command to create user account vboxuser04.JPG>)
+
+The `userdel` command is used to delete a user account.
+
+Using *userdel*:
+
+
+
+
+
 
 
 
