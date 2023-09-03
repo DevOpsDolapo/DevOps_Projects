@@ -254,9 +254,11 @@ The `diff` command displays the parts that do not match after comparing the cont
 The syntax is `diff file1 file2`
 
 Running diff on two files 'test' and 'test1':
+
 ![Alt text](<Images/Task19 - diff command.JPG>)
 
 Running the diff command with the -u flag:
+
 ![Alt text](<Images/Task19 - diff command with the -u flag.JPG>)
 
 ### Task 20 - tar
@@ -350,6 +352,7 @@ top command:
 The `history` command lists as much as 500 previously executed commands. This is useful if you need to reuse some of the commands ran earlier.
 
 The history command:
+
 ![Alt text](<Images/Task29 - history.JPG>)
 
 ### Task 30 - man
@@ -373,7 +376,8 @@ variable name set as adeola:
 
 ![Alt text](<Images/Task31 - echo - set variable name.JPG>)
 
-echo command used to query the 'name' variable
+echo command used to query the 'name' variable:
+
 ![Alt text](<Images/Task31 - echo command used to query the name variable.JPG>)
 
 ### Task 32 - zip & unzip
@@ -439,6 +443,7 @@ Running *vi* on the file named 'Fade':
 ![Alt text](<Images/Task36 - vi command executed on a file named Fade.JPG>)
 
 The *vi* command editor:
+
 ![Alt text](<Images/Task36 - result of vi command.JPG>)
 
 Because the jed editor does not come pre-installed, it has to be installed as below:
@@ -462,11 +467,13 @@ To make 't' the alias for the *top* command:
 ![Alt text](<Images/Task37 - creating an alias t for the top command.JPG>)
 
 Running *t* command:
+
 ![Alt text](<Images/Task37 - executing t for the top command.JPG>)
 
 Conversely, the unalias command deletes an existing alias.
 
 Running the *unalias* command on 't':
+
 ![Alt text](<Images/Task37 - executing the unalias command on t.JPG>)
 
 It should be noted that both commands have to be executed in the same terminal window. 
@@ -476,6 +483,7 @@ It should be noted that both commands have to be executed in the same terminal w
 The `su` or switch user command allows us to switch between users or to an administrative user.
 
 Executing *su* command to switch to administrative user 'root':
+
 ![Alt text](<Images/Task38 - executing su command to switch to root user.JPG>)
 
 ### Task 39 - htop
