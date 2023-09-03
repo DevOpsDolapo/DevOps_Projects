@@ -286,6 +286,47 @@ Changing the ownership and group of a file:
 
 ### Task 23 - jobs
 
+The `jobs` command displays all the running processes as well as the status of the processes.
+
+The syntax is `jobs [options] jobID`
+
+No jobs running at the moment:
+![Alt text](<Images/Task23 - jobs command.JPG>)
+
+### Task 24 - kill
+
+The `kill` command is used to terminate programs manually. The command instructs programs to kill their processes.
+
+To kill a program, you'll need to know the PID by running the `ps -ux` command
+
+Once we know the PID of the process we want to kill, then we can run the command:
+
+`kill [signal_option] PID`
+
+signal_option can be either SIGTERM or SIGKILL
+
+SIGTERM gives the program time to save its processes.
+SIGKILL terminates the program immediately.
+
+### Task 25 - ping
+
+The `ping` command is used to establish if there is network connectivity between devices on a network.
+
+Let's check connectivity to the internet by sending a ping command to Google:
+![Alt text](<Images/Task25 - ping command.JPG>)
+
+The result shows 10 packets transmitted and 10 received. This proves there is connectivity between the system and Google servers. 
+
+### Task 26 - wget
+
+The `wget` command is used to download files from the internet. The command uses the HTTP, HTTPS, and FTP protocols for downloads.
+
+Below, the `wget` command is used to download the latest version of wordpress:
+![Alt text](<Images/Task26 - wget command to download wordpress files.JPG>)
+
+### Task 27 - uname (unix name)
+
+The `uname` command 
 
 
 
