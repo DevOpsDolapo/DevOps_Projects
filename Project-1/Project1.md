@@ -326,8 +326,34 @@ Below, the `wget` command is used to download the latest version of wordpress:
 
 ### Task 27 - uname (unix name)
 
-The `uname` command 
+The `uname` command prints out the machine name, operating system, and kernel of your linux system.
 
+Used with the -a flag, the uname command prints out detailed information about your system:
+![Alt text](<Images/Task27 - the uname command with the -a flag.JPG>)
+
+### Task 28 - top
+
+The `top` command displays running processes, resource utilization, CPU, and memory usage of a system.
+
+top command:
+![Alt text](<Images/Task28 - top command.JPG>)
+
+### Task 29 - history
+
+The `history` command lists as much as 500 previously executed commands. This is useful if you need to reuse some of the commands ran earlier.
+
+The history command:
+![Alt text](<Images/Task29 - history.JPG>)
+
+### Task 30 - man
+
+The `man` command provides a user manual of linux commands. The manual provides command descriptions and options.
+
+To access the manual for the `cat` command:
+![Alt text](<Images/Task30 - man command on terminal.JPG>)
+
+Output of the `man cat` command:
+![Alt text](<Images/Task30 - man cat command output.JPG>)
 
 
 
