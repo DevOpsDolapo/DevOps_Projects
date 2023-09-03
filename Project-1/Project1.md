@@ -144,9 +144,12 @@ The `rmdir` command is used to permanently delete an empty directory. It is impo
 
 ### Task 10 - rm (remove or delete)
 
-The `rm` command is used to delete files and directories. It's essential for a user to have the necessary write permissions before attempting this command. It's important to note that operations carried out using the rm command cannot be undone.
+The `rm` command is used to delete files and directories. It's essential for a user to have the necessary write permissions before attempting this command. 
+
+It's important to note that operations carried out using the rm command cannot be undone.
 
 Using rm command to delete a file:
+
 ![Alt text](<Images/Task10 - rm command to delete a file.JPG>)
 
 Using rm command to delete a directory (this requires the -r (recursive) flag to delete directories and their contents recursively):
@@ -223,6 +226,7 @@ Using the du command with the flags *-c*, *-h*, *-s* shows the total size of a f
 The `head` command shows the first ten lines in a file.
 
 Running the `head` command on a file:
+
 ![Alt text](<Images/Task17 - head command.JPG>)
 
 Running the `head` command with the -6 option to show the first six lines in a file:
@@ -236,9 +240,11 @@ The `tail` command is the opposite of the `head` command. This command displays 
 Just like with the `head` command, using the `tail` command with the -n option displays the number of lines indicated by the value of n.
 
 Running the tail command:
+
 ![Alt text](<Images/Task18 - tail command.JPG>)
 
 Running the tail command with the -6 option:
+
 ![Alt text](<Images/Task18 - tail command with the -6 option.JPG>)
 
 ### Task 19 - diff (difference)
@@ -291,6 +297,7 @@ The `jobs` command displays all the running processes as well as the status of t
 The syntax is `jobs [options] jobID`
 
 No jobs running at the moment:
+
 ![Alt text](<Images/Task23 - jobs command.JPG>)
 
 ### Task 24 - kill
@@ -350,6 +357,7 @@ The history command:
 The `man` command provides a user manual of linux commands. The manual provides command descriptions and options.
 
 To access the manual for the `cat` command:
+
 ![Alt text](<Images/Task30 - man command on terminal.JPG>)
 
 Output of the `man cat` command:
@@ -362,6 +370,7 @@ The `echo` command displays a line of text or string. It is also used (in conjuc
 In the example below, a variable 'name' has been set with a value 'adeola'. We'll use the *echo* command to query the variable.
 
 variable name set as adeola:
+
 ![Alt text](<Images/Task31 - echo - set variable name.JPG>)
 
 echo command used to query the 'name' variable
@@ -387,6 +396,7 @@ Files unzipped into a specified directory:
 The `hostname` command is used to query a system's hostname.
 
 My system's hostname is displayed as ubuntuserver:
+
 ![Alt text](<Images/Task33 - hostname command.JPG>)
 
 Using the hostname command with the -i flag displays the system's ip address:
@@ -403,6 +413,7 @@ Using *useradd* command to create a user *vboxuser04* and the *passwd* command t
 The `userdel` command is used to delete a user account.
 
 Using *userdel*:
+
 ![Alt text](<Images/Task34 - userdel command to delete user account vboxuser01.JPG>)
 
 ### Task 35 - apt-get
@@ -417,12 +428,14 @@ Executing the *apt-get update* command:
 `nano`, `vi`, and `jed` are text editors that allow users to edit and manage files. nano and vi come pre-installed with the operating system while jed has to be installed manually.
 
 Running *nano* on a file named 'Fade':
+
 ![Alt text](<Images/Task36 - nano command executed on a file named Fade.JPG>)
 
 The *nano* command editor:
 ![Alt text](<Images/Task36 - result of nano command.JPG>)
 
 Running *vi* on the file named 'Fade':
+
 ![Alt text](<Images/Task36 - vi command executed on a file named Fade.JPG>)
 
 The *vi* command editor:
@@ -431,7 +444,8 @@ The *vi* command editor:
 Because the jed editor does not come pre-installed, it has to be installed as below:
 ![Alt text](<Images/Task36 - installing jed text editor.JPG>)
 
-Running *jed* on the file named 'Fade'::
+Running *jed* on the file named 'Fade':
+
 ![Alt text](<Images/Task36 - jed command executed on a file named Fade.JPG>)
 
 The *jed* command editor:
@@ -444,6 +458,7 @@ The `alias` command allows you to create a shortcut with the same functionality 
 The syntax is `alias Name=String`
 
 To make 't' the alias for the *top* command:
+
 ![Alt text](<Images/Task37 - creating an alias t for the top command.JPG>)
 
 Running *t* command:
@@ -471,6 +486,7 @@ Just like the `top` command, `htop` monitors system resources and processes in r
 ![Alt text](<Images/Task39 - installing htop.JPG>)
 
 Running the *htop* command:
+
 ![Alt text](<Images/Task39 - htop command execution.JPG>)
 
 The display after running the *htop* command:
@@ -481,6 +497,7 @@ The display after running the *htop* command:
 The `ps` command provides a snapshot of all the running processes in the system along with their unique process IDs (PID) when used with flags.
 
 Running *ps* command:
+
 ![Alt text](<Images/Task40 - executing the ps command without flags.JPG>)
 
 Executing the *ps -e* command shows all the running processes on a system:
