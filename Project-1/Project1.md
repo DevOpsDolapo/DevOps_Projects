@@ -429,6 +429,26 @@ The *vi* command editor:
 ![Alt text](<Images/Task36 - result of vi command.JPG>)
 
 Because the jed editor does not come pre-installed, it has to be installed as below:
+![Alt text](<Images/Task36 - installing jed text editor.JPG>)
+
+Running *jed* on the file named 'Fade'::
+![Alt text](<Images/Task36 - jed command executed on a file named Fade.JPG>)
+
+The *jed* command editor:
+![Alt text](<Images/Task36 - result of jed command.JPG>)
+
+### Task 37 - alias & unalias
+
+The `alias` command allows you to create a shortcut with the same functionality as a filename, text, or command. 
+
+The syntax is `alias Name=String`
+
+To make 't' the alias for the *top* command:
+![Alt text](<Images/Task37 - creating an alias t for the top command.JPG>)
+
+Running *t* command:
+![Alt text](<Images/Task37 - executing t for the top command.JPG>)
+
 
 
 
