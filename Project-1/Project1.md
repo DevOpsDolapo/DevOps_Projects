@@ -27,7 +27,7 @@ The `pwd` command shows the full path of a user's current working directory.
 
 ### Task 3 - cd (change directory)
 
-The **cd** command allows you to navigate through linux directories (folders)
+The `cd` command allows you to navigate through linux directories (folders)
 
 The pictures below show the results of running the cd command to switch between different directories
 
@@ -45,7 +45,7 @@ The pictures below show the results of running the cd command to switch between 
 
 ### Task 4 - ls (list)
 
-The ls command is used to list files and directories within the system
+The `ls` command is used to list files and directories within the system
 
 *The **ls** command listing files and directories in the Documents directory:*
 
@@ -64,7 +64,7 @@ The **ls** command can also be used with flags to specify certain options and ou
 
 ### Task 5 - cat (concatenate)
 
-The **cat** command lists, merges, and writes out the content of a file
+The `cat` command lists, merges, and writes out the content of a file
 
 *The **cat** command is used to list the content of three different files (file, file1, and file2):*
 ![Task5 - the cat command lists the content of three different files (file, file1, and file2)](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/da05d974-62aa-4ead-a2ee-3ece68b44b58)
@@ -78,7 +78,7 @@ The **cat** command lists, merges, and writes out the content of a file
 
 ### Task 6 - cp (copy)
 
-The **cp** command is used to copy files and directories along with their contents
+The `cp` command is used to copy files and directories along with their contents
 
 *The **cp** command used to copy a file to the test_directory folder on the Desktop:*
 ![Task6 - the cp command used to copy a file to a folder in the Desktop directory](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/7f727bbc-b68f-45e0-96e3-ec5f616d2422)
@@ -99,7 +99,7 @@ The **cp** command is used to copy files and directories along with their conten
 
 ### Task 7 - mv (move)
 
-The **mv** command allows us to move and rename files and directories
+The `mv` command allows us to move and rename files and directories
 
 *The **mv** command used to move files and directory from Desktop to the first_folder directory in Documents:*
 ![Task7 - mv command moves files and directory on Desktop to the first_folder directory in Documents](https://github.com/DevOpsDolapo/LinuxPracticeProjects/assets/115728279/7a21ede5-30b1-4919-b744-adb151d2ee39)
@@ -112,7 +112,7 @@ The **mv** command allows us to move and rename files and directories
 
 ### Task 8 - mkdir (make directory)
 
-The **mkdir** command is used to create one or more folders (directories). The command is also used to set permissions for the created directories at the same time. It is important that the relevant user has the necessary permissions to create entries in the parent directory or they would get a permission denied error.
+The `mkdir` command is used to create one or more folders (directories). The command is also used to set permissions for the created directories at the same time. It is important that the relevant user has the necessary permissions to create entries in the parent directory or they would get a permission denied error.
 
 ***mkdir** command creates a directory august in the Desktop directory:*
 
@@ -133,7 +133,7 @@ The **mkdir** command also works with flags. Some of the flags used with this co
 
 ### Task 9 - rmdir (remove directory)
 
-This command is used to permanently delete an empty directory. It is important that the relevant user has the necessary sudo permissions in the parent directory or they would get a permission denied error.
+The `rmdir` command is used to permanently delete an empty directory. It is important that the relevant user has the necessary sudo permissions in the parent directory or they would get a permission denied error.
 
 *Using **rmdir** to delete an empty directory from the Desktop:*
 
