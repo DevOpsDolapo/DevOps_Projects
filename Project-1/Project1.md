@@ -355,7 +355,17 @@ To access the manual for the `cat` command:
 Output of the `man cat` command:
 ![Alt text](<Images/Task30 - man cat command output.JPG>)
 
-### Task 31 - 
+### Task 31 - echo
+
+The `echo` command displays a line of text or string. It is also used (in conjuction with the $ sign) to return the value that has been placed in a variable.
+
+In the example below, a variable 'name' has been set with a value 'adeola'. We'll use the *echo* command to query the variable.
+variable name set as adeola:
+
+
+
+
+
 
 
 
