@@ -265,9 +265,30 @@ Using the tar command to create an archive from the contents of the Documents di
 Using the tar command to extract the archive created ealier:
 ![Alt text](<Images/Task20 - tar command to extract an archive.JPG>)
 
-### Task 21 chmod
+### Task 21 - chmod
 
-The `chmod` command is used to 
+The `chmod` command is used to modify the read, write, execute permissions on a file or directory.
+
+To grant other users apart from the owner the full permission to a file or directory, it must have the 777 permission.
+
+Running the chmod command to grant 777 permission to a file:
+![Alt text](<Images/Task21 - chmod grant full permission to a file.JPG>)
+
+Running the chmod command to grant 777 permission to a folder and its contents:
+![Alt text](<Images/Task21 - chmod grant full permission to a directory.JPG>)
+
+### Task 22 - chown
+
+The `chown` command is used to change ownership and/or group of a file, directory, or symbolic link.
+
+Changing the ownership and group of a file:
+![Alt text](<Images/Task22 - chown command to change ownership of a file to the root user.JPG>)
+
+### Task 23 - jobs
+
+
+
+
 
 
 
