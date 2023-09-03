@@ -476,6 +476,20 @@ Running the *htop* command:
 The display after running the *htop* command:
 ![Alt text](<Images/Task39 - result of running the htop command.JPG>)
 
+### Task 40 - ps (process status)
+
+The `ps` command provides a snapshot of all the running processes in the system along with their unique process IDs (PID) when used with flags.
+
+Running *ps* command:
+![Alt text](<Images/Task40 - executing the ps command without flags.JPG>)
+
+Executing the *ps -e* command shows all the running processes on a system:
+![Alt text](<Images/Task40 - executing the ps command with the -e flag.JPG>)
+
+Executing the *ps -ef* command shows all the running processes with a full-format listing alongside the identity of the user running the process:
+![Alt text](<Images/Task40 - executing the ps command with the -ef flags.JPG>)
+
+
 
 
 
