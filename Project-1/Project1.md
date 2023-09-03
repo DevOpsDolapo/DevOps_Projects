@@ -412,7 +412,12 @@ The `apt-get` command is used for handling Advanced Package Tool (APT) libraries
 Executing the *apt-get update* command:
 ![Alt text](<Images/Task35 - using the apt-get command to update packages.JPG>)
 
-### Task 36 - 
+### Task 36 - nano, vi, jed
+
+`nano`, `vi`, and `jed` are text editors that allow users to edit and manage files. nano and vi come pre-installed with the operating system while jed has to be installed manually.
+
+Using *nano*:
+
 
 
 
