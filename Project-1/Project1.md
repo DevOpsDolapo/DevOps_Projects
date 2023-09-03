@@ -360,7 +360,34 @@ Output of the `man cat` command:
 The `echo` command displays a line of text or string. It is also used (in conjuction with the $ sign) to return the value that has been placed in a variable.
 
 In the example below, a variable 'name' has been set with a value 'adeola'. We'll use the *echo* command to query the variable.
+
 variable name set as adeola:
+![Alt text](<Images/Task31 - echo - set variable name.JPG>)
+
+echo command used to query the 'name' variable
+![Alt text](<Images/Task31 - echo command used to query the name variable.JPG>)
+
+### Task 32 - zip & unzip
+
+The `zip` command is similar to what *zip* does on Windows. It is used to compress files into a Zip file. It is also used for archiving files and directories to reduce disk usage. It essentially does the same thing as the *tar* command.
+
+The zip command used to compress files on the Desktop into an archive:
+![Alt text](<Images/Task32 - zip command to compress files and folders into a zip file.JPG>)
+
+Conversely, the `unzip` command extracts the files from a zipped archive into the pwd or a specified directory (using the -d flag)
+
+Files unzipped into the current directory where the archive resides:
+![Alt text](<Images/Task32 - unzip command to extract files and folders into the Desktop directory.JPG>)
+
+Files unzipped into a specified directory:
+![Alt text](<Images/Task32 - unzip command to extract files and folders into a specified directory in the Documents folder.JPG>)
+
+### Task 33 - 
+
+
+
+
+
 
 
 
