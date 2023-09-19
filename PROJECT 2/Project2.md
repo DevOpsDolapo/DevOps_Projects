@@ -11,7 +11,7 @@ However, Git is a distributed system, so it enhances collaboration between devel
 
 ## How to Initialize a Git Repository
 
-Before initialiizing a Git repository (or repo for short), you would need to install Git on your computer. The steps to install Git on a Windows system are shown below:
+Before initialiizing a Git repository (or repo for short), we would need to install Git on the computer. The steps to install Git on a Windows system are shown below:
 
 - **Download Git from the website `https://git-scm.com/download/win`**
 
@@ -26,6 +26,25 @@ Before initialiizing a Git repository (or repo for short), you would need to ins
 ![Alt text](Images/Install_Git-step4.jpg)
 
 ![Alt text](Images/Install_Git-step5.jpg)
+
+The steps to initialize Git are as follows:
+
+1. Open a Git bash terminal on the computer**
+
+![Alt text](Images/Open_Git_Bash.JPG)
+
+2. Using the `mkdir` command, a directory **Test_Repo** is created in the DevOps directory
+
+![Alt text](Images/mkdir_test_repo.JPG)
+
+3. The command `cd Test_Repo` is issued to move into the Test_Repo directory
+
+![Alt text](Images/cd_test_repo.JPG)
+
+4. While inside the Test_Repo directory, the `git init` command is invoked. The repository is initiated and a branch **main** created.
+
+![Alt text](Images/git_init_command.JPG)
+
 
 
 
