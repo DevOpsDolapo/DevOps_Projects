@@ -45,8 +45,6 @@ The steps to initialize Git are as follows:
 
 ![Alt text](Images/git_init_command.JPG)
 
-![Alt text](Images/Test_Repo_Init.JPG)
-
 ## How to Make Commits
 
 In Git, making a commit is essentially saving the changes we've made to the files in our repository. These changes could be adding, deleting, or modifying files, folders, or text.
