@@ -45,6 +45,35 @@ The steps to initialize Git are as follows:
 
 ![Alt text](Images/git_init_command.JPG)
 
+![Alt text](Images/Test_Repo_Init.JPG)
+
+## How to Make Commits
+
+In Git, making a commit is essentially saving the changes we've made to the files in our repository. These changes could be adding, deleting, or modifying files, folders, or text.
+
+During a commit, Git takes a snapshot of the current state of the repository and saves a copy in the .git folder inside the repository.
+
+To make a commit in the working directory:
+
+1. Run `touch class_list.txt` to create a file in the working directory
+
+![Alt text](Images/create_file_in_repo.JPG)
+
+2. Add a sentence to the file using the `echo` command
+
+![Alt text](Images/edit_file_in_repo.JPG)
+
+3. Move the file to the git staging area (same as saving the file) using the `git add .` command
+
+![Alt text](Images/move_file_to_staging_area.JPG)
+
+4. Commit the changes to git by running the command `git commit -m "Commit Message"`
+
+![Alt text](Images/making_a_commit.JPG)
+
+
+
+
 
 
 
