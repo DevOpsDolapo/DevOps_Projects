@@ -13,11 +13,21 @@ However, Git is a distributed system, so it enhances collaboration between devel
 
 Before initialiizing a Git repository (or repo for short), you would need to install Git on your computer. The steps to install Git on a Windows system are shown below:
 
-- Download Git from the website `https://git-scm.com/download/win`
+- **Download Git from the website `https://git-scm.com/download/win`**
 
 ![Alt text](Images/Install_Git-step1.jpg)
 
-- Install Git on the system
+- **Installing Git on the system**
+
+![Alt text](Images/Install_Git-step2.jpg) 
+
+![Alt text](Images/Install_Git-step3.jpg)
+
+![Alt text](Images/Install_Git-step4.jpg)
+
+![Alt text](Images/Install_Git-step5.jpg)
+
+
 
 
 
