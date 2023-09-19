@@ -65,9 +65,12 @@ To make a commit in the working directory:
 
 ![Alt text](Images/move_file_to_staging_area.JPG)
 
-4. Commit the changes to git by running the command `git commit -m "Commit Message"`
+4. Commit the changes to git by running the command `git commit -m "Commit Message"`. The -m flag in the command allows us to add commit message which provides some context about the commit.
 
 ![Alt text](Images/making_a_commit.JPG)
+
+## How to Work with Branches
+
 
 
 
