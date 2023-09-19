@@ -9,4 +9,4 @@ Git is popularly used in software development, however, before the advent of Git
 
 However, Git is a distributed system, so it enhances collaboration between developers by allowing them make their own version or copy of the central repository. 
 
-## How to Initialize a 
+## How to Initialize a Git Repository
