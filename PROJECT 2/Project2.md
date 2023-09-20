@@ -110,6 +110,8 @@ Sometimes it might be necessary to delete a branch in Git. The command to do tha
 
 ![Alt text](Images/git_branch_delete.jpg)
 
+## How to Collaborate with Remote Repositories
+
 
 
 
