@@ -150,12 +150,21 @@ Github allows us to host our local repository in a public repository on the inte
 
 ![Alt text](Images/github_dashboard.jpg)
 
-- To create a new repository, click on *Create Repository* on the upper-left corner of the dashboard page and fill out the necessary details, then click on *Create Repository* at the bottom of this page
+- To create a new repository ***GitTestRepo1***, click on *Create Repository* on the upper-left corner of the dashboard page and fill out the necessary details, then click on *Create Repository* at the bottom of this page
 
 ![Alt text](Images/create_new_repository.jpg)
 
-### How to push a local Git repository to a remote Github repository
+### How to Push a local Git repository to a Remote Github repository
 
+After creating a Github account and a new repository, we can push the local repository to the repository in Github by follwing these steps.
+
+1. Copy the Github repository link. The link can be copied from the new repository page
+
+![Alt text](Images/copying_link_to_new_repository.jpg)
+
+2. Add the remote repository to the local repository, using the command `git remote add origin <link to your github repo>`
+
+![Alt text](Images/push_local_repository.jpg)
 
 
 
