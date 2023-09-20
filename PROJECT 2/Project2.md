@@ -41,7 +41,7 @@ The steps to initialize Git are as follows:
 
 ![Alt text](Images/cd_test_repo.JPG)
 
-4. While inside the Test_Repo directory, the `git init` command is invoked. The repository is initiated and a branch **main** created.
+4. While inside the Test_Repo directory, the `git init` command is invoked. The repository is initiated and designated as the **main** repository.
 
 ![Alt text](Images/git_init_command.JPG)
 
@@ -70,6 +70,51 @@ To make a commit in the working directory:
 ![Alt text](Images/making_a_commit.JPG)
 
 ## How to Work with Branches
+
+In Git, branches allow developers to edit and work on bug fixes, issues, and features of a software code without affecting the main codebase. Developers are allowed to create different branches for this purpose and once they are done with the edits or bug fixes, they can converge all the different codes into one branch (the main branch).
+
+- **Make a new Git branch**
+
+The command to make a new branch is `git checkout -b`. The `-b` flag helps you create the new branch and change into it.
+
+![Alt text](Images/making_a_new_branch.jpg)
+
+- **List your Git branches**
+
+The command to list the branches on a local git directory is `git branch`. The * alongside the master branch signifies that it's the current working branch.
+
+![Alt text](Images/listing_availables_branches.jpg)
+
+- **Switch or change to another branch**
+
+The command to switch or change to another branch is `git checkout <branch name>`
+
+![Alt text](Images/switch_to_another_branch.jpg)
+
+- **Merging a Branch into another Branch**
+
+Sometimes it might be necessary to merge one branch into another. This essentially means adding the content of one branch into another. For instance to merge the contents of *master* into *main*.
+
+1. Change to branch main
+
+![Alt text](Images/switch_to_branch_main.jpg)
+
+2. Run the command `git merge master`
+
+![Alt text](Images/git_merge.jpg)
+
+
+- **Deleting a Branch in Git**
+
+Sometimes it might be necessary to delete a branch in Git. The command to do that is `git branch -d <branch name>`
+
+![Alt text](Images/git_branch_delete.jpg)
+
+
+
+
+
+
 
 
 
