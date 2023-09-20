@@ -112,6 +112,35 @@ Sometimes it might be necessary to delete a branch in Git. The command to do tha
 
 ## How to Collaborate with Remote Repositories
 
+Due to the fact that Git is used for collaboration amongst remote teams residing in different locations, it's essential that the code they are working on does not reside on a local computer. This led to the advent of Github, a web-based platform where repositories are hosted. 
+
+Github allows us to host our local repository in a public repository on the internet, thus enabling access to people from different locations to work on the same codebase. 
+
+To use Github, these are the necessary steps:
+
+1. Create a Github account
+
+- Visit https://github.com/ to create an account
+
+![Alt text](Images/github_registration.jpg)
+
+- Enter the required details
+
+![Alt text](Images/github_enter_details.jpg)
+
+- Verify your account
+
+![Alt text](Images/verity_github_account.jpg)
+
+- After submitting the verification puzzles, you can create an account
+
+![Alt text](Images/create_github_account.jpg)
+
+- A code is sent to the registered email address
+
+![Alt text](Images/code_sent_to_email.jpg)
+
+
 
 
 
