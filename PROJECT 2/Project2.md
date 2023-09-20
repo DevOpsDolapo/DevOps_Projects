@@ -116,7 +116,7 @@ Due to the fact that Git is used for collaboration amongst remote teams residing
 
 Github allows us to host our local repository in a public repository on the internet, thus enabling access to people from different locations to work on the same codebase. 
 
-To use Github, these are the necessary steps:
+### How to create a Github account and create a new repository
 
 1. Create a Github account
 
@@ -153,6 +153,10 @@ To use Github, these are the necessary steps:
 - To create a new repository, click on *Create Repository* on the upper-left corner of the dashboard page and fill out the necessary details, then click on *Create Repository* at the bottom of this page
 
 ![Alt text](Images/create_new_repository.jpg)
+
+### How to push a local Git repository to a remote Github repository
+
+
 
 
 
