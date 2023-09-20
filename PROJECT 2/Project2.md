@@ -140,6 +140,22 @@ To use Github, these are the necessary steps:
 
 ![Alt text](Images/code_sent_to_email.jpg)
 
+- Choose the required answers to personalize the experience or skip this page
+
+![Alt text](Images/choose_preferences.jpg)
+
+2. Create a Github Repository
+
+- The Github dashboard after logging in
+
+![Alt text](Images/github_dashboard.jpg)
+
+- To create a new repository, click on *Create Repository* on the upper-left corner of the dashboard page and fill out the necessary details, then click on *Create Repository* at the bottom of this page
+
+![Alt text](Images/create_new_repository.jpg)
+
+
+
 
 
 
