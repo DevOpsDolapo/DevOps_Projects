@@ -212,6 +212,14 @@ The command to clone a remote repository is `git clone <link to your remote repo
 
 ![Alt text](Images/git_clone.jpg)
 
+A copy of the remote repository on the local machine is shown in the screenshots below
+
+![Alt text](Images/cloned_repository.jpg)
+
+![Alt text](Images/cloned_repository_with_files.jpg)
+
+
+
 
 
 
