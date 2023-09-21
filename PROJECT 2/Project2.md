@@ -204,6 +204,13 @@ Checking the repository on Github shows that the files have been copied from the
 
 ![Alt text](Images/local_repo_contents.jpg)
 
+### How to Clone a Remote Git Repository
+
+Cloning a Git repository allows us to copy a remote Github repository to our local machine. It is essentially downloading a remote repository onto our local machine.
+
+The command to clone a remote repository is `git clone <link to your remote repository>`
+
+![Alt text](Images/git_clone.jpg)
 
 
 
