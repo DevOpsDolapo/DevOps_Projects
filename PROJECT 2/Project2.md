@@ -166,6 +166,50 @@ After creating a Github account and a new repository, we can push the local repo
 
 ![Alt text](Images/push_local_repository.jpg)
 
+3. Push the contents of the local repository to the remote repository using the command `git push origin <branch name>`
+
+![Alt text](Images/git_push_error_message.jpg)
+
+The above error is due to the fact that the computer has saved a git username and password so if you shift to another account the error 403 will appear.
+
+The solution on a Windows system is to remove the Github keys.
+
+Go to control panel > user accounts > credential manager > Windows credentials > Generic credentials 
+
+Then remove the Github keys
+
+![Alt text](Images/solution_to_error_403.jpg)
+
+After removing the Github keys running `git push origin <branch name>` again popped up another error as seen below
+
+![Alt text](Images/git_push_error_message2.jpg)
+
+The above error means there are changes on the remote branch that are not on the local repository. A `git pull` command needs to be run.
+
+![Alt text](Images/git_pull_error.jpg)
+
+The git pull command also throws up an error as seen in the screenshot. This error occurs because the two repositories we're trying to merge have no connection in their histories or no shared starting point.
+
+To fix this error, run `git pull origin <branch-name> --allow-unrelated-histories`
+
+![Alt text](Images/git_pull_error_solution.jpg)
+
+Finally, we can re-run the `git push origin <branch name>` command
+
+![Alt text](Images/git_push_command_run.jpg)
+
+Checking the repository on Github shows that the files have been copied from the local repository to the remote repository.
+
+![Alt text](Images/github_repo.jpg)
+
+![Alt text](Images/local_repo_contents.jpg)
+
+
+
+
+
+
+
 
 
 
