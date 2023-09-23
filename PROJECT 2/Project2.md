@@ -268,6 +268,8 @@ To display an image using Markdown syntax, the alt text is placed in square brac
 
 ![GitHub Universe Banner](https://githubuniverse.com/?utm_source=github&utm_medium=banner&utm_campaign=bannerlo)
 
+![Alt Text](https://githubuniverse.com/?utm_source=github&utm_medium=banner&utm_campaign=bannerlo)
+
 
 
 
