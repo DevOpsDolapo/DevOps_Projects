@@ -224,7 +224,7 @@ Markdown syntax is an easy-to-use Markup language used for formatting plain text
 
 Examples of Markdown syntax elements are:
 
-1. Headings
+**1. Headings**
 
 # Heading 1 - This is a Git Project
 
@@ -232,7 +232,7 @@ Examples of Markdown syntax elements are:
 
 ### Heading 3 - This is a Git Project
 
-2. Text Emphasis
+**2. Text Emphasis**
 
 *italic* or *_italic_*
 
@@ -242,9 +242,9 @@ Example: *Git project* or _Git project_
 
 Example: **Git project** or __Git project__
 
-3. Lists
+**3. Lists**
 
-We can create both ordered and unordered lists using Markdown syntax
+We can create both ordered and unordered lists using Markdown syntax.
 
 Unordered list:
 - Chair
@@ -252,6 +252,24 @@ Unordered list:
 - Desk
 
 Ordered list:
+1. Chair
+2. Table
+3. Desk
+
+**4. Links**
+
+To create a hyperlink using Markdown syntax, the link text is placed in square brackets side-by-side with the URL which is placed in parentheses.
+
+[Visit BBC Sports Football](https://www.bbc.com/sport/football)
+
+**5. Images**
+
+To display an image using Markdown syntax, the alt text is placed in square brackets after an exclamation mark while the link to the image is placed alongside in parentheses.
+
+![GitHub Universe Banner](https://githubuniverse.com/?utm_source=github&utm_medium=banner&utm_campaign=bannerlo)
+
+
+
 
 
 
