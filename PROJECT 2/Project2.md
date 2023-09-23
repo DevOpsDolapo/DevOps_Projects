@@ -260,7 +260,7 @@ Ordered list:
 
 To create a hyperlink using Markdown syntax, the link text is placed in square brackets side-by-side with the URL which is placed in parentheses.
 
-For example: You can visit the BBC Sports Website by clicking on this link [BBC Sports Football](https://www.bbc.com/sport/football)
+For example: You can visit the BBC Sports Football website by clicking on this link [BBC Sports Football](https://www.bbc.com/sport/football)
 
 **5. Images**
 
@@ -268,6 +268,16 @@ To display an image using Markdown syntax, the alt text is placed in square brac
 
 For example: The image for the GitHub Universe banner is:
 ![GitHub Universe Banner](https://githubuniverse.com/hero-video.jpg)
+
+**6. Code**
+
+To denote and differentiate code from normal text using Markdown syntax, we can enclose the code syntax within back ticks ``.
+
+Example: `git push origin <branch name>`
+
+
+
+
 
 
 
