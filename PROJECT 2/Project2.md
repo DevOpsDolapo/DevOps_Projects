@@ -5,19 +5,19 @@
 
 Git is a Version Control or Source Control System. Its main benefit is that it provides a solution to the problem of keeping track of the changes software developers make to source code. It also ensures that source code is shared efficiently amongst developers.
 
-Git is popularly used in software development, however, before the advent of Git, developers used other Source Control Systems such as SVN. The problem with SVN is that it runs on a central repository which makes it difficult for multiple developers to make changes to code at the same time as changes could only be made one after the other. Besides, anytime SVN's central repository goes down, it becomes unavailable thereby stopping developers from working.
+Git is popularly used in software development. However, before the advent of Git, developers used other Source Control Systems such as SVN. The problem with SVN is that it runs on a central repository which makes it difficult for multiple developers to make changes to code at the same time so changes could only be made one after the other. Besides, anytime SVN's central repository goes down, it becomes unavailable thereby stopping developers from working.
 
 However, Git is a distributed system, so it enhances collaboration between developers by allowing them make their own version or copy of the central repository. 
 
 ## How to Initialize a Git Repository
 
-Before initialiizing a Git repository (or repo for short), we would need to install Git on the computer. The steps to install Git on a Windows system are shown below:
+Before initializing a Git repository (or repo for short), we would need to install Git on the computer. The steps to install Git on a Windows system are shown below:
 
 - **Download Git from the website `https://git-scm.com/download/win`**
 
 ![Alt text](Images/Install_Git-step1.jpg)
 
-- **Installing Git on the system**
+- **Install Git on the system**
 
 ![Alt text](Images/Install_Git-step2.jpg) 
 
@@ -29,7 +29,7 @@ Before initialiizing a Git repository (or repo for short), we would need to inst
 
 The steps to initialize Git are as follows:
 
-1. Open a Git bash terminal on the computer**
+1. Open a Git bash terminal on the computer
 
 ![Alt text](Images/Open_Git_Bash.JPG)
 
@@ -130,7 +130,7 @@ Github allows us to host our local repository in a public repository on the inte
 
 - Verify your account
 
-![Alt text](Images/verity_github_account.jpg)
+![Alt text](Images/verify_github_account.jpg)
 
 - After submitting the verification puzzles, you can create an account
 
