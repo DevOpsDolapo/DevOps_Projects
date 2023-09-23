@@ -260,15 +260,18 @@ Ordered list:
 
 To create a hyperlink using Markdown syntax, the link text is placed in square brackets side-by-side with the URL which is placed in parentheses.
 
-[Visit BBC Sports Football](https://www.bbc.com/sport/football)
+For example: You can visit the BBC Sports Website by clicking on this link [BBC Sports Football](https://www.bbc.com/sport/football)
 
 **5. Images**
 
 To display an image using Markdown syntax, the alt text is placed in square brackets after an exclamation mark while the link to the image is placed alongside in parentheses.
 
-![GitHub Universe Banner](https://githubuniverse.com/?utm_source=github&utm_medium=banner&utm_campaign=bannerlo)
+For example: The image for the GitHub Universe banner is:
+![GitHub Universe Banner](https://githubuniverse.com/hero-video.jpg)
 
-![Alt Text](https://githubuniverse.com/?utm_source=github&utm_medium=banner&utm_campaign=bannerlo)
+
+
+
 
 
 
