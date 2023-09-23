@@ -154,7 +154,7 @@ Github allows us to host our local repository in a public repository on the inte
 
 ![Alt text](Images/create_new_repository.jpg)
 
-### How to Push a local Git repository to a Remote Github repository
+### How to Push a Local Git repository to a Remote Github repository
 
 After creating a Github account and a new repository, we can push the local repository to the repository in Github by follwing these steps.
 
