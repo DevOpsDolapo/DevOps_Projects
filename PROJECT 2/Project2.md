@@ -253,8 +253,8 @@ Unordered list:
 
 Ordered list:
 1. Chair
-2. Table
-3. Desk
+2. Desk
+3. Table
 
 **4. Links**
 
