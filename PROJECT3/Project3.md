@@ -33,11 +33,17 @@ The acronym LAMP can be broken down as follows:
 
 - P (PHP programming language)
 
-## Setting up an AWS Account
+## Spinning up and EC2 instance and Creating an Ubuntu Server OS
 
 Amazon Web Services (AWS) is a cloud services provider that facilitates on-demand delivery of IT resources over the internet through a pay-as-you-go pricing template.
 
 For this project, I'll be using free-tier servers on the AWS platform known as EC2 (Elastic Compute Cloud) running on the Ubuntu Server OS.
+
+### Spinning up and EC2 instance
+
+To spin up the required EC2 instances for my project, I'll need to log into my AWS account
+
+
 
 
 
