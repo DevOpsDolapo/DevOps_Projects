@@ -17,5 +17,19 @@ Examples of technology stacks are:
 
 - MEAN (MongoDB, ExpressJS, AngularJS, NodeJS)
 
+## Introduction to LAMP Stack Architecture
 
+The LAMP stack consists of four (4) different software technologies that developers use to build web applications and websites. The LAMP stack is quite popular among developers because all four technologies are open source; they are maintained by a community and freely available for everyone to use. They are free of cost, easy to use, easy to maintain, and flexible.
+
+The LAMP architecture is great for creating, hosting, and maintaining web content.
+
+The acronym LAMP can be broken down as follows:
+
+- L (Linux operating system)
+
+- A (Apache web server)
+
+- M (MySQL database server)
+
+- P (PHP programming language)
 
