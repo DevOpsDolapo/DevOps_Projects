@@ -5,19 +5,19 @@
 
 Git is a Version Control or Source Control System. Its main benefit is that it provides a solution to the problem of keeping track of the changes software developers make to source code. It also ensures that source code is shared efficiently amongst developers.
 
-Git is popularly used in software development, however, before the advent of Git, developers used other Source Control Systems such as SVN. The problem with SVN is that it runs on a central repository which makes it difficult for multiple developers to make changes to code at the same time as changes could only be made one after the other. Besides, anytime SVN's central repository goes down, it becomes unavailable thereby stopping developers from working.
+Git is popularly used in software development. However, before the advent of Git, developers used other Source Control Systems such as SVN. The problem with SVN is that it runs on a central repository which makes it difficult for multiple developers to make changes to code at the same time so changes could only be made one after the other. Besides, anytime SVN's central repository goes down, it becomes unavailable thereby stopping developers from working.
 
 However, Git is a distributed system, so it enhances collaboration between developers by allowing them make their own version or copy of the central repository. 
 
 ## How to Initialize a Git Repository
 
-Before initialiizing a Git repository (or repo for short), we would need to install Git on the computer. The steps to install Git on a Windows system are shown below:
+Before initializing a Git repository (or repo for short), I would need to install Git on the computer. The steps to install Git on a Windows system are shown below:
 
-- **Download Git from the website `https://git-scm.com/download/win`**
+- **I download Git from the website `https://git-scm.com/download/win`**
 
 ![Alt text](Images/Install_Git-step1.jpg)
 
-- **Installing Git on the system**
+- **Install Git on the system**
 
 ![Alt text](Images/Install_Git-step2.jpg) 
 
@@ -29,11 +29,11 @@ Before initialiizing a Git repository (or repo for short), we would need to inst
 
 The steps to initialize Git are as follows:
 
-1. Open a Git bash terminal on the computer**
+1. Open a Git bash terminal on the computer
 
 ![Alt text](Images/Open_Git_Bash.JPG)
 
-2. Using the `mkdir` command, a directory **Test_Repo** is created in the DevOps directory
+2. Using the `mkdir` command, I create a directory **Test_Repo** in the DevOps directory
 
 ![Alt text](Images/mkdir_test_repo.JPG)
 
@@ -53,7 +53,7 @@ During a commit, Git takes a snapshot of the current state of the repository and
 
 To make a commit in the working directory:
 
-1. Run `touch class_list.txt` to create a file in the working directory
+1. I run `touch class_list.txt` to create a file in the working directory
 
 ![Alt text](Images/create_file_in_repo.JPG)
 
@@ -95,7 +95,7 @@ The command to switch or change to another branch is `git checkout <branch name>
 
 Sometimes it might be necessary to merge one branch into another. This essentially means adding the content of one branch into another. For instance to merge the contents of *master* into *main*.
 
-1. Change to branch main
+1. I change to branch main
 
 ![Alt text](Images/switch_to_branch_main.jpg)
 
@@ -116,9 +116,9 @@ Due to the fact that Git is used for collaboration amongst remote teams residing
 
 Github allows us to host our local repository in a public repository on the internet, thus enabling access to people from different locations to work on the same codebase. 
 
-### How to create a Github account and create a new repository
+### How to set up a Github account and create a new repository
 
-1. Create a Github account
+1. I create a Github account
 
 - Visit https://github.com/ to create an account
 
@@ -128,11 +128,11 @@ Github allows us to host our local repository in a public repository on the inte
 
 ![Alt text](Images/github_enter_details.jpg)
 
-- Verify your account
+- Verify the account
 
-![Alt text](Images/verity_github_account.jpg)
+![Alt text](Images/verify_github_account.jpg)
 
-- After submitting the verification puzzles, you can create an account
+- After submitting the verification puzzles, I can create an account
 
 ![Alt text](Images/create_github_account.jpg)
 
@@ -140,25 +140,25 @@ Github allows us to host our local repository in a public repository on the inte
 
 ![Alt text](Images/code_sent_to_email.jpg)
 
-- Choose the required answers to personalize the experience or skip this page
+- I can choose the required answers to personalize the experience or skip this page
 
 ![Alt text](Images/choose_preferences.jpg)
 
-2. Create a Github Repository
+2. I create a Github Repository
 
 - The Github dashboard after logging in
 
 ![Alt text](Images/github_dashboard.jpg)
 
-- To create a new repository ***GitTestRepo1***, click on *Create Repository* on the upper-left corner of the dashboard page and fill out the necessary details, then click on *Create Repository* at the bottom of this page
+- To create a new repository ***GitTestRepo1***, I click on *Create Repository* on the upper-left corner of the dashboard page and fill out the necessary details, then click on *Create Repository* at the bottom of the page
 
 ![Alt text](Images/create_new_repository.jpg)
 
-### How to Push a local Git repository to a Remote Github repository
+### How to Push a Local Git repository to a Remote Github repository
 
-After creating a Github account and a new repository, we can push the local repository to the repository in Github by follwing these steps.
+After creating a Github account and a new repository, I can push the local repository to the repository in Github by following these steps.
 
-1. Copy the Github repository link. The link can be copied from the new repository page
+1. I copy the Github repository link. The link can be copied from the new repository page
 
 ![Alt text](Images/copying_link_to_new_repository.jpg)
 
@@ -170,13 +170,13 @@ After creating a Github account and a new repository, we can push the local repo
 
 ![Alt text](Images/git_push_error_message.jpg)
 
-The above error is due to the fact that the computer has saved a git username and password so if you shift to another account the error 403 will appear.
+The above error is due to the fact that the computer has saved a git username and password so the error 403 appears because I changed to another Github account.
 
-The solution on a Windows system is to remove the Github keys.
+On a Windows system, the solution is to remove the Github keys.
 
-Go to control panel > user accounts > credential manager > Windows credentials > Generic credentials 
+I navigated to control panel > user accounts > credential manager > Windows credentials > Generic credentials 
 
-Then remove the Github keys
+Then removed the Github keys
 
 ![Alt text](Images/solution_to_error_403.jpg)
 
@@ -188,13 +188,13 @@ The above error means there are changes on the remote branch that are not on the
 
 ![Alt text](Images/git_pull_error.jpg)
 
-The git pull command also throws up an error as seen in the screenshot. This error occurs because the two repositories we're trying to merge have no connection in their histories or no shared starting point.
+The git pull command also throws up an error as seen in the screenshot. This error occured because the two repositories I am trying to merge have no connection in their histories or no shared starting point.
 
-To fix this error, run `git pull origin <branch-name> --allow-unrelated-histories`
+To fix this error, I run `git pull origin <branch-name> --allow-unrelated-histories`
 
 ![Alt text](Images/git_pull_error_solution.jpg)
 
-Finally, we can re-run the `git push origin <branch name>` command
+Finally, I can re-run the `git push origin <branch name>` command
 
 ![Alt text](Images/git_push_command_run.jpg)
 
@@ -202,13 +202,15 @@ Checking the repository on Github shows that the files have been copied from the
 
 ![Alt text](Images/github_repo.jpg)
 
+When I compare the files in the local repository to the remote repository
+
 ![Alt text](Images/local_repo_contents.jpg)
 
 ### How to Clone a Remote Git Repository
 
 Cloning a Git repository allows us to copy a remote Github repository to our local machine. It is essentially downloading a remote repository onto our local machine.
 
-The command to clone a remote repository is `git clone <link to your remote repository>`
+The command to clone a remote repository is `git clone <link to remote repository>`
 
 ![Alt text](Images/git_clone.jpg)
 
@@ -217,6 +219,82 @@ A copy of the remote repository on the local machine is shown in the screenshots
 ![Alt text](Images/cloned_repository.jpg)
 
 ![Alt text](Images/cloned_repository_with_files.jpg)
+
+## Using the Markdown Syntax for Branch Management and Tagging
+
+Markdown syntax is an easy-to-use Markup language used for formatting plain text. It is used to add formatting elements such as headings, bulleted lists, code, and URLs to plain text. The syntax is used in the creation of README files, web pages, and forum posts. Markdown syntax is an alternative to HTML.
+
+Examples of Markdown syntax elements are:
+
+**1. Headings**
+
+# Heading 1 - This is a Git Project
+
+## Heading 2 - This is a Git Project
+
+### Heading 3 - This is a Git Project
+
+**2. Text Emphasis**
+
+*italic* or *_italic_*
+
+Example: *Git project* or _Git project_
+
+**bold** or __bold__ 
+
+Example: **Git project** or __Git project__
+
+**3. Lists**
+
+We can create both ordered and unordered lists using Markdown syntax.
+
+Unordered list:
+- Chair
+- Table
+- Desk
+
+Ordered list:
+1. Chair
+2. Desk
+3. Table
+
+**4. Links**
+
+To create a hyperlink using Markdown syntax, the link text is placed in square brackets side-by-side with the URL which is placed in parentheses.
+
+For example: You can visit the BBC Sports Football website by clicking on this link [BBC Sports Football](https://www.bbc.com/sport/football)
+
+**5. Images**
+
+To display an image using Markdown syntax, the alt text is placed in square brackets after an exclamation mark while the link to the image is placed alongside in parentheses.
+
+For example: The image for the GitHub Universe banner is:
+![GitHub Universe Banner](https://githubuniverse.com/hero-video.jpg)
+
+**6. Code**
+
+To denote and differentiate code from normal text using Markdown syntax, enclose the code syntax within back ticks ``.
+
+Example: `git push origin <branch name>`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
