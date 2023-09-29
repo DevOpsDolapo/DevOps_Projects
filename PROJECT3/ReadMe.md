@@ -1,7 +1,7 @@
 
 ## LAMP Stack Implementation Project
 
-This project is aimed at giving individuals the necessary knowledge and skills needed to build and deploy web applications using the components of the LAMP (Linux, Apache, MySQL, PHP) Stack.
+This project is aimed at re-enforcing the necessary knowledge and skills needed to build and deploy web applications using the components of the LAMP (Linux, Apache, MySQL, PHP) stack.
 
 The project will be covering the following:
 

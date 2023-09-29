@@ -33,3 +33,7 @@ The acronym LAMP can be broken down as follows:
 
 - P (PHP programming language)
 
+## Setting up an AWS Account
+
+
+
