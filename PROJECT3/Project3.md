@@ -35,7 +35,9 @@ The acronym LAMP can be broken down as follows:
 
 ## Setting up an AWS Account
 
-Amazon Web Services (AWS) is a cloud services provider that facilitates the on-demand delivery of IT resources over the internet through a pay-as-you-go pricing template.
+Amazon Web Services (AWS) is a cloud services provider that facilitates on-demand delivery of IT resources over the internet through a pay-as-you-go pricing template.
 
-For this project we'll be using a free-tier server 
+For this project, I'll be using free-tier servers on the AWS platform known as EC2 (Elastic Compute Cloud) running on the Ubuntu Server OS.
+
+
 
