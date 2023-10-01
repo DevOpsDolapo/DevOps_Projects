@@ -77,7 +77,9 @@ To create the EC2 instances, I follow these steps;
 
 ### Connecting to the EC2 Instances
 
-To connect to the servers I just created on AWS, I'll be using a software known as Termius
+To connect to the servers I just created on AWS, I'll be using a software known as Termius.
+
+To connect to the Apache server:
 
 1. Click on 'NEW HOST' on the termius software
 
@@ -108,6 +110,16 @@ To connect to the servers I just created on AWS, I'll be using a software known 
  7. Successful connection to the Apache EC2 instance
 
  ![Alt text](Images/apache_ec2_successful_connection.JPG)
+
+ To connect to the Nginx server, follow the steps 1 to 7 above.
+
+ Successful connection to the Nginx EC2 instance
+
+ ![Alt text](Images/nginx_ec2_successful_connection.JPG)
+
+
+
+
 
 
 
