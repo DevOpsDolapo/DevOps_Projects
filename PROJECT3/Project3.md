@@ -45,13 +45,25 @@ To spin up the required EC2 instances for my project, I'll need to log into my A
 
 ![Alt text](Images/aws_login.JPG)
 
-To create the instances I need to work, I follow these steps;
+To create the EC2 instances, I follow these steps;
 
 1. Clicked on 'Launch a Virtual Machine'
 
 ![Alt text](Images/launch_instance.JPG)
 
-2. On the 'Launch an instance' page, the
+2. On the 'Launch an instance' page, fill in the details for my servers and the number of instances I need, then select Ubuntu as my preferred OS.
+
+![Alt text](Images/select_instance_details.JPG)
+
+3. Select a 'free-tier eligible' AMI (Amazon Machine Image) 
+
+![Alt text](Images/free_tier_eligible.JPG)
+
+4. Create a key pair for secure connection to my EC2 instances or select an existing (saved) key pair
+
+![Alt text](Images/key_pair_creation_selection.JPG)
+
+
 
 
 
