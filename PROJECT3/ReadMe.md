@@ -7,7 +7,7 @@ The project will be covering the following:
 
 - Introduction to the LAMP Stack architecture
 
-- Spinning up and EC2 instance and creating an Ubuntu Server OS
+- Spinning up an EC2 instance and creating an Ubuntu Server OS
 
 - Connecting to the EC2 instance
 

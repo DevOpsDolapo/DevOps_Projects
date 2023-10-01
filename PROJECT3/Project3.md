@@ -39,7 +39,7 @@ Amazon Web Services (AWS) is a cloud services provider that facilitates on-deman
 
 For this project, I'll be using free-tier servers on the AWS platform known as EC2 (Elastic Compute Cloud) running on the Ubuntu Server OS.
 
-### Spinning up an EC2 instance
+### Spinning up an EC2 instance and creating an Ubuntu Server OS
 
 To spin up the required EC2 instances for my project, I'll need to log into my AWS account
 
@@ -67,13 +67,29 @@ To create the EC2 instances, I follow these steps;
 
 ![Alt text](Images/launch_instance_click.JPG)
 
-6. The two EC2 instances have been created
+6. The two EC2 instances have been created and they are both running on the Ubuntu Server OS
 
 ![Alt text](Images/EC2_instances.JPG)
 
 7. The servers can be renamed to indicate their individual identities
 
 ![Alt text](Images/servers_instances.JPG)
+
+### Connecting to the EC2 Instances
+
+To connect to the servers I just created on AWS, I'll be using a software known as Termius
+
+1. Click on 'NEW HOST' on the termius software
+
+![Alt text](Images/termius_newhost.JPG)
+
+2. Copy the Public IPV4 address from the Apache server instance on AWS
+
+![Alt text](Images/apache_ip.JPG)
+
+3. Paste the IP address in the New Host configuration pane in Termius
+
+![Alt text](Images/termius_ip.JPG)
 
 
 
