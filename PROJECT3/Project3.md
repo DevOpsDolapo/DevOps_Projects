@@ -109,13 +109,7 @@ To connect to the Apache server:
 
  ![Alt text](Images/apache_ec2_successful_connection.JPG)
 
- To connect to the Nginx server, follow the steps 1 to 6 above
-
- Successful connection to the Nginx EC2 instance
-
- ![Alt text](Images/termius_nginx_host.JPG)
-
- ![Alt text](Images/nginx_ec2_successful_connection.JPG)
+ To connect to the Nginx server, all we need to do is follow the steps 1 to 6 above. However, I won't be connecting to the Nginx web server for this project.
 
  ## Installing Apache and Updating the Firewall
 
@@ -161,7 +155,27 @@ The steps to do this are shown below:
 
 ![Alt text](Images/port80_inbound4.JPG)
 
-5. 
+- To access the Apache web server locally, run the commands `curl http://localhost:80` or `curl http://127.0.0.1:80` in the web server instance:
+
+a. `curl http://localhost:80`
+
+![Alt text](Images/curl_apache1.JPG)
+
+![Alt text](Images/curl_apache2.JPG)
+
+b. `curl http://127.0.0.1:80`
+
+![Alt text](Images/curl_apache127.JPG)
+
+![Alt text](Images/curl_apache127_2.JPG)
+
+The above outputs show that we can connect successfully to the Apache server.
+
+
+
+
+
+
 
 
 
