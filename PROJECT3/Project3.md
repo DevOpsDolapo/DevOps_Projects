@@ -63,6 +63,18 @@ To create the EC2 instances, I follow these steps;
 
 ![Alt text](Images/key_pair_creation_selection.JPG)
 
+5. Click on 'Launch instance' at the bottom of the page to launch the EC2 instances
+
+![Alt text](Images/launch_instance_click.JPG)
+
+6. The two EC2 instances have been created
+
+![Alt text](Images/EC2_instances.JPG)
+
+7. The servers can be renamed to indicate their individual identities
+
+![Alt text](Images/servers_instances.JPG)
+
 
 
 
