@@ -73,9 +73,9 @@ To create the EC2 instances, I follow these steps;
 
 ![Alt text](Images/servers_instances.JPG)
 
-## Connecting to the EC2 Instances
+## Connecting to the Apache EC2 Instance
 
-To connect to the servers I just created on AWS, I'll be using a software known as Termius.
+To connect to the Apache server I just created on AWS, I'll be using a software known as Termius.
 
 To connect to the Apache server:
 
@@ -224,6 +224,28 @@ To start the interactive script, run `sudo mysql_secure_installation`
 The login is successful after entering my password.
 
 ![Alt text](Images/mysql_login_successful.JPG)
+
+## Installing PHP
+
+PHP is the last component in the LAMP stack. It is a server-side scripting language responsible for processing code to create and display dynamic content as well as interact with databases.
+
+To install PHP, it's essential to install the PHP package alongside php-mysql, a PHP module that allows PHP to communicate with MySQL databases and the libapache2-mod-php library that enables Apache to handle PHP files.
+
+The command to run these three packages at once is `sudo apt install php libapache2-mod-php php-mysql`
+
+![Alt text](Images/installing_php.JPG)
+
+PHP is installed successfully
+
+![Alt text](Images/installing_php2.JPG)
+
+To verify the version of PHP installed, we can run the command `php -v`
+
+![Alt text](Images/php_verify.JPG)
+
+## Creating an Apache Virtual Host for Website Files and Folders
+
+Now that all the components of the LAMP Stack have been installed, we can test the functionality by creating a Virtual Host that'll allow us to host multiple websites on a single machine.
 
 
 

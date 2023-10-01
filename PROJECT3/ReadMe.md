@@ -17,10 +17,4 @@ The project will be covering the following:
 
 - Installing PHP
 
-- Creating a Virtual Host for my Website using Apache
-
-
-
-
-
-
+- Creating an Apache Virtual Host for Website Files and Folders
