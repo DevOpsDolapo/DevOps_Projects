@@ -33,13 +33,11 @@ The acronym LAMP can be broken down as follows:
 
 - P (PHP programming language)
 
-## Spinning up and EC2 instance and Creating an Ubuntu Server OS
+## Spinning up an EC2 instance and Creating an Ubuntu Linux Server OS
 
 Amazon Web Services (AWS) is a cloud services provider that facilitates on-demand delivery of IT resources over the internet through a pay-as-you-go pricing template.
 
 For this project, I'll be using free-tier servers on the AWS platform known as EC2 (Elastic Compute Cloud) running on the Ubuntu Server OS.
-
-### Spinning up an EC2 instance and creating an Ubuntu Server OS
 
 To spin up the required EC2 instances for my project, I'll need to log into my AWS account
 
@@ -75,7 +73,7 @@ To create the EC2 instances, I follow these steps;
 
 ![Alt text](Images/servers_instances.JPG)
 
-### Connecting to the EC2 Instances
+## Connecting to the EC2 Instances
 
 To connect to the servers I just created on AWS, I'll be using a software known as Termius.
 
@@ -97,7 +95,7 @@ To connect to the Apache server:
 
 ![Alt text](Images/ubuntu_set_name.JPG)
 
-![Alt text](Images/import_key_pair.JPG)
+![Alt text](Images/import_key_file.JPG)
 
 5. Save the imported key file
 
@@ -107,15 +105,40 @@ To connect to the Apache server:
 
  ![Alt text](Images/termius_launch_host.JPG)
 
- 7. Successful connection to the Apache EC2 instance
+ Successful connection to the Apache EC2 instance
 
  ![Alt text](Images/apache_ec2_successful_connection.JPG)
 
- To connect to the Nginx server, follow the steps 1 to 7 above.
+ To connect to the Nginx server, follow the steps 1 to 6 above
 
  Successful connection to the Nginx EC2 instance
 
+ ![Alt text](Images/termius_nginx_host.JPG)
+
  ![Alt text](Images/nginx_ec2_successful_connection.JPG)
+
+ ## Installing Apache and Updating the Firewall
+
+ Created and managed by the Apache Software Foundation, Apache is an open-source software. It is the most widely-used web server software. 
+
+ To install the Apache on the server, follow these steps:
+
+ 1. Update the list of packages using the Ubuntu package manager by running the command `sudo apt update`
+
+ ![Alt text](Images/update_apache.JPG)
+
+ ![Alt text](Images/update_apache2.JPG)
+
+ 2. Install Apache by running the command `sudo apt install apache2`
+
+ ![Alt text](Images/install_apache1.JPG)
+
+ ![Alt text](Images/install_apache2.JPG)
+
+
+
+
+
 
 
 
