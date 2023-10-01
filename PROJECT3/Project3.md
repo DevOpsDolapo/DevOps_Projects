@@ -91,7 +91,7 @@ To connect to the Apache server:
 
 ![Alt text](Images/termius_ip.JPG)
 
-4. Set the Username as 'ubuntu', and import the key file saved earlier from AWS
+4. Set the Username as 'ubuntu', and import the key file saved earlier from AWS. Note that SSH uses TCP port 22 for connections and this is usually open by default on our EC2 instance.
 
 ![Alt text](Images/ubuntu_set_name.JPG)
 
@@ -121,7 +121,7 @@ To connect to the Apache server:
 
  Created and managed by the Apache Software Foundation, Apache is an open-source software. It is the most widely-used web server software. 
 
- To install the Apache on the server, follow these steps:
+ To install Apache on the server, follow these steps:
 
  1. Update the list of packages using the Ubuntu package manager by running the command `sudo apt update`
 
@@ -134,6 +134,36 @@ To connect to the Apache server:
  ![Alt text](Images/install_apache1.JPG)
 
  ![Alt text](Images/install_apache2.JPG)
+
+3. Verify that apache2 is running by using the command `systemctl status apache2`
+
+![Alt text](Images/apache2_status.JPG)
+
+The result shows that the service is enabled and active (running)
+
+For the Apache web server to accept inbound traffic, we need to open up TCP port 80 on the Apache EC2 instance. Web browsers use port 80 to access web pages on the internet. 
+
+The steps to do this are shown below:
+
+1. Click on the relevant EC2 instance and go to the security tab
+
+![Alt text](Images/port80_inbound.JPG)
+
+2. Click on the security groups link
+
+![Alt text](Images/port80_inbound2.JPG)
+
+3. Click on 'Edit inbound rules'
+
+![Alt text](Images/port80_inbound3.JPG)
+
+4. To add HTTP (port 80) to the list of rules, click on 'Add rule' and select HTTP from the drop down menu. Change the source to 'Anywhere-IPV4'. Then click on 'Save rules'
+
+![Alt text](Images/port80_inbound4.JPG)
+
+5. 
+
+
 
 
 
