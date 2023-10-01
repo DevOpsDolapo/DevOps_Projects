@@ -217,7 +217,7 @@ To start the interactive script, run `sudo mysql_secure_installation`
 
 ![Alt text](Images/mysql_password_set8.JPG)
 
-4. Run the command `sudo mysql -p` to test if I can access the MySQL console
+4. Run the command `sudo mysql -p` to test if I can access the MySQL console using the set password.
 
 ![Alt text](Images/mysql_login.JPG)
 
