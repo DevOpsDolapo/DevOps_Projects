@@ -91,6 +91,23 @@ To connect to the servers I just created on AWS, I'll be using a software known 
 
 ![Alt text](Images/termius_ip.JPG)
 
+4. Set the Username as 'ubuntu', and import the key file saved earlier from AWS
+
+![Alt text](Images/ubuntu_set_name.JPG)
+
+![Alt text](Images/import_key_pair.JPG)
+
+5. Save the imported key file
+
+![Alt text](Images/save_key_file.JPG)
+ 
+ 6. Launch the server by double-clicking on the host created in Termius
+
+ ![Alt text](Images/termius_launch_host.JPG)
+
+ 7. Successful connection to the Apache EC2 instance
+
+ ![Alt text](Images/apache_ec2_successful_connection.JPG)
 
 
 
