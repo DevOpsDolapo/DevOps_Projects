@@ -51,7 +51,7 @@ To create the instances I need to work, I follow these steps;
 
 ![Alt text](Images/launch_instance.JPG)
 
-2. On the 'Launch an instance' page, 
+2. On the 'Launch an instance' page, the
 
 
 
