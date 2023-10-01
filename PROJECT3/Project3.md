@@ -135,6 +135,8 @@ To connect to the Apache server:
 
 The result shows that the service is enabled and active (running)
 
+### Updating the Firewall rules
+
 For the Apache web server to accept inbound traffic, we need to open up TCP port 80 on the Apache EC2 instance. Web browsers use port 80 to access web pages on the internet. 
 
 The steps to do this are shown below:
@@ -170,6 +172,28 @@ b. `curl http://127.0.0.1:80`
 ![Alt text](Images/curl_apache127_2.JPG)
 
 The above outputs show that we can connect successfully to the Apache server.
+
+- To access the Apache web server through a web browser, type the command `http://52.5.196.74` in a web browser (where 52.5.196.74 is the public ip address of the Apache web server) and hit enter.
+
+![Alt text](Images/apache_webpage.JPG)
+
+The above page shows that the web server is correctly installed and accessible through the local firewall.
+
+Installing MySQL
+
+MySQL is a Database Management System (DBMS) that allows us to store and manage data. 
+
+To install MySQL, follow the steps below:
+
+1. Run `sudo apt install mysql-server` in the Apache web server
+
+![Alt text](Images/mysql_install.JPG)
+
+![Alt text](Images/mysql_install2.JPG)
+
+
+
+
 
 
 
