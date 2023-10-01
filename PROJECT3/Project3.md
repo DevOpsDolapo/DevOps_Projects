@@ -179,17 +179,52 @@ The above outputs show that we can connect successfully to the Apache server.
 
 The above page shows that the web server is correctly installed and accessible through the local firewall.
 
-Installing MySQL
+## Installing MySQL
 
 MySQL is a Database Management System (DBMS) that allows us to store and manage data. 
 
-To install MySQL, follow the steps below:
+To install MySQL, I followed the steps below:
 
 1. Run `sudo apt install mysql-server` in the Apache web server
 
 ![Alt text](Images/mysql_install.JPG)
 
 ![Alt text](Images/mysql_install2.JPG)
+
+2. Verify the MySQL installation by logging into console through the command `sudo mysql`
+
+![Alt text](Images/login_mysql.JPG)
+
+3. It's important to run a security script on the MySQL installation to remove insecure default settings and lockdown access to the database management system.
+
+The command to run to set the MySQL password of this installation to 'PassWord.SQL' is `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '********.***'`
+
+![Alt text](Images/mysql_password_set.JPG)
+
+To start the interactive script, run `sudo mysql_secure_installation`
+
+![Alt text](Images/mysql_password_set2.JPG)
+
+![Alt text](Images/mysql_password_set3.JPG)
+
+![Alt text](Images/mysql_password_set4.JPG)
+
+![Alt text](Images/mysql_password_set5.JPG)
+
+![Alt text](Images/mysql_password_set6.JPG)
+
+![Alt text](Images/mysql_password_set7.JPG)
+
+![Alt text](Images/mysql_password_set8.JPG)
+
+4. Run the command `sudo mysql -p` to test if I can access the MySQL console
+
+![Alt text](Images/mysql_login.JPG)
+
+The login is successful after entering my password.
+
+![Alt text](Images/mysql_login_successful.JPG)
+
 
 
 
