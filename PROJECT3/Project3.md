@@ -243,9 +243,43 @@ To verify the version of PHP installed, we can run the command `php -v`
 
 ![Alt text](Images/php_verify.JPG)
 
+### Enabling PHP on a Wesbsite
+
+Apache has a directory index setting that gives the index.html precedence over index.php file. Index.html is great for maintenance purposes or for creating informative messages for visitors. As the index.html page takes precedence over the index.php page, the former becomes the landing page for the application. Once maintenance is over, we can then rename or remove the index.html file from the document root. 
+
+To change this behavior, we can edit the **/etc/apache2/mods-enabled/dir.conf** file and change the order in which the index.php file is listed, using the command `sudo nano /etc/apache2/mods-enabled/dir.conf`
+
+![Alt text](Images/dir.conf_edit.jpg)
+
+![Alt text](Images/dir.conf_edit2.jpg)
+
+For the changes to take effect, reload Apache using the command `sudo systemctl reload apache2`
+
+![Alt text](Images/reload_apache.jpg)
+
+Lastly, we'll need to create a PHP test script to verity that PHP is correctly installed on the server.
+
+Firstly, we'll need to create a custom web root folder, and then create the index.php file in this custom web root folder.
+
+![Alt text](Images/web_directory.jpg)
+
+After creating the php.index file, add the following code to it;
+
+<?php
+phpinfo();
+
+
+
+
+
+
+
+
+
 ## Creating an Apache Virtual Host for Website Files and Folders
 
 Now that all the components of the LAMP Stack have been installed, we can test the functionality by creating a Virtual Host that'll allow us to host multiple websites on a single machine.
+
 
 
 
