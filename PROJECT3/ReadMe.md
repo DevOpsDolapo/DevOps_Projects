@@ -7,7 +7,7 @@ The project will be covering the following:
 
 - Introduction to the LAMP Stack architecture
 
-- Spinning up and EC2 instance and creating an Ubuntu Server OS
+- Spinning up an EC2 instance and creating an Ubuntu Linux Server OS
 
 - Connecting to the EC2 instance
 
@@ -17,10 +17,4 @@ The project will be covering the following:
 
 - Installing PHP
 
-- Creating a Virtual Host for my Website using Apache
-
-
-
-
-
-
+- Creating an Apache Virtual Host for Website Files and Folders
