@@ -259,22 +259,18 @@ For the changes to take effect, reload Apache using the command `sudo systemctl 
 
 Lastly, we'll need to create a PHP test script to verity that PHP is correctly installed on the server.
 
-Firstly, we'll need to create a custom web root folder, and then create the index.php file in this custom web root folder.
-
-![Alt text](Images/web_directory.jpg)
+Firstly, we'll need to create an index.php file in the custom web root folder `/var/www/html`.
 
 After creating the php.index file, add the following code to it;
 
-<?php
-phpinfo();
+*<?php
+phpinfo();*
 
+We then edit the existing index.html in the custom web root folder.
 
+When I load the web page using the public ip address of the server, the PHP welcome page loads up.
 
-
-
-
-
-
+![Alt text](Images/php_webpage.jpg)
 
 ## Creating an Apache Virtual Host for Website Files and Folders
 
