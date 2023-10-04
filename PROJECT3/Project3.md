@@ -280,7 +280,33 @@ Once it's been ascertained that the PHP installation is successful, I'd have to 
 
 ## Creating an Apache Virtual Host for Website Files and Folders
 
-Now that all the components of the LAMP Stack have been installed, we can test the functionality by creating a Virtual Host that'll allow us to host multiple websites on a single machine.
+Now that all the components of the LAMP Stack have been installed, we can test the functionality by creating a Virtual Host that'll allow us to host multiple websites on a single machine. To do this, we'll follow the steps below:
+
+1. Set up a domain
+
+The first thing to do is set up a domain. For this project I'll be creating the domain `pjlamp_stack` alongside the custom web root folder `html` in `/var/www/`.
+
+![Alt text](Images/virtual_host_folder.jpg)
+
+2. Change ownership using the $USER environment variable
+
+![Alt text](Images/virtual_user.jpg)
+
+3. Create a new configuration file in Apache's `sites-available` directory. I'll create a `pjlamp_stack.conf` in this directory.
+
+![Alt text](Images/virtual_host_conf.jpg)
+
+4. Populate the newly-created file with bare-bones configuration details
+
+![Alt text](Images/virtual_host_conf_details.jpg)
+
+![Alt text](Images/virtual_host_conf_details1.jpg)
+
+![Alt text](Images/virtual_host_conf_details2.jpg)
+
+
+
+
 
 
 
