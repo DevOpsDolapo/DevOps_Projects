@@ -1,7 +1,7 @@
 
 # Documentation for the LAMP Stack Implementation Project
 
-There are different technology stacks used in the development of various solutions such as software, applications, websites, etc. These technology stacks are known as Web Stacks and they include the LAMP, LEMP, MERN, and MEAN stacks. As a DevOps Engineer, it is important to have a good knowledge and understanding of how to implement these technology stacks.
+There are different technology stacks used in the development of various solutions such as software, applications, websites, etc. These technology stacks are known as Web Stacks and they include the LAMP, LEMP, MERN, and MEAN stacks. As a DevOps Engineer, it is important that one has a good knowledge and understanding of how to implement these technology stacks.
 
 What is a Technology Stack?
 
