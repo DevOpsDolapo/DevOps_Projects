@@ -284,7 +284,7 @@ Now that all the components of the LAMP Stack have been installed, we can test t
 
 1. Set up a domain
 
-The first thing to do is set up a domain. For this project I'll be creating the domain `pjlamp_stack` alongside the custom web root folder `html` in `/var/www/`.
+The first thing to do is set up a domain. For this project I'll be creating a domain `pjlamp_stack` alongside the custom web root folder `html` in `/var/www/`.
 
 ![Alt text](Images/virtual_host_folder.jpg)
 
@@ -303,6 +303,36 @@ The first thing to do is set up a domain. For this project I'll be creating the 
 ![Alt text](Images/virtual_host_conf_details1.jpg)
 
 ![Alt text](Images/virtual_host_conf_details2.jpg)
+
+5. Use `a2ensite` command to enable the new virtual host
+
+![Alt text](Images/virtual_host_activation.jpg)
+
+6. Disable the default website that comes installed with Apache to prevent Apache's default configuration from overwrite the virtual host. The command to use is `a2dissite`
+
+![Alt text](Images/apache_default_site_disable.jpg)
+
+7. Ensure that the configuration file does not contain errors by running the command `sudo apache2ctl configtest`
+
+![Alt text](Images/virtual_host_configtest.jpg)
+
+8. Reload Apache so the changes can take effect by running the command `sudo systemctl reload apache2`
+
+![Alt text](Images/reload_apache2.jpg)
+
+9. The new website is now active, but we'll need to create an index.html file in the project root folder `/var/www/pjlamp_stack` to verify that the virtual host works
+
+![Alt text](Images/populate_indexhtml.jpg)
+
+10. Reload the Apache service, then visit the website URL from a browser with the command `http://<Public-IP-Address>:80` using the public IP address of the web server.
+
+![Alt text](Images/webpage_test.jpg)
+
+![Alt text](Images/webpage_test1.jpg)
+
+![Alt text](Images/webpage_test2.jpg)
+
+
 
 
 
