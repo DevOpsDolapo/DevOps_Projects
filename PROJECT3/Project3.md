@@ -332,6 +332,11 @@ The first thing to do is set up a domain. For this project I'll be creating a do
 
 ![Alt text](Images/webpage_test2.jpg)
 
+Using the DNS Hostname of the web server gives the same result:
+
+![Alt text](Images/webpage_test3.jpg)
+
+This page can be left as a temporary landing page until we're ready to set up an index.php file to replace it.
 
 
 
