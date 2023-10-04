@@ -266,15 +266,23 @@ After creating the php.index file, add the following code to it;
 *<?php
 phpinfo();*
 
-We then edit the existing index.html in the custom web root folder.
+We then remove or rename the existing index.html file in the custom web root folder.
 
 When I load the web page using the public ip address of the server, the PHP welcome page loads up.
 
 ![Alt text](Images/php_webpage.jpg)
 
+The above image proves that the PHP installation is working perfectly.
+
+Once it's been ascertained that the PHP installation is successful, I'd have to remove the index.php file from the web root folder using the `rm` command, and rename the index.html file so that Apache installation homepage can load up normally again.
+
+![Alt text](Images/index_html_rename.jpg)
+
 ## Creating an Apache Virtual Host for Website Files and Folders
 
 Now that all the components of the LAMP Stack have been installed, we can test the functionality by creating a Virtual Host that'll allow us to host multiple websites on a single machine.
+
+
 
 
 
