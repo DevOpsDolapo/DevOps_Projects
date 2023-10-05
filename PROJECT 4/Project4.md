@@ -32,7 +32,7 @@ Linux is an open-source operating system. In this case the webserver runs on the
 This is pronounced as “Engine X”. It is a very popular web server. While it is open source just like Apache, it is faster in certain situations and comes with better security.
 
 - M (MySQL database server)
-A SQL-based relational database system.
+A Database Management System (DBMS) that allows us to store and manage data. 
 
 - P (PHP)
 PHP is a server-side scripting language that communicates with the database and server. 
@@ -191,3 +191,22 @@ The above outputs show successful connection to the Nginx server.
 
 The above page shows that the web server is correctly installed and accessible through the local firewall.
 
+## Installing MySQL
+
+To install MySQL, follow the steps below:
+
+1. Run `sudo apt install mysql-server` in the Nginx web server
+
+![Alt text](Images/mysql_install1.jpg)
+
+![Alt text](Images/mysql_install2.JPG)
+
+2. Verify the MySQL installation by logging into console through the command `sudo mysql`
+
+![Alt text](Images/mysql_login.jpg)
+
+3. It's important to run a security script on the MySQL installation to remove insecure default settings and lockdown access to the database management system.
+
+The command to run to set the MySQL password of this installation to 'PassWord.SQL' is `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '********.***'`. For security purposes, the actual password is hidden in asterisks.
+
+![Alt text](Images/mysql_password_set.JPG)
