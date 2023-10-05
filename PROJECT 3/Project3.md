@@ -292,7 +292,7 @@ The first thing to do is set up a domain. For this project I'll be creating a do
 
 ![Alt text](Images/virtual_user.jpg)
 
-3. Create a new configuration file in Apache's `sites-available` directory. I'll create a `pjlamp_stack.conf` in this directory.
+3. Create a new configuration file in Apache's `sites-available` directory. I'll create a `pjlamp_stack.conf` file in this directory.
 
 ![Alt text](Images/virtual_host_conf.jpg)
 
