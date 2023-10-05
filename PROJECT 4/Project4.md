@@ -123,5 +123,15 @@ To connect to the Nginx server, follow the steps 1 to 6 below:
 
   ![Alt text](Images/nginx_ec2_successful_connection.jpg)
 
+## Installing the Nginx Web Server and Updating the Firewall
+
+To install Nginx on the Ubuntu server, we need to follow these steps:
+
+1. Update the list of packages using the Ubuntu package manager by running the `sudo apt update` package
+
+![Alt text](Images/nginx_update_packages.jpg)
+
+![Alt text](Images/nginx_update_packages2.jpg)
+
 
 
