@@ -297,8 +297,21 @@ The index.html file can be left in place as a temporary landing page for the app
 
 The LEMP stack is now completely set up. We can test it to verify that Nginx can correctly serve `.php` files off to the PHP processor. To do this follow the steps below:
 
-1. Create a test php file in the domain's root directory. 
+1. Create a test php file in the domain's root directory
 
+![Alt text](Images/testing_php1.jpg)
+
+2. Paste a line of code in the new file
+
+![Alt text](Images/testing_php2.jpg)
+
+3. Access the page through a web browser by running the command `http://server_domain_or_IP/info.php`
+
+![Alt text](Images/testing_php3.jpg)
+
+Once it is confirmed that the PHP server works fine, it's best to remove the `info.php` file from the root directory because it contains sensitive information.
+
+![Alt text](Images/testing_php4.jpg)
 
 
 
