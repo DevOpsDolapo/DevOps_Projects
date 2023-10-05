@@ -249,3 +249,47 @@ The command to run these three packages at once is `sudo apt install php-fpm php
 
 We can create server blocks on a Nginx web server which are similar to virtual hosts on Apache. These server blocks encapsulate configuration details and are able to host more than one domain on a single server.
 
+For this project, I'll be using pjlemp_stack as the root directory for my domain. The steps are as follows:
+
+1. Create the domain root directory
+
+![Alt text](Images/nginx_configuration.jpg)
+
+2. Change ownership to the $USER environment variable
+
+![Alt text](Images/nginx_configuration1.jpg)
+
+3. Create a new configuration file in Nginx's `sites-available` directory. I'll create a `pjlemp_stack` file in this directory and populate it with the bare-bones configuration
+
+![Alt text](Images/nginx_configuration2.jpg)
+
+![Alt text](Images/nginx_configuration3.jpg)
+
+4. Activate the configuration by creating a link between the config file and Nginx's `sites-enabled` directory. This tells Nginx to use the new config file when it's reloaded.
+
+![Alt text](Images/nginx_configuration4.jpg)
+
+5. Test the configuration by running the command `sudo nginx -t`
+
+![Alt text](Images/nginx_configuration5.jpg)
+
+6. Disable the default Nginx host that is configured to listen through TCP port 80 by running the command `sudo unlink /etc/nginx/sites-enabled/default`
+
+![Alt text](Images/nginx_configuration6.jpg)
+
+7. Reload Nginx to apply the changes made by running the command `sudo systemctl reload nginx`
+
+![Alt text](Images/nginx_configuration7.jpg)
+
+8. Create an `index.html` file in the root directory of the domain created earlier `/var/www/pjlemp_stack` and populate with some information to test that the server block is working.
+
+![Alt text](Images/nginx_configuration8.jpg)
+
+9. Test that the configuration is working by opening the website through the public ip address, using the command `http://<Public-IP-Address>:80`. In this case, the public ip address is the public ip of the web server (52.55.96.71)
+
+
+
+
+
+
+
