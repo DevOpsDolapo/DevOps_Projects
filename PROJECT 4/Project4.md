@@ -287,9 +287,9 @@ For this project, I'll be using pjlemp_stack as the root directory for my domain
 
 9. Reload the Nginx service by running the command `sudo systemctl reload nginx`
 
-9. Test that the configuration is working by opening the website through the public ip address, using the command `http://<Public-IP-Address>:80`. In this case, the public ip address is the public ip of the web server (52.55.96.71)
+10. Test that the configuration is working by opening the website through the public ip address, using the command `http://<Public-IP-Address>:80`. In this case, the public ip address is the public ip of the web server (52.55.96.71)
 
-
+![Alt text](Images/nginx_configuration_php.jpg)
 
 The index.html file can be left in place as a temporary landing page for the application until an index.php file is set up to replace it. Once we have a working index.php file, we'd need to remove or rename the index.html file in the domain root directory as it takes precedence over the index.php file by default.
 
