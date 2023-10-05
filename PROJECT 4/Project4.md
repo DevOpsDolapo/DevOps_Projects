@@ -21,7 +21,7 @@ Examples of technology stacks are:
 
 ## Introduction to LEMP Stack Architecture
 
-The LEMP stack is made up of Linux OS, Nginx Server, MySQL Database, and PHP. It is also open-source just like the LAMP stack and is used to create dynamic web applications.
+The LEMP stack is made up of Linux OS, Nginx Server, MySQL Database, and PHP. Its components are also all open-source just like the LAMP stack and is used to create dynamic web applications.
 
 The acronym LEMP can be broken down as follows:
 
