@@ -227,3 +227,23 @@ To start the interactive script, run `sudo mysql_secure_installation`
 
 ![Alt text](Images/mysql_script7.jpg)
 
+4. I run the command `sudo mysql -p` to test if I can access the MySQL console using the set password.
+
+![Alt text](Images/mysql_enter_password.jpg)
+
+The login is successful after entering my password
+
+![Alt text](Images/mysql_enter_password2.jpg)
+
+## Installing PHP
+
+To install PHP on a Nginx web server, it's essential to install an external program to handle PHP processing and act as bridge between the PHP interpreter and the web server. For this, I'll need to install `php-fpm`, the "PHP fastCGI process manager" and instruct Nginx to pass PHP requests to the process manager for processing. Also, I'll need to install `php-mysql`, a PHP module allows communication between PHP and MySQL-based databases. 
+
+The command to run these three packages at once is `sudo apt install php-fpm php-mysql`
+
+![Alt text](Images/php_install1.jpg)
+
+![Alt text](Images/php_install2.jpg)
+
+### Configuring Nginx to use the PHP Processor
+
