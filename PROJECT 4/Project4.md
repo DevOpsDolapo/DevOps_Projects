@@ -133,5 +133,61 @@ To install Nginx on the Ubuntu server, we need to follow these steps:
 
 ![Alt text](Images/nginx_update_packages2.jpg)
 
+2. Install Nginx by running the command `sudo apt install nginx`
 
+![Alt text](Images/nginx_installation.jpg)
+
+![Alt text](Images/nginx_installation2.jpg)
+
+3. Verify that Nginx is running by using the command `sudo systemctl status nginx`
+
+![Alt text](Images/nginx_status.jpg)
+
+The result shows that the service is enabled and active (running)
+
+### Updating the Firewall rules
+
+For the Nginx web server to accept inbound traffic, we need to open up TCP port 80 on the Nginx EC2 instance. Web browsers use port 80 to access web pages on the internet. 
+
+However, because we created two EC2 instances at the same time and we already opened up TCP port 80 on the Apache web server, the Nginx web server shares the same Firewall rule. 
+
+The steps to open up TCP port 80 on the Apache EC2 instance are as follows:
+
+1. Click on the relevant EC2 instance and go to the security tab
+
+![Alt text](Images/port80_inbound.JPG)
+
+2. Click on the security groups link
+
+![Alt text](Images/port80_inbound2.JPG)
+
+3. Click on 'Edit inbound rules'
+
+![Alt text](Images/port80_inbound3.JPG)
+
+4. To add HTTP (port 80) to the list of rules, click on 'Add rule' and select HTTP from the drop down menu. Change the source to 'Anywhere-IPV4'. Then click on 'Save rules'
+
+![Alt text](Images/port80_inbound4.JPG)
+
+TCP Port 80 opened on the nginx server:
+
+![Alt text](Images/pic_showing_port80_nginx.jpg)
+
+- To access the Nginx web server locally, run the commands `curl http://localhost:80` or `curl http://127.0.0.1:80` in the web server instance:
+
+a. `curl http://localhost:80`
+
+![Alt text](Images/curl_nginx1.jpg)
+
+b. `curl http://127.0.0.1:80`
+
+![Alt text](Images/curl_nginx2.jpg)
+
+The above outputs show successful connection to the Nginx server.
+
+- To access the Nginx web server through a web browser, type the command `http://52.55.96.71` in a web browser (where 52.55.96.71 is the public ip address of the Nginx web server) and hit enter.
+
+![Alt text](Images/nginx_webpage.jpg)
+
+The above page shows that the web server is correctly installed and accessible through the local firewall.
 
