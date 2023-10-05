@@ -247,3 +247,5 @@ The command to run these three packages at once is `sudo apt install php-fpm php
 
 ### Configuring Nginx to use the PHP Processor
 
+We can create server blocks on a Nginx web server which are similar to virtual hosts on Apache. These server blocks encapsulate configuration details and are able to host more than one domain on a single server.
+
