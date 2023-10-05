@@ -210,3 +210,20 @@ To install MySQL, follow the steps below:
 The command to run to set the MySQL password of this installation to 'PassWord.SQL' is `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '********.***'`. For security purposes, the actual password is hidden in asterisks.
 
 ![Alt text](Images/mysql_password_set.JPG)
+
+To start the interactive script, run `sudo mysql_secure_installation`
+
+![Alt text](Images/mysql_script1.jpg)
+
+![Alt text](Images/mysql_script2.jpg)
+
+![Alt text](Images/mysql_script3.jpg)
+
+![Alt text](Images/mysql_script4.jpg)
+
+![Alt text](Images/mysql_script5.jpg)
+
+![Alt text](Images/mysql_script6.jpg)
+
+![Alt text](Images/mysql_script7.jpg)
+
