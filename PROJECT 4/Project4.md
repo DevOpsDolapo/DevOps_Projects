@@ -321,6 +321,11 @@ The steps to do this are as follows:
 
 1. Connect to the MySQL database using `sudo mysql` command
 
+![Alt text](Images/mysql_connect.jpg)
+
+2. Create a new database by running the command `CREATE DATABASE 'example_database';`
+
+![Alt text](Images/mysql_create_database.jpg)
 
 
 
