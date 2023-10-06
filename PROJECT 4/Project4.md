@@ -313,6 +313,16 @@ Once it is confirmed that the PHP server works fine, it's best to remove the `in
 
 ![Alt text](Images/testing_php4.jpg)
 
+## Retrieving Data from MySQL database with PHP
+
+To retrieve data, we would need to create a test database (DB) with a 'To Do List' and then configure access to it such that the Nginx website can query data from the database and display the data.
+
+The steps to do this are as follows:
+
+1. Connect to the MySQL database using `sudo mysql` command
+
+
+
 
 
 
