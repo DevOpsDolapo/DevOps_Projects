@@ -365,7 +365,7 @@ To confirm that the user has access to the database run the command `show databa
 
 ![Alt text](Images/mysql_php_viewdata.jpg)
 
-This shows that our PHP enviroment can connect and interact with the MySQL server.
+The above image shows that our PHP enviroment can connect and interact with the MySQL server.
 
 
 
