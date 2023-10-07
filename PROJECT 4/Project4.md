@@ -342,3 +342,30 @@ To test the newly-created user and the password assigned to it, we can run the c
 To confirm that the user has access to the database run the command `show databases;`
 
 ![Alt text](Images/mysql_show_databases.jpg)
+
+5. Create a test table named todo.list by running the command `CREATE TABLE example_database.todo_list (item_id INT AUTO_INCREMENT,content VARCHAR(255),PRIMARY KEY(item_id));
+`
+![Alt text](Images/mysql_create_list.jpg)
+
+6. To insert some rows of content into the created table, run the command `INSERT INTO example_database.todo_list (content) VALUES ("My first important item");`. It might be necessary to repeat the command a multiple times to add different values.
+
+![Alt text](Images/mysql_populate_table.jpg)
+
+7. Confirm that the data was successfully added to the table by running the command `SELECT * FROM example_database.todo_list;`
+
+![Alt text](Images/mysql_confirm_data.JPG)
+
+8. Create a new PHP file in the custom root folder of the domain created earlier and populate it with a PHP script that will connect to MySQL and query data from the table created. 
+
+![Alt text](Images/mysql__php_script1.jpg)
+
+![Alt text](Images/mysql__php_script2.jpg)
+
+9. We can then access the infomation on the web browser using the command `http://<Public_domain_or_IP>/todo_list.php`
+
+![Alt text](Images/mysql_php_viewdata.jpg)
+
+This shows that our PHP enviroment can connect and interact with the MySQL server.
+
+
+
