@@ -327,13 +327,18 @@ The steps to do this are as follows:
 
 ![Alt text](Images/mysql_create_database.jpg)
 
+3. Create a new user with full access to the database just created using the command `CREATE USER 'example_user'@'%' IDENTIFIED WITH mysql_native_password BY 'Password';` where 'example_user' is the name of the new user and 'Password' is the user's password.
 
+![Alt text](Images/mysql_user_creation.JPG)
 
+4. Grant the newly created user permission to the database with full privileges using the command `GRANT ALL ON example_database.* TO 'example_user'@'%';`
 
+![Alt text](Images/mysql_user_permission.JPG)
 
+To test the newly-created user and the password assigned to it, we can run the command `mysql -u dbuser -p`
 
+![Alt text](Images/mysql_user_login.JPG)
 
+To confirm that the user has access to the database run the command `show databases;`
 
-
-
-
+![Alt text](Images/mysql_show_databases.jpg)
