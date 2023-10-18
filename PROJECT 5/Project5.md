@@ -19,7 +19,7 @@ To define a variable `name` and assign a value `David` to the variable:
 
 ![Alt text](Images/assign_variable.png)
 
-To retrieve value from the variable run the command `echo $name`:
+To retrieve the value from the variable run the command `echo $name`:
 
 ![Alt text](Images/retrieve_variable_value.png)
 
