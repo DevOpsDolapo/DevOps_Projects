@@ -327,13 +327,45 @@ The steps to do this are as follows:
 
 ![Alt text](Images/mysql_create_database.jpg)
 
+3. Create a new user with full access to the database just created using the command `CREATE USER 'example_user'@'%' IDENTIFIED WITH mysql_native_password BY 'Password';` where 'example_user' is the name of the new user and 'Password' is the user's password.
 
+![Alt text](Images/mysql_user_creation.JPG)
 
+4. Grant the newly created user permission to the database with full privileges using the command `GRANT ALL ON example_database.* TO 'example_user'@'%';`
 
+![Alt text](Images/mysql_user_permission.JPG)
 
+To test the newly-created user and the password assigned to it, we can run the command `mysql -u dbuser -p`
 
+![Alt text](Images/mysql_user_login.JPG)
 
+To confirm that the user has access to the database run the command `show databases;`
 
+![Alt text](Images/mysql_show_databases.jpg)
+
+5. Create a test table named todo.list by running the command `CREATE TABLE example_database.todo_list (item_id INT AUTO_INCREMENT,content VARCHAR(255),PRIMARY KEY(item_id));
+`
+![Alt text](Images/mysql_create_list.jpg)
+
+6. To insert some rows of content into the created table, run the command `INSERT INTO example_database.todo_list (content) VALUES ("My first important item");`. It might be necessary to repeat the command a multiple times to add different values.
+
+![Alt text](Images/mysql_populate_table.jpg)
+
+7. Confirm that the data was successfully added to the table by running the command `SELECT * FROM example_database.todo_list;`
+
+![Alt text](Images/mysql_confirm_data.JPG)
+
+8. Create a new PHP file in the custom root folder of the domain created earlier and populate it with a PHP script that will connect to MySQL and query data from the table created. 
+
+![Alt text](Images/mysql__php_script1.jpg)
+
+![Alt text](Images/mysql__php_script2.jpg)
+
+9. We can then access the infomation on the web browser using the command `http://<Public_domain_or_IP>/todo_list.php`
+
+![Alt text](Images/mysql_php_viewdata.jpg)
+
+The above image shows that our PHP enviroment can connect and interact with the MySQL server.
 
 
 
