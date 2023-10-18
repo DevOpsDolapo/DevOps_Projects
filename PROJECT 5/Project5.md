@@ -13,7 +13,21 @@ Shell scripting uses the same syntax in a script as it would on the command line
 
 ### Shell Scripting Syntax Elements
 
-1. Variables: Variables store different types of data such as strings, numbers, and arrays. Values are usually assigned to variables using the `=` operator. The value in a variable can be accessed by using the variable name preceded by the `$` sign.
+1. **Variables**: Variables store different types of data such as strings, numbers, and arrays. Values are usually assigned to variables using the `=` operator. The value in a variable can be accessed by using the variable name preceded by the `$` sign.
 
-Defining a variable (Assigning value to a variable):
+To define a variable `name` and assign a value `David` to the variable:
+
+![Alt text](Images/assign_variable.png)
+
+To retrieve value from the variable run the command `echo $name`:
+
+![Alt text](Images/retrieve_variable_value.png)
+
+2. **Control Flow**: Control flow statements like `while loops`, `for loops`, `case`, and `if-else` statements are used to control the flow of execution in a script. With these statements, we can make iterations over lists, make decisions, and execute commands based on decisions.
+
+
+
+
+
+
 
