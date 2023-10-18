@@ -1,7 +1,7 @@
 
 ## SHELL SCRIPTING HANDS-ON PROJECT
 
-The Shell Scripting Hands-On Project is aimed at availing the student with the opportunity to unlock the potentials of shell scripting. Shell scripting allows us to automate and streamline tasks while boosting productivity at the same time.
+The Shell Scripting Hands-On Project is aimed at availing the student with an opportunity to unlock the potentials of shell scripting. Shell scripting allows us to automate and streamline tasks while boosting productivity at the same time.
 
 This project will be covering the following:
 
