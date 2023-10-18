@@ -25,7 +25,7 @@ To retrieve value from the variable run the command `echo $name`:
 
 2. **Control Flow**: Control flow statements like `while loops`, `for loops`, `case`, and `if-else` statements are used to control the flow of execution in a script. With these statements, we can make iterations over lists, make decisions, and execute commands based on conditions.
 
-a. if-else
+a. **if-else**
 
 Using if-else to execute a script based on conditions:
 
