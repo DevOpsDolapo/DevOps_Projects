@@ -70,6 +70,24 @@ Script to *output text to terminal*
 
 ![Alt text](Images/echo_result.png)
 
+Script to *output the result of a command into a file*
+
+![Alt text](Images/output_tofile_script.png)
+
+![Alt text](Images/output_tofile_result.png)
+
+Script to *pass the content of a file as input to a command*
+
+The content of the input file is shown below:
+
+![Alt text](Images/file_input.png)
+
+Here's the result from running the command
+
+![Alt text](Images/file_input_result.png)
+
+
+
 
 
 
