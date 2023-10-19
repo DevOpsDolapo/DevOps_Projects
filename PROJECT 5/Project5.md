@@ -115,6 +115,20 @@ Running the script in the terminal:
 ![Alt text](Images/user-input_result.png)
 
 
+## Directory Manipulation and Navigation
+
+To show directory manipulation and navigation in the Linux file system, we'll write a script to display the current directory, create a new directory called "my_directory", change to that directory, create two files inside the directory, list the files, move back one level up, remove the "my_directory" and its contents, and finally list the files in the current directory again.
+
+The script is detailed below:
+
+![Alt text](Images/directory_manipulation-script.png)
+
+![Alt text](Images/directory_manipulation-script2.png)
+
+Running the script in the terminal:
+
+![Alt text](Images/directory_manipulation-result.png)
+
 
 
 
