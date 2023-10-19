@@ -46,6 +46,31 @@ Running the for-loop script in the CLI:
 
 ![Alt text](Images/for-loop_result.png)
 
+c. **command substitution**
+
+This allows us to capture the output of a command and use it as a value in our script. 
+
+![Alt text](Images/command_substitution_script.png)
+
+![Alt text](Images/command_substitution_result.png)
+
+d. **input and output**
+
+Bash can handle input and output. The read command is used to accept user input, while the echo command is used to print output to console.
+
+Script to *accept user input*
+
+![Alt text](Images/accept-input_script.png)
+
+![Alt text](Images/accept-input_result.png)
+
+Script to *output text to terminal*
+
+![Alt text](Images/echo_script.png)
+
+![Alt text](Images/echo_result.png)
+
+
 
 
 
