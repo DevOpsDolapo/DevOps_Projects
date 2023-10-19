@@ -94,6 +94,18 @@ Running the command:
 
 ![Alt text](Images/pass_command.png)
 
+e. **Functions**
+
+With Functions, we can modularize our codes and make them more reusable. Functions can also be used to group unrelated commands together. To define a function, use the `function` keyword or declare the function name followed by parentheses.
+
+Here's a function script
+
+![Alt text](Images/function_script.png)
+
+Result of running the script
+
+![Alt text](Images/function_result.png)
+
 
 
 
