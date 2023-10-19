@@ -106,6 +106,19 @@ Result of running the script
 
 ![Alt text](Images/function_result.png)
 
+**1. Script to prompt for name and say hello**
+
+![Alt text](Images/user-input_script.png)
+
+Running the script in the terminal:
+
+![Alt text](Images/user-input_result.png)
+
+
+
+
+
+
 
 
 
