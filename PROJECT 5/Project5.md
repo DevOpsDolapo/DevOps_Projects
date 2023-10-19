@@ -86,6 +86,18 @@ Here's the result from running the command
 
 ![Alt text](Images/file_input_result.png)
 
+Script to *pass the result of a command as input to another command*
+
+![Alt text](Images/pass_command_script.png)
+
+Running the command:
+
+![Alt text](Images/pass_command.png)
+
+
+
+
+
 
 
 
