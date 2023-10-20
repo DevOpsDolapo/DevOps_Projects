@@ -121,7 +121,6 @@ To show directory manipulation and navigation in the Linux file system, we'll wr
 The script is detailed below:
 
 ![Alt text](Images/directory_manipulation-script.png)
-
 ![Alt text](Images/directory_manipulation-script2.png)
 
 Running the script in the terminal:
@@ -136,6 +135,11 @@ Here's the script showing file operations and sorting:
 
 ![Alt text](Images/file_operations-script1.png)
 ![Alt text](Images/file_operations-script2.png)
+
+Running the script gives the following results:
+
+![Alt text](Images/file_operations-results.png)
+
 
 
 
