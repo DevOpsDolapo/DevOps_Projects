@@ -130,7 +130,12 @@ Running the script in the terminal:
 
 ## File Operations and Sorting
 
+To implement File Operations and Sorting, we'll be writing a script to create 3 files, display the files in their current order, sort them alphabetically, save the sorted files as sorted_files.txt, display the sorted files, remove the original files, rename the sorted files to sorted_files_sorted_alphabetically.txt, and finally display the contents of the final sorted file.
 
+Here's the script showing file operations and sorting:
+
+![Alt text](Images/file_operations-script1.png)
+![Alt text](Images/file_operations-script2.png)
 
 
 
