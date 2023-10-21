@@ -116,7 +116,13 @@ Running the script in the terminal:
 
 ## Directory Manipulation and Navigation
 
-To show directory manipulation and navigation in the Linux file system, we'll write a script to display the current directory, create a new directory called "my_directory", change to that directory, create two files inside the directory, list the files, move back one level up, remove the "my_directory" and its contents, and finally list the files in the current directory again.
+To show directory manipulation and navigation in the Linux file system:
+
+- write a script to display the current directory
+- create a new directory called "my_directory"
+- change to the new directory and create two files inside the directory
+- list the files in the directory, move back one level up, and remove "my_directory" and its contents
+- list the files in the current directory
 
 The script is detailed below:
 
@@ -129,7 +135,14 @@ Running the script in the terminal:
 
 ## File Operations and Sorting
 
-To implement File Operations and Sorting, we'll be writing a script to create 3 files, display the files in their current order, sort them alphabetically, save the sorted files as sorted_files.txt, display the sorted files, remove the original files, rename the sorted files to sorted_files_sorted_alphabetically.txt, and finally display the contents of the final sorted file.
+To implement File Operations and Sorting:
+
+- write a script to create 3 files
+- display the files in their current order
+- sort them alphabetically and save the sorted files as sorted_files.txt
+- display the sorted files and remove the original files
+- rename the sorted files to sorted_files_sorted_alphabetically.txt
+- display the contents of the final sorted file
 
 Here's the script showing file operations and sorting:
 
@@ -142,7 +155,11 @@ Running the script gives the following results:
 
 ## Working with Numbers and Calculations
 
-In this section, we'll be writing a script to perform arithmetic operations (addition, subtraction, multiplication, modulus, and division) and display the results. Our script will also be performing complex calculations with the results displayed.
+To work with numbers and calculations:
+
+- write a script to perform arithmetic operations (addition, subtraction, multiplication, modulus, and division)
+- display the results
+- perform complex calculations with the results displayed
 
 The script showing the calculations:
 
@@ -152,6 +169,19 @@ The script showing the calculations:
 The results from running the script:
 
 ![Alt text](Images/calculations-results.png)
+
+## File Backup and Timestamping
+
+As a DevOps Engineer, having backups of important data is very important. 
+
+For this script, we'll:
+
+- define source directory and backup directory paths
+- create a timestamp using current date and time
+- create a backup directory with the timestamp appended to its name
+- the script should then copy everything from the source directory to the backup directory using the `cp -r` command for a recursive copy.
+- the script should dispay a message indicating that the backup has been completed successfully
+- the script should show the path of the backup directory with the timestamp
 
 
 
