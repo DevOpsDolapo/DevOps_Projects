@@ -183,6 +183,20 @@ For this script, we'll:
 - the script should dispay a message indicating that the backup has been completed successfully
 - the script should show the path of the backup directory with the timestamp
 
+The backup script is shown below:
+
+![Alt text](Images/backup-script.png)
+
+The result from running the script
+
+![Alt text](Images/backup-result1.png)
+
+![Alt text](Images/backup-result2.png)
+
+Checking the backup directory shows backups done with different timestamps
+
+![Alt text](Images/backup-result3.png)
+
 
 
 
