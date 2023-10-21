@@ -144,6 +144,17 @@ Running the script gives the following results:
 
 In this section, we'll be writing a script to perform arithmetic operations (addition, subtraction, multiplication, modulus, and division) and display the results. Our script will also be performing complex calculations with the results displayed.
 
+The script showing the calculations:
+
+![Alt text](Images/calculations-scripts1.png)
+![Alt text](Images/calculations-scripts2.png)
+
+The results from running the script:
+
+![Alt text](Images/calculations-results.png)
+
+
+
 
 
 
