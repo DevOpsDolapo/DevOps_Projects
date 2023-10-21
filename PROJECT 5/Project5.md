@@ -191,6 +191,8 @@ The result from running the script
 
 ![Alt text](Images/backup-result1.png)
 
+Checking the contents of the backup directory
+
 ![Alt text](Images/backup-result2.png)
 
 Checking the backup directory shows backups done with different timestamps
