@@ -168,6 +168,18 @@ echo "Hello World"
 
 Script to *output the result of a command into a file*
 
+```
+#!/bin/bash
+
+#########################################################
+#Author: Dolapo
+#Date: 19-10-2023
+#Purpose:Script to output the result of a command to file
+#########################################################
+
+echo "Hello World. This output should go into a file" >> hello_world.txt
+```
+
 ![Alt text](Images/output_tofile_script.png)
 
 ![Alt text](Images/output_tofile_result.png)
@@ -184,6 +196,18 @@ Here's the result from running the command
 
 Script to *pass the result of a command as input to another command*
 
+```
+#!/bin/bash
+
+###################################################
+#Author: Dolapo
+#Date: 19-10-2023
+#Purpose: Script to pass the result of a command as input to another command
+###################################################
+
+echo "Hello, this is a test command" 
+```
+
 ![Alt text](Images/pass_command_script.png)
 
 Running the command:
@@ -194,7 +218,29 @@ e. **Functions**
 
 With Functions, we can modularize our codes and make them more reusable. Functions can also be used to group unrelated commands together. To define a function, use the `function` keyword or declare the function name followed by parentheses.
 
-Here's a function script
+Here's a function script:
+
+```
+#!/bin/bash
+
+###################################################
+#Author: Dolapo
+#Date: 19-10-2023
+#Purpose: Script to define a function and call it
+###################################################
+
+#Define a function 'greet' to say hello to a user
+
+greet() {
+
+	echo "Hello, $2! Nice to meet you."
+#The $number option above indicates that the function should call the user in line 2
+}
+
+#Call the function and pass a name to it
+
+greet "Tunde" "James" "Dave"
+```
 
 ![Alt text](Images/function_script.png)
 
@@ -203,6 +249,24 @@ Result of running the script
 ![Alt text](Images/function_result.png)
 
 **1. Script to prompt for name and say hello**
+
+```
+#!/bin/bash
+
+###################################################
+#Author: Dolapo
+#Date: 19-10-2023
+#Purpose:Script to prompt for your name and say hello
+###################################################
+
+#Prompt for user to enter their name
+
+read -p "Please input your name: " name
+
+#Display a greeting using the entered name
+
+echo "Hello, $name! Nice meet to you"!
+```
 
 ![Alt text](Images/user-input_script.png)
 
