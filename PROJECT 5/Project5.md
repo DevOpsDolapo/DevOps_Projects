@@ -28,8 +28,8 @@ To retrieve the value from the variable run the command `echo $name`:
 a. **if-else**
 
 Example: Using if-else to execute a script based on conditions, the script is as follows:
-
-`#!/bin/bash
+```
+#!/bin/bash
 
 ######################################################################
 #Author: Dolapo
@@ -55,8 +55,8 @@ else
 
 echo "You are too old to drive"
 
-fi`
-
+fi
+```
 ![Alt text](Images/if-else_script.png)
 
 Running the if-else script in the CLI:
