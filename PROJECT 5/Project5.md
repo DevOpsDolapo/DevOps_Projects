@@ -15,7 +15,7 @@ Shell scripting uses the same syntax in a script as it would on the command line
 
 1. **Variables**: Variables store different types of data such as strings, numbers, and arrays. Values are usually assigned to variables using the `=` operator. The value in a variable can be accessed by using the variable name preceded by the `$` sign.
 
-To define a variable `name` and assign a value `David` to the variable:
+To define a variable `name` and assign a value `David` to the variable using the command `name=David`:
 
 ![Alt text](Images/assign_variable.png)
 
@@ -27,7 +27,35 @@ To retrieve the value from the variable run the command `echo $name`:
 
 a. **if-else**
 
-Example: Using if-else to execute a script based on conditions:
+Example: Using if-else to execute a script based on conditions, the script is as follows:
+
+`#!/bin/bash
+
+######################################################################
+#Author: Dolapo
+#Date: 18-10-2023
+#Purpose: Script to check age and whether users are eligible to drive
+######################################################################
+
+read -p "Please input your age: " input_age
+
+if [ $input_age -lt 18 ];
+
+then 
+
+echo "You are too young to drive"
+
+elif [ $input_age -ge 18 ] && [ $input_age -le 80 ];
+
+then
+
+echo "You are eligible to drive"
+
+else
+
+echo "You are too old to drive"
+
+fi`
 
 ![Alt text](Images/if-else_script.png)
 
