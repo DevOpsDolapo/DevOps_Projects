@@ -65,7 +65,30 @@ Running the if-else script in the CLI:
 
 b. **for loop**
 
-Example: Iterating through a list using the `for loop`:
+Example: Iterating through a list using the `for loop` script:
+
+```
+#!/bin/bash
+
+###################################################
+#Author: Dolapo
+#Date: 19-10-2023
+#Purpose: Script to iterate through numbers 1 to 10
+###################################################
+
+for number in {1..10}
+
+do
+
+echo $number
+sleep 2 #delay the iteration between numbers by 2 seconds
+
+number=($number ++)
+
+done
+
+echo "The iteration has ended"
+```
 
 ![Alt text](Images/for-loop_script.png)
 
@@ -75,7 +98,27 @@ Running the for-loop script in the CLI:
 
 c. **command substitution**
 
-This allows us to capture the output of a command and use it as a value in our script. 
+This allows us to capture the output of a command and use it as a value in our script. A sample of this type of script is shown below:
+
+```
+#!/bin/bash
+
+##########################################################
+#Author: Dolapo
+#Date: 19-10-2023
+#Purpose: Script to use the result of a command as a value
+##########################################################
+
+#Using the date command to display current date and time only
+
+date +%Y-%m-%d-%T
+
+#Define a variable current_date using the above command as value
+
+current_date=$(date +%Y-%m-%d-%T)
+
+echo $current_date
+```
 
 ![Alt text](Images/command_substitution_script.png)
 
@@ -87,11 +130,37 @@ Bash can handle input and output. The read command is used to accept user input,
 
 Script to *accept user input*
 
+```
+#!/bin/bash
+
+###################################################
+#Author: Dolapo
+#Date: 19-10-2023
+#Purpose: Script to accept input and read the input
+###################################################
+
+echo "Please input your name:"
+
+read name
+```
+
 ![Alt text](Images/accept-input_script.png)
 
 ![Alt text](Images/accept-input_result.png)
 
 Script to *output text to terminal*
+
+```
+#!/bin/bash
+
+###################################################
+#Author: Dolapo
+#Date: 19-10-2023
+#Purpose:Script to display text in terminal
+###################################################
+
+echo "Hello World"
+```
 
 ![Alt text](Images/echo_script.png)
 
