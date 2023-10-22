@@ -386,6 +386,70 @@ To implement File Operations and Sorting:
 
 Here's the script showing file operations and sorting:
 
+```
+#!/bin/bash
+
+######################################################################
+#Author: Dolapo
+#Date: 20-10-2023
+#Purpose:Script to create files, display, and sort them alphabetically
+######################################################################
+
+#Create 3 files and populate them with text
+
+echo "Creating files..."
+
+echo "This is file number 3" >> file3.txt
+
+echo "This is the first file" >> file1.txt
+
+echo "This is the second file" >> file2.txt
+
+echo "Files created."
+
+#Display the files in their current folder
+
+echo "Here are the files in their current folder:"
+
+ls
+
+#Sort the files alphabetically
+
+echo "Sorting the files alphabetically..."
+
+ls | sort > sorted_files.txt
+
+echo "Files sorted"
+
+#Display the sorted files
+
+echo "Sorted files:"
+
+cat sorted_files.txt
+
+#Remove the original files
+
+echo "Removing the original files..."
+
+rm file1.txt file2.txt file3.txt
+
+echo "Original files removed"
+
+#Rename the sorted file to a more descriptive name
+
+echo "Renaming sorted file..."
+
+mv sorted_files.txt sorted_files_sorted_alphabetically.txt
+
+echo "File renamed"
+
+#Display the final sorted file
+
+echo "Final sorted file:"
+
+cat sorted_files_sorted_alphabetically.txt
+```
+
 ![Alt text](Images/file_operations-script1.png)
 ![Alt text](Images/file_operations-script2.png)
 
@@ -402,6 +466,47 @@ To work with numbers and calculations:
 - perform complex calculations with the results displayed
 
 The script showing the calculations:
+
+```
+#!/bin/bash
+
+############################################################################
+#Author: Dolapo
+#Date: 20-10-2023
+#Purpose: Script to carry out arithmetic calculations with results displayed
+############################################################################
+
+#Define two variables with numeric values
+
+num1=20
+num2=25
+
+#Perform basic arithmetic operations
+
+sum=$((num1 + num2))
+difference=$((num2 - num1))
+product=$((num1 * num2))
+quotient=$((num2 / num1))
+remainder=$((num2 % num1))
+
+#Display the results
+echo "Number 1: $num1"
+echo "Number 2: $num2"
+echo "Sum: $sum"
+echo "Difference: $difference"
+echo "Product: $product"
+echo "Quotient: $quotient"
+echo "Remainder: $remainder"
+
+#Perform some more complex calculations
+power_of_2=$(($num1 ** 2))
+square_root=$(awk "BEGIN{ sqrt_value = sqrt($num2); print sqrt_value }")
+
+#Display the results
+
+echo "Number 1 raised to the power of 2: $power_of_2"
+echo "Square root of number 2: $square_root"
+```
 
 ![Alt text](Images/calculations-scripts1.png)
 ![Alt text](Images/calculations-scripts2.png)
@@ -424,6 +529,45 @@ For this script, we'll:
 - the script should show the path of the backup directory with the timestamp
 
 The backup script is shown below:
+
+```
+#!/bin/bash
+
+###########################################################################
+#Author: Dolapo
+#Date: 21-10-2023
+#Purpose:Script to backup files and folders from source to backup directory
+###########################################################################
+
+#Define source directory path
+
+src_path=/home/vboxuser/scripts
+
+#Define backup directory path
+
+bup_path=/home/vboxuser/Desktop/backups
+
+#Create a timestamp using current date and time
+
+time_stp=$(date +%d-%m-%Y_%H:%M:%S)
+
+#Create a backup directory variable with the timestamp appended to its name
+
+bup_dir="$bup_path/backup_$time_stp"
+
+#Create the backup directory
+
+mkdir -p "$bup_dir"
+
+#Copy everything from source to backup directory
+
+copy=$(cp -r "$src_path"/* "$bup_dir")
+
+#Message to indicate backup success
+
+echo "Backup completed successfully
+Files have been copied to $bup_dir"
+```
 
 ![Alt text](Images/backup-script.png)
 
