@@ -128,7 +128,7 @@ d. **input and output**
 
 Bash can handle input and output. The read command is used to accept user input, while the echo command is used to print output to console.
 
-Script to *accept user input*
+**Script to *accept user input***
 
 ```
 #!/bin/bash
@@ -148,7 +148,7 @@ read name
 
 ![Alt text](Images/accept-input_result.png)
 
-Script to *output text to terminal*
+**Script to *output text to terminal***
 
 ```
 #!/bin/bash
@@ -166,7 +166,7 @@ echo "Hello World"
 
 ![Alt text](Images/echo_result.png)
 
-Script to *output the result of a command into a file*
+**Script to *output the result of a command into a file***
 
 ```
 #!/bin/bash
@@ -184,7 +184,7 @@ echo "Hello World. This output should go into a file" >> hello_world.txt
 
 ![Alt text](Images/output_tofile_result.png)
 
-Script to *pass the content of a file as input to a command*
+**Script to *pass the content of a file as input to a command***
 
 The content of the input file is shown below:
 
@@ -194,7 +194,7 @@ Here's the result from running the command
 
 ![Alt text](Images/file_input_result.png)
 
-Script to *pass the result of a command as input to another command*
+**Script to *pass the result of a command as input to another command***
 
 ```
 #!/bin/bash
