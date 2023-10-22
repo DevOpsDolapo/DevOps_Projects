@@ -286,6 +286,86 @@ To show directory manipulation and navigation in the Linux file system:
 
 The script is detailed below:
 
+```
+#!/bin/bash
+
+##############################################
+#Author: Dolapo
+#Date: 19-10-2023
+#Purpose:Script to show directory manipulation
+##############################################
+
+#Display current directory
+
+echo "THE CURRENT DIRECTORY IS: $PWD"
+
+#Create a new directory
+
+dir=my_directory
+
+sleep 2
+
+mkdir $dir
+
+sleep 2
+
+echo "A NEW DIRECTORY $dir HAS BEEN CREATED IN $PWD"
+
+#Change to the new directory
+
+sleep 2
+
+cd $dir
+
+echo "CHANGED TO $dir SUCCESSFULLY"
+
+#Create two files
+
+sleep 2
+
+touch file{1..2}
+
+echo "file1 AND file2 HAVE BEEN CREATED IN $dir"
+
+#List the files
+
+echo "LISTING THE CONTENTS OF $dir"
+
+sleep 2
+
+ls -ltr
+
+#Move back one level up
+
+sleep 2
+
+cd ..
+
+echo "MOVED ONE LEVEL UP SUCCESSFULLY"
+
+#Remove the directory created earlier
+
+sleep 2
+
+rm -rf $dir
+
+echo "DIRECTORY $dir HAS BEEN DELETED SUCCESSFULLY"
+
+#List the files and folders in current directory
+
+sleep 2
+
+echo "THE CURRENT DIRECTORY IS: $PWD"
+
+sleep 2
+
+echo "THE CONTENTS OF THIS DIRECTORY ARE:"
+
+sleep 2
+
+ls -ltr
+```
+
 ![Alt text](Images/directory_manipulation-script.png)
 ![Alt text](Images/directory_manipulation-script2.png)
 
