@@ -571,15 +571,15 @@ Files have been copied to $bup_dir"
 
 ![Alt text](Images/backup-script.png)
 
-The result from running the script
+The result from running the script:
 
 ![Alt text](Images/backup-result1.png)
 
-Checking the contents of the backup directory
+Checking the contents of the backup directory:
 
 ![Alt text](Images/backup-result2.png)
 
-Checking the backup directory shows backups done with different timestamps
+Checking the backup directory shows backups done with different timestamps:
 
 ![Alt text](Images/backup-result3.png)
 
