@@ -63,9 +63,19 @@ We can rename the instances to match the specific names we want to give them.
 
 ![Alt text](Images/aws_instances-names.png)
 
-
-
 2. Install MySQL server software on the `mysql server` database engine
+
+To install software on the EC2 instances, we'll need to connect to them using the Termius software
+
+![Alt text](Images/termius_mysql-server.png)
+
+![Alt text](Images/termius_mysql-client.png)
+
+Connection to the servers is successful
+
+![Alt text](Images/termius_mysql-client2.png)
+
+![Alt text](Images/termius_mysql-server2.png)
 
 3. Install MySQL Client software on the `mysql client` 
 
