@@ -43,6 +43,22 @@ In the above example, the linux terminal is the client while the www.propitixhom
 
 ## Implementing a Client-Server Architecture using MySQL Database Management System (DBMS)
 
+To demonstrate a basic client-server architecture using MySQL RDBMS, we would have to the following:
+
+1. Create and configure two linux-based virtual servers using EC2 instances on AWS
+
+2. Install MySQL server software on the `mysql server` database engine
+
+3. Install MySQL Client software on the `mysql client` 
+
+4. Edit inbound rules on `mysql server`  to allow communications with `mysql client` 
+
+5. Configure `mysql server` to allow connections from remote hosts
+
+6. Connect remotely to `mysql server` from `mysql client` using the mysql utility
+
+7. Check that connection from `mysql client` to `mysql server` is successful and you can perform SQL queries
+
 
 
 
