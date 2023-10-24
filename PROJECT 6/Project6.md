@@ -5,7 +5,15 @@ Client-Server architecture refers to a model where two or more computers are con
 
 During communications, each machine in a Client-Server architecture has its own role with the machine sending requests known as the "Client" and the machine responding to those requests (serving the requests) is known as the "Server".
 
-## Understanding Client-Server Architecture
+Here are some of the characteristics of client-server architectures:
+
+- Client and server machines usually require different hardware and software components
+
+- A single computer server can provide multiple services at the same time, although each service requires a separate server program
+
+- Both client and server applications interact directly through the transport layer protocol (TCP) - with the help of lower level protocols. This process facilitates communication and allows the devices to send and receive information.
+
+## Visualizing Client-Server Architecture
 
 Basically, in a client-server architecture, the client sends a GET request for data, while the server accepts and serves the request via a GET response, sending the data back in the form of packets to the user who has requested them.
 
@@ -33,15 +41,7 @@ The result of running the `curl` command to the propitixhomes web page is shown 
 
 In the above example, the linux terminal is the client while the www.propitixhomes.com is the server. As seen from the request result, the ip address of the computer functioning as the server is `75.2.115.196` on port `80`. The server is also running on the `nginx` web server software.
 
-### Characteristics of a Client-Server Architecture
-
-Here are some of the characteristics of client-server architectures:
-
-- Client and server machines usually require different hardware and software components
-
-- A single computer server can provide multiple services at the same time, although each service requires a separate server program
-
-- Both client and server applications interact directly through the transport layer protocol (TCP) - with the help of lower level protocols. This process facilitates communication and allows the devices to send and receive information.
+## Implementing a Client-Server Architecture using MySQL Database Management System (DBMS)
 
 
 

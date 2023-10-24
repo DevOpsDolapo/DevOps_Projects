@@ -5,6 +5,6 @@ This project is aimed at ensuring a thorough understanding of data management, c
 
 The project will be covering the following:
 
-- Understanding Client-Server architecture
+- Understanding and Visualizing to Client-Server architecture
 
 - Implementing a Client-Server Architecture using MySQL Database Management System (DBMS)
