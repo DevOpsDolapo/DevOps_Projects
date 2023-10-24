@@ -33,7 +33,6 @@ The result of running the `curl` command to the propitixhomes web page is shown 
 
 In the above example, the linux terminal is the client while the www.propitixhomes.com is the server. As seen from the request result, the ip address of the computer functioning as the server is `75.2.115.196` on port `80`. The server is also running on the `nginx` web server software.
 
-
 ### Characteristics of a Client-Server Architecture
 
 
