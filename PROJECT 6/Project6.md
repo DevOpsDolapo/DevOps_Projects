@@ -1,5 +1,5 @@
 
-# Documentation for Understanding Client-Server Architecture with MYSQL as RDBMS
+# Understanding Client-Server Architecture with MYSQL as RDBMS
 
 Client-Server architecture refers to a model where two or more computers are connected together over a network to send and receive requests (information or data) between one another. 
 
