@@ -7,7 +7,11 @@ During communications, each machine in a Client-Server architecture has its own 
 
 ## Understanding Client-Server architecture
 
-Basically, in a client-server architecture, the client sends a request for data, while the server accepts and serves the request, sending the data back in the form of packets to the user who has requested them.
+Basically, in a client-server architecture, the client sends a GET request for data, while the server accepts and serves the request via a GET response, sending the data back in the form of packets to the user who has requested them.
+
+Here's a diagram representing a Client-Server architecture:
+
+![Alt text](Images/client-server_image.png)
 
 
 
