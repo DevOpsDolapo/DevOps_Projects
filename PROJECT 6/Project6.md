@@ -45,7 +45,7 @@ In the above example, the linux terminal is the client while the www.propitixhom
 
 To demonstrate a basic client-server architecture using MySQL RDBMS, we would have to the following:
 
-1. Create and configure two linux-based virtual servers using EC2 instances on AWS
+1. Create and configure two linux-based virtual servers using EC2 instances on AWS and connect to them
 
 To create two EC2 instances on AWS, login into AWS and then click on `Launch instance` on the EC2 Dashboard
 
@@ -63,9 +63,7 @@ We can rename the instances to match the specific names we want to give them.
 
 ![Alt text](Images/aws_instances-names.png)
 
-2. Install MySQL server software on the `mysql server` database engine
-
-To install software on the EC2 instances, we'll need to connect to them using the Termius software
+We'll need to connect to the EC2 instances using the Termius software
 
 ![Alt text](Images/termius_mysql-server.png)
 
@@ -77,7 +75,27 @@ Connection to the servers is successful
 
 ![Alt text](Images/termius_mysql-server2.png)
 
+2. Install MySQL server software on the `mysql server` database engine
+
+To install the MySQL server software on the EC2 instance, we'll need to first update the OS packages by running the `sudo apt update` command:
+
+![Alt text](Images/ubuntu_server-update.png)
+
+To install the MySQL server software, run the command `sudo apt install mysql-server`
+
+![Alt text](Images/sql_server-install.png)
+
+![Alt text](Images/sql_server-install2.png)
+
 3. Install MySQL Client software on the `mysql client` 
+
+To install the MySQL client software on the EC2 instance, we'll need to first update the OS packages by running the `sudo apt update` command:
+
+![Alt text](Images/ubuntu_client-update.png)
+
+To install the MySQL client software, run the command `sudo apt install mysql-client`
+
+![Alt text](Images/sql_client-install.png)
 
 4. Edit inbound rules on `mysql server`  to allow communications with `mysql client` 
 
