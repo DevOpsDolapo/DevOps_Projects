@@ -47,6 +47,24 @@ To demonstrate a basic client-server architecture using MySQL RDBMS, we would ha
 
 1. Create and configure two linux-based virtual servers using EC2 instances on AWS
 
+To create two EC2 instances on AWS, login into AWS and then click on `Launch instance` on the EC2 Dashboard
+
+![Alt text](Images/aws_launch-instance.png)
+
+On the 'Launch an instance' page, fill in the details of the EC2 instance you want to create. It's possible to create two instances at once by specifying the number of instances as '2'
+
+![Alt text](Images/aws_launch-instance2.png)
+
+The instances are up and running
+
+![Alt text](Images/aws_instances-running.png)
+
+We can rename the instances to match the specific names we want to give them.
+
+![Alt text](Images/aws_instances-names.png)
+
+
+
 2. Install MySQL server software on the `mysql server` database engine
 
 3. Install MySQL Client software on the `mysql client` 
