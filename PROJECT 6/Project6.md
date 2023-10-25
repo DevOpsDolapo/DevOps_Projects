@@ -87,6 +87,10 @@ To install the MySQL server software, run the command `sudo apt install mysql-se
 
 ![Alt text](Images/sql_server-install2.png)
 
+It's important to run a security script on the MySQL server installation to remove insecure default settings and lockdown access to the database management system.
+
+The command to run to set the MySQL password of this installation is `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '********.***'`. For security purposes, the actual password is hidden in asterisks.
+
 3. Install MySQL Client software on the `mysql client` 
 
 To install the MySQL client software on the EC2 instance, we'll need to first update the OS packages by running the `sudo apt update` command:
@@ -127,7 +131,8 @@ To do this, we need to edit the `mysqld.cnf` file by running the command `sudo n
 
 ![Alt text](Images/mysql_configuration3.png)
 
-6. Connect remotely to `mysql server` from `mysql client` using the mysql utility
+6. Connect remotely to `mysql server` from `mysql client` using the `mysql` utility
+
 
 
 
