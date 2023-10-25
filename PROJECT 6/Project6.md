@@ -169,10 +169,19 @@ After creating the user, we can connect to the `mysql server` using the `mysql` 
 
 ![Alt text](Images/mysql_test4.png)
 
-7. and you can perform SQL queries
+7. Perform SQL queries
 
-   
+To perform SQL queries on our `mysql server`, firstly, we need to connect to the MYSQL database using the `mysql` command from the `mysql client`
 
+![Alt text](Images/mysql_database1.png)
+
+Let's grant access to the user so it can have access to all database
+
+![Alt text](Images/mysql_test5.png)
+
+Then we can run the `show databases` command
+
+![Alt text](Images/mysql_test6.png)
 
 
 
