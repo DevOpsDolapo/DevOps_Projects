@@ -121,7 +121,15 @@ Add details of the private IP of the `mysql client`
 
 5. Configure `mysql server` to allow connections from remote hosts
 
+To do this, we need to edit the `mysqld.cnf` file by running the command `sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf`, then replacing `127.0.0.1` with `0.0.0.0` in the `bind-address` setting of the file
+
+![Alt text](Images/mysql_configuration2.png)
+
+![Alt text](Images/mysql_configuration3.png)
+
 6. Connect remotely to `mysql server` from `mysql client` using the mysql utility
+
+
 
 7. Check that connection from `mysql client` to `mysql server` is successful and you can perform SQL queries
 
