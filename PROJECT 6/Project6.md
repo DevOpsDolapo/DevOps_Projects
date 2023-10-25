@@ -153,12 +153,23 @@ To do this, we need to edit the `mysqld.cnf` file by running the command `sudo n
 
 ![Alt text](Images/mysql_configuration3.png)
 
-6. Connect remotely to `mysql server` from `mysql client` using the `mysql` utility
+Ensure to restart the mysql service on the `mysql server` by running the command `sudo systemctl restart mysql`
 
+![Alt text](Images/mysql_configuration4.png)
 
+6. Connect remotely to `mysql server` from `mysql client` using the `mysql` utility and check that the connection is successful 
 
+To connect remotely, it's best to create a user that will have access to assigned databases on the `mysql server` using the command `CREATE USER 'example_user'@'%' IDENTIFIED WITH mysql_native_password BY 'Password';` where 'example_user' is the name of the new user and 'Password' is the user's password. For this purpose, a user `dolapo` will be created.
 
-7. Check that connection from `mysql client` to `mysql server` is successful and you can perform SQL queries
+![Alt text](Images/mysql_test2.png)
+
+![Alt text](Images/mysql_test3.png)
+
+After creating the user, we can connect to the `mysql server` using the `mysql` utility from the `mysql client`. Ensure to use the private IP address of the `mysql server`
+
+![Alt text](Images/mysql_test4.png)
+
+7. and you can perform SQL queries
 
    
 
