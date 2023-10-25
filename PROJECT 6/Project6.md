@@ -91,6 +91,28 @@ It's important to run a security script on the MySQL server installation to remo
 
 The command to run to set the MySQL password of this installation is `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '********.***'`. For security purposes, the actual password is hidden in asterisks.
 
+![Alt text](Images/mysql_password1.png)
+
+Start the interactive script by running `sudo mysql_secure_installation`
+
+![Alt text](Images/mysql_password2.png)
+
+![Alt text](Images/mysql_password3.png)
+
+![Alt text](Images/mysql_password4.png)
+
+![Alt text](Images/mysql_password5.png)
+
+![Alt text](Images/mysql_password6.png)
+
+![Alt text](Images/mysql_password7.png)
+
+![Alt text](Images/mysql_password8.png)
+
+Run the command `sudo mysql -p` to test if we can access the MySQL console using the set password.
+
+![Alt text](Images/mysql_test1.png)
+
 3. Install MySQL Client software on the `mysql client` 
 
 To install the MySQL client software on the EC2 instance, we'll need to first update the OS packages by running the `sudo apt update` command:
