@@ -99,12 +99,33 @@ To install the MySQL client software, run the command `sudo apt install mysql-cl
 
 4. Edit inbound rules on `mysql server`  to allow communications with `mysql client` 
 
+To edit inbound rules on the `mysql server`, we would need to log into AWS console and spin up the EC2 instances. Then we need to edit the security tab on the `mysql server` instance to open TCP port 3306
+
+![Alt text](Images/aws-inbound_rules1.png)
+
+Choose the 'inbound rules' tab
+
+![Alt text](Images/aws-inbound_rules2.png)
+
+Click on 'Edit inbound rules'
+
+![Alt text](Images/aws-inbound_rules3.png)
+
+For added security, we'll grant access to the private IP address of the `mysql client` by clicking on 'Add rule'
+
+![Alt text](Images/aws-inbound_rules4.png)
+
+Add details of the private IP of the `mysql client`
+
+![Alt text](Images/aws-inbound_rules5.png)
+
 5. Configure `mysql server` to allow connections from remote hosts
 
 6. Connect remotely to `mysql server` from `mysql client` using the mysql utility
 
 7. Check that connection from `mysql client` to `mysql server` is successful and you can perform SQL queries
 
+   
 
 
 
