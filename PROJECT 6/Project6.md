@@ -195,6 +195,50 @@ To perform SQL queries on our `mysql server`:
 
 ![Alt text](Images/mysql_test6.png)
 
+8. To test further
+
+We will:
+
+(a) Create two databases on the `mysql server`
+
+![Alt text](Images/mysql_db-creation1.png)
+
+![Alt text](Images/mysql_db-creation2.png)
+
+(b) Insert records into the databases
+
+To insert records into the database:
+
+(i) Create a table named travel_list in the testdb database by running the command `CREATE TABLE testdb.travel_list (item_id INT AUTO_INCREMENT,content VARCHAR(255),PRIMARY KEY(item_id))`
+
+![Alt text](Images/mysql_dataentry1.png)
+
+(ii) Create a table named todo_list in the testdata database by running the command `CREATE TABLE testdata.todo_list (item_id INT AUTO_INCREMENT,content VARCHAR(255),PRIMARY KEY(item_id))`
+
+![Alt text](Images/mysql_dataentry2.png)
+
+(iii) Populate the travel_list table with data by inserting some rows of content into the table
+
+![Alt text](Images/mysql_dataentry3.png)
+
+(iv) Confirm that the data was successfully added to the table by running the command `SELECT * FROM testdb.travel_list;`
+
+![Alt text](Images/mysql_dataentry4.png)
+
+(v) Populate the todo_list table with data by inserting some rows of content into the table
+
+![Alt text](Images/mysql_dataentry5.png)
+
+(vi) Confirm that the data was successfully added to the table by running the command `SELECT * FROM testdata.todo_list;`
+
+![Alt text](Images/mysql_dataentry6.png)
+
+(c) Selecting records from the databases from the `mysql client`
+
+
+
+
+
 
 
 
