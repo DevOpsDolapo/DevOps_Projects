@@ -17,7 +17,7 @@ Here are some of the characteristics of client-server architectures:
 
 Basically, in a client-server architecture, the client sends a GET request for data, while the server accepts and serves the request via a GET response, sending the data back in the form of packets to the user who has requested them.
 
-Here's a diagram representing a Client-Server architecture:
+Here's a diagram representing Client-Server architecture:
 
 ![Alt text](Images/client-server_image.png)
 
@@ -45,55 +45,57 @@ In the above example, the linux terminal is the client while the www.propitixhom
 
 To demonstrate a basic client-server architecture using MySQL RDBMS, we would have to the following:
 
-1. Create and configure two linux-based virtual servers using EC2 instances on AWS and connect to them
+**1. Create and configure two linux-based virtual servers using EC2 instances on AWS and connect to them**
 
-To create two EC2 instances on AWS, login into AWS and then click on `Launch instance` on the EC2 Dashboard
+(a) To create two EC2 instances on AWS, login into AWS and then click on `Launch instance` on the EC2 Dashboard
 
 ![Alt text](Images/aws_launch-instance.png)
 
-On the 'Launch an instance' page, fill in the details of the EC2 instance you want to create. It's possible to create two instances at once by specifying the number of instances as '2'
+(b) On the 'Launch an instance' page, fill in the details of the EC2 instance you want to create. It's possible to create two instances at once by specifying the number of instances as '2'
 
 ![Alt text](Images/aws_launch-instance2.png)
 
-The instances are up and running
+(c) Check that the instances are up and running
 
 ![Alt text](Images/aws_instances-running.png)
 
-We can rename the instances to match the specific names we want to give them.
+(d) Rename the instances to match the specific names we want to give them.
 
 ![Alt text](Images/aws_instances-names.png)
 
-We'll need to connect to the EC2 instances using the Termius software
+(e) Connect to the EC2 instances using the Termius software
 
 ![Alt text](Images/termius_mysql-server.png)
 
 ![Alt text](Images/termius_mysql-client.png)
 
-Connection to the servers is successful
+(f) Confirm that connection to the servers is successful
 
 ![Alt text](Images/termius_mysql-client2.png)
 
 ![Alt text](Images/termius_mysql-server2.png)
 
-2. Install MySQL server software on the `mysql server` database engine
+**2. Install MySQL server software on the `mysql server` database engine**
 
-To install the MySQL server software on the EC2 instance, we'll need to first update the OS packages by running the `sudo apt update` command:
+To install the MySQL server software on the EC2 instance:
+
+(a) Update the OS packages on the Ubuntu server by running the `sudo apt update` command:
 
 ![Alt text](Images/ubuntu_server-update.png)
 
-To install the MySQL server software, run the command `sudo apt install mysql-server`
+(b) Install the MySQL server software by running `sudo apt install mysql-server`
 
 ![Alt text](Images/sql_server-install.png)
 
 ![Alt text](Images/sql_server-install2.png)
 
-It's important to run a security script on the MySQL server installation to remove insecure default settings and lockdown access to the database management system.
+(c) It's important to run a security script on the MySQL server installation to remove insecure default settings and lockdown access to the database management system.
 
 The command to run to set the MySQL password of this installation is `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '********.***'`. For security purposes, the actual password is hidden in asterisks.
 
 ![Alt text](Images/mysql_password1.png)
 
-Start the interactive script by running `sudo mysql_secure_installation`
+(d) Start the interactive script by running `sudo mysql_secure_installation`
 
 ![Alt text](Images/mysql_password2.png)
 
@@ -109,77 +111,87 @@ Start the interactive script by running `sudo mysql_secure_installation`
 
 ![Alt text](Images/mysql_password8.png)
 
-Run the command `sudo mysql -p` to test if we can access the MySQL console using the set password.
+(e) Run the command `sudo mysql -p` to check access to the MySQL console using the prescribed password.
 
 ![Alt text](Images/mysql_test1.png)
 
-3. Install MySQL Client software on the `mysql client` 
+**3. Install MySQL Client software on the `mysql client`**
 
-To install the MySQL client software on the EC2 instance, we'll need to first update the OS packages by running the `sudo apt update` command:
+To install the MySQL client software on the EC2 instance:
+
+(a) Update the OS packages by running the `sudo apt update` command
 
 ![Alt text](Images/ubuntu_client-update.png)
 
-To install the MySQL client software, run the command `sudo apt install mysql-client`
+(b) Install the MySQL client software by running the command `sudo apt install mysql-client`
 
 ![Alt text](Images/sql_client-install.png)
 
-4. Edit inbound rules on `mysql server`  to allow communications with `mysql client` 
+**4. Edit inbound rules on `mysql server`  to allow communications with `mysql client`**
 
-To edit inbound rules on the `mysql server`, we would need to log into AWS console and spin up the EC2 instances. Then we need to edit the security tab on the `mysql server` instance to open TCP port 3306
+To edit inbound rules on the `mysql server`:
+
+(a) Log into AWS console and spin up the EC2 instances. Then edit the security tab on the `mysql server` instance to open TCP port 3306
 
 ![Alt text](Images/aws-inbound_rules1.png)
 
-Choose the 'inbound rules' tab
+(b) Choose the 'inbound rules' tab
 
 ![Alt text](Images/aws-inbound_rules2.png)
 
-Click on 'Edit inbound rules'
+(c) Click on 'Edit inbound rules'
 
 ![Alt text](Images/aws-inbound_rules3.png)
 
-For added security, we'll grant access to the private IP address of the `mysql client` by clicking on 'Add rule'
+(d) For added security, grant access to the private IP address of the `mysql client` by clicking on 'Add rule'
 
 ![Alt text](Images/aws-inbound_rules4.png)
 
-Add details of the private IP of the `mysql client`
+(e) Add details of the private IP of the `mysql client`
 
 ![Alt text](Images/aws-inbound_rules5.png)
 
-5. Configure `mysql server` to allow connections from remote hosts
+**5. Configure `mysql server` to allow connections from remote hosts**
 
-To do this, we need to edit the `mysqld.cnf` file by running the command `sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf`, then replacing `127.0.0.1` with `0.0.0.0` in the `bind-address` setting of the file
+For the `mysql server` to allow connections from remote hosts:
+
+(a) Edit the `mysqld.cnf` file by running the command `sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf`, then replacing `127.0.0.1` with `0.0.0.0` in the `bind-address` setting of the file
 
 ![Alt text](Images/mysql_configuration2.png)
 
 ![Alt text](Images/mysql_configuration3.png)
 
-Ensure to restart the mysql service on the `mysql server` by running the command `sudo systemctl restart mysql`
+(b) Ensure to restart the mysql service on the `mysql server` by running the command `sudo systemctl restart mysql`
 
 ![Alt text](Images/mysql_configuration4.png)
 
-6. Connect remotely to `mysql server` from `mysql client` using the `mysql` utility and check that the connection is successful 
+**6. Connect remotely to `mysql server` from `mysql client` using the `mysql` utility and check that the connection is successful**
 
-To connect remotely, it's best to create a user that will have access to assigned databases on the `mysql server` using the command `CREATE USER 'example_user'@'%' IDENTIFIED WITH mysql_native_password BY 'Password';` where 'example_user' is the name of the new user and 'Password' is the user's password. For this purpose, a user `dolapo` will be created.
+To connect remotely:
+
+(a) Create a user that will have access to assigned databases on the `mysql server` using the command `CREATE USER 'example_user'@'%' IDENTIFIED WITH mysql_native_password BY 'Password';` where 'example_user' is the name of the new user and 'Password' is the user's password. For this purpose, a user `dolapo` will be created.
 
 ![Alt text](Images/mysql_test2.png)
 
 ![Alt text](Images/mysql_test3.png)
 
-After creating the user, we can connect to the `mysql server` using the `mysql` utility from the `mysql client`. Ensure to use the private IP address of the `mysql server`
+(b) Connect to the `mysql server` using the `mysql` utility from the `mysql client`. Ensure to use the private IP address of the `mysql server`
 
 ![Alt text](Images/mysql_test4.png)
 
-7. Perform SQL queries
+**7. Perform SQL queries to test remote connection between the `mysql client` and `mysql server`**
 
-To perform SQL queries on our `mysql server`, firstly, we need to connect to the MYSQL database using the `mysql` command from the `mysql client`
+To perform SQL queries on our `mysql server`:
+
+(a) Connect to the MYSQL database using the `mysql` command from the `mysql client`
 
 ![Alt text](Images/mysql_database1.png)
 
-Let's grant access to the user so it can have access to all database
+(b) Grant access to the user so it can have access to all databases on the `mysql server`
 
 ![Alt text](Images/mysql_test5.png)
 
-Then we can run the `show databases` command
+(c) Run the `show databases` command to check that the user can run commands
 
 ![Alt text](Images/mysql_test6.png)
 
