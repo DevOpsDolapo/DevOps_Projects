@@ -195,9 +195,7 @@ To perform SQL queries on our `mysql server`:
 
 ![Alt text](Images/mysql_test6.png)
 
-8. To test further
-
-We will:
+**8. To test further**
 
 (a) Create two databases on the `mysql server`
 
@@ -234,6 +232,14 @@ To insert records into the database:
 ![Alt text](Images/mysql_dataentry6.png)
 
 (c) Selecting records from the databases from the `mysql client`
+
+(i) To select the 'item id' entries from the 'todo_list' table, run the command `SELECT item_id FROM testdata.todo_list`
+
+![Alt text](Images/mysql_dataentry7.png)
+
+(ii) To select the 'content' entries from the 'travel_list' table, run the command `SELECT content FROM testdb.travel_list` 
+
+![Alt text](Images/mysql_dataentry8.png)
 
 
 
