@@ -197,15 +197,13 @@ To perform SQL queries on our `mysql server`:
 
 **8. To test further**
 
-(a) Create two databases on the `mysql server`
+(a) Create two databases 'testdb' and 'testdata' on the `mysql server`
 
 ![Alt text](Images/mysql_db-creation1.png)
 
 ![Alt text](Images/mysql_db-creation2.png)
 
 (b) Insert records into the databases
-
-To insert records into the database:
 
 (i) Create a table named travel_list in the testdb database by running the command `CREATE TABLE testdb.travel_list (item_id INT AUTO_INCREMENT,content VARCHAR(255),PRIMARY KEY(item_id))`
 
