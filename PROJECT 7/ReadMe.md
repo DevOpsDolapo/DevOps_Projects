@@ -1,7 +1,7 @@
 
 ## Implementing Load Balancers with Nginx
 
-This project is aimed at providing a deep understanding of how to distribute traffic efficiently across multiple servers, ensuring optimized performance and high availability for web applications.
+This project is aimed at providing a deep understanding of how to distribute traffic efficiently across multiple servers thus ensuring optimized performance and high availability for web applications.
 
 The project will be covering the following:
 
