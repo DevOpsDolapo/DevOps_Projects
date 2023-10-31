@@ -81,8 +81,37 @@ Check that the instances are up and running
 
 ![Alt text](Images/aws_launch-instance6.png)
 
+**2. Edit the Security Groups to Open `Port 8000` on the Apache EC2 Instances and `Port 80` on the Nginx EC2 Instance**
 
+To edit inbound rules on the Apache EC2 instances to open `Port 8080`:
 
+**Step 1**
+
+Navigate to the 'Security' tab on the Apache EC2 instances
+
+![Alt text](Images/aws_ec2_8000.png)
+
+**Step 2**
+
+Click on the Security group name (launch-wizard-5) to open the security rules page 
+
+![Alt text](Images/aws_ec2_8000_1.png)
+
+![Alt text](Images/aws_ec2_8000_2.png)
+
+**Step 3**
+
+Click on 'Edit inbound rules' to add the desired rule. Add the desired rule and click on 'Save rules'
+
+![Alt text](Images/aws_ec2_8000_3.png)
+
+![Alt text](Images/aws_ec2_8000_4.png)
+
+![Alt text](Images/aws_ec2_8000_5.png)
+
+To edit inbound rules on the Nginx EC2 instance to open `Port 80`, follow the above Steps 1 to 3.
+
+![Alt text](Images/aws_ec2_8000_6.png)
 
 
 

@@ -14,11 +14,11 @@ The project will be covering the following:
 
     - Provision EC2 Instances
 
-    - Add a Rule to the Security Groups to Open Port 8000
+    - Add a Rule to the Security Groups to Open `Port 8000` and `Port 80`
 
     - Install Apache Webserver
 
-    - Configure Apache to Serve Content on Port 8000
+    - Configure Apache to Serve Content on `Port 8000`
 
     - Configure Nginx as a Load Balancer 
 
