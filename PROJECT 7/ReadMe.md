@@ -9,13 +9,12 @@ The project will be covering the following:
 
     - Load Balancing Algorithms
 
-    - Advanced Load Balancing Features
-
+   
  - Setting Up a Basic Load Balancer
 
-    - Provisioning EC2 Instances
+    - Provision EC2 Instances
 
-    - Adding a Rule to the Security Groups to Open Port 8000
+    - Add a Rule to the Security Groups to Open Port 8000
 
     - Install Apache Webserver
 
