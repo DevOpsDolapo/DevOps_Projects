@@ -18,6 +18,8 @@ The project will be covering the following:
 
     - Install Apache Webserver
 
+    - Install Nginx Webserver
+
     - Configure Apache to Serve Content on `Port 8000`
 
     - Configure Nginx as a Load Balancer 

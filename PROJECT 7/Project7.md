@@ -61,11 +61,11 @@ Rename the instances to match the specific names we want to give them
 
 ![Alt text](Images/aws_launch-instance4.png)
 
-To provision the Nginx EC2 instances, I'll follow these steps:
+To provision the Nginx EC2 instance on AWS, I'll follow these steps:
 
 **Step 1**
 
-To create the Nginx EC2 instance on AWS, click on `Launch instance` on the EC2 Dashboard
+Click on `Launch instance` on the EC2 Dashboard
 
 ![Alt text](Images/aws_launch-instance.png)
 
@@ -112,6 +112,83 @@ Click on 'Edit inbound rules' to add the desired rule. Add the desired rule and 
 To edit inbound rules on the Nginx EC2 instance to open `Port 80`, follow the above Steps 1 to 3.
 
 ![Alt text](Images/aws_ec2_8000_6.png)
+
+**3. Install Apache Webserver on the Apache EC2 Instances**
+
+After provisioning the Apache EC2 instances and opening up `Port 8000`, we can then install apache software on the two servers.
+
+The steps to do this are as follows:
+
+**Step 1**
+
+Connect to the servers using their public IP addresses on the `Termius` software
+
+![Alt text](Images/termius_apache-server1.png)
+
+![Alt text](Images/termius_apache-server2.png)
+
+**Step 2**
+
+Confirm that connection to the Apache servers is successful
+
+![Alt text](Images/apache-server1.png)
+
+![Alt text](Images/apache-server2.png)
+
+**Step 3**
+
+Install apache software on both Apache servers by running the command `sudo apt update -y &&  sudo apt install apache2 -y`
+
+![Alt text](Images/apache_install-server1.png)
+
+![Alt text](Images/apache_install-server2.png)
+
+**Step 4**
+
+Verify that apache is running on both servers by running the command `sudo systemctl status apache2`
+
+![Alt text](Images/apache_verify-server1.png)
+
+![Alt text](Images/apache_verify-server2.png)
+
+**4. Install Nginx Webserver on the Nginx EC2 Instance**
+
+After provisioning the Nginx EC2 instance and opening up `Port 80`, we can then install nginx software on the servers.
+
+The steps to do this are as follows:
+
+**Step 1**
+
+Connect to the server using its public IP address on the `Termius` software
+
+![Alt text](Images/nginx-server_termius.png)
+
+**Step 2**
+
+Confirm that connection to the Nginx server is successful
+
+![Alt text](Images/nginx-server_termius1.png)
+
+**Step 3**
+
+Install nginx software on the server by running the command `sudo apt update -y && sudo apt install nginx -y`
+
+![Alt text](Images/nginx_install-server.png)
+
+**Step 4**
+
+Verify that nginx is running on the server by running the command `sudo systemctl status nginx`
+
+![Alt text](Images/nginx_verify-server.png)
+
+
+
+
+
+
+
+
+
 
 
 
