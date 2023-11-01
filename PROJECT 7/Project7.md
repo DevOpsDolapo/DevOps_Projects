@@ -109,7 +109,7 @@ Click on 'Edit inbound rules' to add the desired rule. Add the desired rule and 
 
 ![Alt text](Images/aws_ec2_8000_5.png)
 
-To edit inbound rules on the Nginx EC2 instance to open `Port 80`, follow the above Steps 1 to 3.
+**To edit inbound rules on the Nginx EC2 instance to open `Port 80`, follow the above Steps 1 to 3**
 
 ![Alt text](Images/aws_ec2_8000_6.png)
 
@@ -212,7 +212,7 @@ We'll do the same for `Apache-server2`
 
 **Step 3**
 
-Restart apache to load the new configuration on both `Apache-server1` and `Apache-server2`c using the command `sudo systemctl restart apache2`
+Restart apache to load the new configuration on both `Apache-server1` and `Apache-server2` using the command `sudo systemctl restart apache2`
 
 ![Alt text](Images/aws_restart_apache1.png)
 
@@ -263,7 +263,7 @@ Check to see if our content can be displayed on a web browser through the public
 
 ![Alt text](Images/apache-server1-webpage.png)
 
-We can repeat **Steps 1 to 8** to get the same result from `Apache-server2`
+**We can repeat **Steps 1 to 8** to get the same result from `Apache-server2`**
 
 The information for `Apache-server2` will be:
 
