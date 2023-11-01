@@ -307,7 +307,7 @@ The file will be populated with the below information:
 
         server {
             listen 80;
-            server_name <54.226.148.189>; # public IP address for Nginx load-balancer
+            server_name 54.226.148.189; # public IP address for Nginx load-balancer
 
             location / {
                 proxy_pass http://backend_servers;
@@ -317,6 +317,8 @@ The file will be populated with the below information:
             }
         }
 ```
+
+![Alt text](Images/nginx-config-file.png)
 
 **Step 2**
 
@@ -329,6 +331,15 @@ Test the configuration on `Nginx-server` by running the command `sudo nginx -t`
 Restart Nginx to load the new configuration by running the command `sudo systemctl restart nginx`
 
 ![Alt text](Images/nginx-restart.png)
+
+**Step 4**
+
+Check to see if content from `Apache-server1` and `Apache-server2` can be displayed on the `Nginx-server` web browser using the load balancer's public IP address
+
+![Alt text](Images/nginx-apache1-webpage.png)
+
+![Alt text](Images/nginx-apache2-webpage.png)
+
 
 
 
