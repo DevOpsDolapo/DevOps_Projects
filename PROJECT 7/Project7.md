@@ -181,6 +181,170 @@ Verify that nginx is running on the server by running the command `sudo systemct
 
 ![Alt text](Images/nginx_verify-server.png)
 
+**5. Configure Apache to Serve Content on `Port 8000`**
+
+Apache's default port for responding to requests and serving content is `Port 80`. However, for this project, we'll configure our Apache webservers to serve content on `Port 8000`.
+
+**Step 1**
+
+Edit the file `/etc/apache2/ports.conf` and add a listening directive for `Port 8000` on `Apache-server1`
+
+![Alt text](Images/aws_port800_2.png)
+
+
+![Alt text](Images/aws_port800_1.png)
+
+We'll do the same for `Apache-server2`
+
+![Alt text](Images/aws_port800_3.png)
+
+**Step 2**
+
+Edit the file `/etc/apache2/sites-available/000-default.conf` and change `Port 80` on the `Virtualhost` entry to `8000` on `Apache-server1`
+
+![Alt text](Images/aws_port8000_1.png)
+
+![Alt text](Images/aws_port8000_2.png)
+
+We'll do the same for `Apache-server2`
+
+![Alt text](Images/aws_port8000_3.png)
+
+**Step 3**
+
+Restart apache to load the new configuration on both `Apache-server1` and `Apache-server2`c using the command `sudo systemctl restart apache2`
+
+![Alt text](Images/aws_restart_apache1.png)
+
+![Alt text](Images/aws_restart_apache2.png)
+
+**Step 4**
+
+Create a new `index.html` file to override apache webserver's default index html file. Our new file will contain information to display the public IP of the Apache EC2 instances. 
+
+The information for `Apache-server1` is:
+
+```
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>My EC2 Instance</title>
+        </head>
+        <body>
+            <h1>Welcome to my EC2 instance on Apache-server1</h1>
+            <p>Public IP: 52.91.155.140</p>
+        </body>
+        </html>
+```
+
+![Alt text](Images/apache1_index.png)
+
+**Step 5**
+
+Change the file ownership of the new `index.html` file using the command `sudo chown www-data:www-data index.html`
+
+![Alt text](Images/apache1_index2.png)
+
+**Step 6**
+
+Override the default html of `Apache-server1` by copying the new `index.html` file to the `/var/www/html/index.html` location using the command `sudo cp -f index.html /var/www/html/index.html`
+
+![Alt text](Images/apache1_index3.png)
+
+**Step 7**
+
+Restart apache to load the new configuration on `Apache-server1` by running the command `sudo systemctl restart apache2`
+
+![Alt text](Images/aws_restart_apache1.png)
+
+**Step 8**
+
+Check to see if our content can be displayed on a web browser through the public IP address of `Apache-server1`
+
+![Alt text](Images/apache-server1-webpage.png)
+
+We can repeat **Steps 1 to 8** to get the same result from `Apache-server2`
+
+The information for `Apache-server2` will be:
+
+```
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>My EC2 Instance</title>
+        </head>
+        <body>
+            <h1>Welcome to my EC2 instance on Apache-server2</h1>
+            <p>Public IP: 52.90.138.23</p>
+        </body>
+        </html>
+```
+
+Check to see if our content can be displayed on a web browser through the public IP address of `Apache-server2`
+
+![Alt text](Images/apache-server2-webpage.png)
+
+**6. Configure Nginx as a Load Balancer**
+
+To configure the `Nginx-server` as a load balancer, the steps to take are as follows:
+
+**Step 1**
+
+Edit the Nginx configuration file using the command `sudo nano /etc/nginx/conf.d/loadbalancer.conf`
+
+![Alt text](Images/nginx-config-file1.png)
+
+The file will be populated with the below information:
+
+```
+        upstream backend_servers {
+
+            # your are to replace the public IP and Port to that of your webservers
+            server 52.91.155.140:8000; # public IP and port for Apache-server1
+            server 52.90.138.23:8000; # public IP and port for Apache-server2
+
+        }
+
+        server {
+            listen 80;
+            server_name <54.226.148.189>; # public IP address for Nginx load-balancer
+
+            location / {
+                proxy_pass http://backend_servers;
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            }
+        }
+```
+
+**Step 2**
+
+Test the configuration on `Nginx-server` by running the command `sudo nginx -t`
+
+![Alt text](Images/nginx-config-check.png)
+
+**Step 3**
+
+Restart Nginx to load the new configuration by running the command `sudo systemctl restart nginx`
+
+![Alt text](Images/nginx-restart.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
