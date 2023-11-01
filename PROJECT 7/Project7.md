@@ -263,7 +263,7 @@ Check to see if our content can be displayed on a web browser through the public
 
 ![Alt text](Images/apache-server1-webpage.png)
 
-**We can repeat **Steps 1 to 8** to get the same result from `Apache-server2`**
+**We can repeat Steps 1 to 8 to get the same result from `Apache-server2`**
 
 The information for `Apache-server2` will be:
 
@@ -280,7 +280,7 @@ The information for `Apache-server2` will be:
         </html>
 ```
 
-Check to see if our content can be displayed on a web browser through the public IP address of `Apache-server2`
+Check to see if the content can be displayed on a web browser through the public IP address of `Apache-server2`
 
 ![Alt text](Images/apache-server2-webpage.png)
 
@@ -340,7 +340,7 @@ Check to see if content from `Apache-server1` and `Apache-server2` can be displa
 
 ![Alt text](Images/nginx-apache2-webpage.png)
 
-From the above images, the load balancer (`Nginx-server`) servers us the same web pages as the Apache servers.
+From the above images, the load balancer (`Nginx-server`) serves us the same web pages as the Apache servers.
 
 
 
