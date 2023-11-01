@@ -31,7 +31,7 @@ There are techniques used to distribute incoming network traffic or workload amo
 
 To set up a basic load balancer, we'll need to follow the steps below:
 
-**1. Provision EC2 Instances**
+### Provision EC2 Instances
 
 We need to create three (3) EC2 instances with the Ubuntu operating system. The first two EC2 instances will host the Apache webserver, while the third EC2 instance will host the Nginx load balancer.
 
@@ -81,7 +81,7 @@ Check that the instances are up and running
 
 ![Alt text](Images/aws_launch-instance6.png)
 
-**2. Edit the Security Groups to Open `Port 8000` on the Apache EC2 Instances and `Port 80` on the Nginx EC2 Instance**
+### Edit the Security Groups to Open `Port 8000` on the Apache EC2 Instances and `Port 80` on the Nginx EC2 Instance
 
 To edit inbound rules on the Apache EC2 instances to open `Port 8080`:
 
@@ -113,7 +113,7 @@ To edit inbound rules on the Nginx EC2 instance to open `Port 80`, follow the ab
 
 ![Alt text](Images/aws_ec2_8000_6.png)
 
-**3. Install Apache Webserver on the Apache EC2 Instances**
+### Install Apache Webserver on the Apache EC2 Instances
 
 After provisioning the Apache EC2 instances and opening up `Port 8000`, we can then install apache software on the two servers.
 
@@ -151,7 +151,7 @@ Verify that apache is running on both servers by running the command `sudo syste
 
 ![Alt text](Images/apache_verify-server2.png)
 
-**4. Install Nginx Webserver on the Nginx EC2 Instance**
+### Install Nginx Webserver on the Nginx EC2 Instance
 
 After provisioning the Nginx EC2 instance and opening up `Port 80`, we can then install nginx software on the servers.
 
@@ -181,7 +181,7 @@ Verify that nginx is running on the server by running the command `sudo systemct
 
 ![Alt text](Images/nginx_verify-server.png)
 
-**5. Configure Apache to Serve Content on `Port 8000`**
+### Configure Apache to Serve Content on `Port 8000`
 
 Apache's default port for responding to requests and serving content is `Port 80`. However, for this project, we'll configure our Apache webservers to serve content on `Port 8000`.
 
@@ -284,7 +284,7 @@ Check to see if our content can be displayed on a web browser through the public
 
 ![Alt text](Images/apache-server2-webpage.png)
 
-**6. Configure Nginx as a Load Balancer**
+### Configure Nginx as a Load Balancer
 
 To configure the `Nginx-server` as a load balancer, the steps to take are as follows:
 
