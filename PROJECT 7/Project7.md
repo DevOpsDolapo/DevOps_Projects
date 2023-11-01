@@ -17,9 +17,9 @@ The diagram below shows a load balancer setup:
 
 There are techniques used to distribute incoming network traffic or workload amongst multiple servers. These techniques are known as load balancer algorithms. Some of them are:
 
-**1. Round Robin:** The round robin algorithm shares requests successively to each server in the pool. It is easy to deploy and ensures an equal distributiom of traffic. It's best when all servers have identical capabilities and resources.
+**1. Round Robin:** The round robin algorithm shares requests successively to each server in the pool. It is easy to deploy and ensures an equal distribution of traffic. This algorithm is best when all servers have identical capabilities and resources.
 
-**2. Weighted Round Robin:** This is similar to the round robin technique, but servers are assigned requests based on their capabilities. Servers with more capacities receive more requests. This is best when servers have different performance levels or abilities.  
+**2. Weighted Round Robin:** This is similar to the round robin technique, but here, servers are assigned requests based on their capabilities. Servers with more capacities receive more requests. This is best when servers have different performance levels or abilities.  
 
 **3. Least Connections:** This algorithm sends new requests to the server with the least number of active connections. It works best when servers have different workloads or capacities because it sends traffic to the server that's least busy.
 
@@ -31,15 +31,15 @@ There are techniques used to distribute incoming network traffic or workload amo
 
 To set up a basic load balancer, we'll need to follow the steps below:
 
-### Provision EC2 Instances
+### 1. Create EC2 Instances
 
-We need to create three (3) EC2 instances with the Ubuntu operating system. The first two EC2 instances will host the Apache webserver, while the third EC2 instance will host the Nginx load balancer.
+We need to create three (3) EC2 instances with the Ubuntu operating system. The first two EC2 instances will host the Apache webserver, while the third EC2 instance will host the Nginx server (the load balancer).
 
-To provision the Apache EC2 instances, I'll follow these steps:
+To provision the Apache EC2 instances, follow these steps:
 
 **Step 1**
 
-To create EC2 instances on AWS, login into AWS and then click on `Launch instance` on the EC2 Dashboard
+Login into AWS and then click on `Launch instance` on the EC2 Dashboard
 
 ![Alt text](Images/aws_launch-instance.png)
 
@@ -57,11 +57,11 @@ Check that the instances are up and running
 
 **Step 4**
 
-Rename the instances to match the specific names we want to give them
+Rename the instances to match the specific names we require
 
 ![Alt text](Images/aws_launch-instance4.png)
 
-To provision the Nginx EC2 instance on AWS, I'll follow these steps:
+To provision the Nginx EC2 instance on AWS, follow these steps:
 
 **Step 1**
 
@@ -77,11 +77,11 @@ On the 'Launch an instance' page, fill in the details of the EC2 instance
 
 **Step 3**
 
-Check that the instances are up and running
+Check that the instance is up and running
 
 ![Alt text](Images/aws_launch-instance6.png)
 
-### Edit the Security Groups to Open `Port 8000` on the Apache EC2 Instances and `Port 80` on the Nginx EC2 Instance
+### 2. Edit the Security Groups to Open `Port 8000` on the Apache EC2 Instances and `Port 80` on the Nginx EC2 Instance
 
 To edit inbound rules on the Apache EC2 instances to open `Port 8080`:
 
@@ -113,7 +113,7 @@ To edit inbound rules on the Nginx EC2 instance to open `Port 80`, follow the ab
 
 ![Alt text](Images/aws_ec2_8000_6.png)
 
-### Install Apache Webserver on the Apache EC2 Instances
+### 3. Install Apache Webserver on the Apache EC2 Instances
 
 After provisioning the Apache EC2 instances and opening up `Port 8000`, we can then install apache software on the two servers.
 
@@ -151,7 +151,7 @@ Verify that apache is running on both servers by running the command `sudo syste
 
 ![Alt text](Images/apache_verify-server2.png)
 
-### Install Nginx Webserver on the Nginx EC2 Instance
+### 4. Install Nginx Webserver on the Nginx EC2 Instance
 
 After provisioning the Nginx EC2 instance and opening up `Port 80`, we can then install nginx software on the servers.
 
@@ -181,7 +181,7 @@ Verify that nginx is running on the server by running the command `sudo systemct
 
 ![Alt text](Images/nginx_verify-server.png)
 
-### Configure Apache to Serve Content on `Port 8000`
+### 5. Configure Apache to Serve Content on `Port 8000`
 
 Apache's default port for responding to requests and serving content is `Port 80`. However, for this project, we'll configure our Apache webservers to serve content on `Port 8000`.
 
@@ -284,7 +284,7 @@ Check to see if our content can be displayed on a web browser through the public
 
 ![Alt text](Images/apache-server2-webpage.png)
 
-### Configure Nginx as a Load Balancer
+### 6. Configure Nginx as a Load Balancer
 
 To configure the `Nginx-server` as a load balancer, the steps to take are as follows:
 
