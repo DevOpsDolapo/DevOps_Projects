@@ -340,6 +340,8 @@ Check to see if content from `Apache-server1` and `Apache-server2` can be displa
 
 ![Alt text](Images/nginx-apache2-webpage.png)
 
+From the above images, the load balancer (`Nginx-server`) servers us the same web pages as the Apache servers.
+
 
 
 
