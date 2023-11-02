@@ -23,13 +23,13 @@ In the previous project (Project 7), we implemented two Apache backend servers w
 
 To automate the deployment and configuration of Apache webserver EC2 instances, we'll need to follow the steps below:
 
-**Step 1: Provision two EC2 instances running on the Ubuntu OS**
+### Provision two EC2 instances running on the Ubuntu OS**
 
-Click on the 'Launch instances' tab on the AWS dashboard
+**Step 1: Click on the 'Launch instances' tab on the AWS dashboard**
 
 ![Alt text](Images/aws-provision.png)
 
-Fill out the details of the servers, selecting the Ubuntu OS, and attaching (or creating) a key pair, then click on 'Launch instance' at the bottom of the page
+**Step 2: Fill out the details of the servers, selecting the Ubuntu OS, and attaching (or creating) a key pair, then click on 'Launch instance' at the bottom of the page**
 
 ![Alt text](Images/aws-provision1.png)
 
@@ -39,9 +39,9 @@ Check that the instances are up and running
 
 ![Alt text](Images/aws-provision3.png)
 
-**Step 2: Open Port 8000 to Allow Traffic from Anywhere**
+### Open Port 8000 to Allow Traffic from Anywhere
 
-To open `Port 8000`, we need to edit the 'inbound rules' under the Security Group tab of the EC2 instances
+**Step 1: Edit the 'inbound rules' under the Security Group tab of the EC2 instances**
 
 ![Alt text](Images/aws-provision4.png)
 
@@ -51,15 +51,15 @@ Click on 'Add rule' to add the necessary rule details and click on 'Save rules'
 
 ![Alt text](Images/aws-provision6.png)
 
-**Step 3: Connect to the Webservers**
+### Connect to the Webservers
 
-We'll connect to the webservers through the Termius software 
+**Step 1: We'll connect to the webservers through the Termius software**
 
 ![Alt text](Images/termius-apache1.png)
 
 ![Alt text](Images/termius-apache2.png)
 
-**Step 4: Deploy and Configure the Webservers Using a Script**
+### Deploy and Configure the Webservers Using a Script
 
 We'll use the shell script below to deploy and configure the Apache webservers
 
@@ -106,11 +106,21 @@ echo "<!DOCTYPE html>
 
 sudo systemctl restart apache2
 ```
-The above shell script will be added to a file named `install.sh` on both `Apache-server1` and `Apache-server2` with the some modifications made to the script to reflect our webservers.
+**Step 1: The above shell script will be added to a file named `install.sh` on both `Apache-server1` and `Apache-server2` with the some modifications made to the script to reflect our webservers using the command `sudo nano install.sh`**
+
+![Alt text](Images/script-apache.png)
 
 ![Alt text](Images/script-apache1.png)
 
 ![Alt text](Images/script-apache2.png)
+
+**Step 2: Make the shell script executable on the two webservers by using the command `sudo chmod +x install.sh`**
+
+![Alt text](Images/script-apache11.png)
+
+![Alt text](Images/script-apache22.png)
+
+
 
 
 
