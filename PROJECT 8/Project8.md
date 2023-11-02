@@ -136,12 +136,111 @@ After successfully deploying and configuring the two Apache webservers, we'll us
 
 ### Provision an EC2 instance running on the Ubuntu OS**
 
+**Step 1: Click on the 'Launch instances' tab on the AWS dashboard**
+
+![Alt text](Images/aws-provision.png)
+
+**Step 2: Just like we did for the Apache servers, fill out the details of the server, selecting the Ubuntu OS, and attaching (or creating) a key pair, then click on 'Launch instance' at the bottom of the page. Confirm that the instance is up and running**
+
+![Alt text](Images/nginx-server-running.png)
+
 ### Open Port 8000 to Allow Traffic from Anywhere
+
+**Step 1: Edit the 'inbound rules' under the Security Group tab of the EC2 instance**
+
+![Alt text](Images/nginx-server-sec.png)
+
+Click on 'Add rule' to add the necessary rule details and click on 'Save rules' 
+
+![Alt text](Images/nginx-server-sec1.png)
+
+![Alt text](Images/nginx-server-sec2.png)
 
 ### Connect to the Nginx Load Balancer
 
+**Step 1: We'll connect to the load balancer through the Termius software**
+
+![Alt text](Images/nginx-server-connect.png)
+
 ### Deploy and Configure the Load Balancer Using a Script
 
+We'll use the shell script below to deploy and configure the load balancer
+
+```
+#!/bin/bash
+
+######################################################################################################################
+##### This automates the configuration of Nginx to act as a load balancer
+##### Usage: The script is called with 3 command line arguments. The public IP of the EC2 instance where Nginx is installed
+##### the webserver urls for which the load balancer distributes traffic. An example of how to call the script is shown below:
+##### ./configure_nginx_loadbalancer.sh PUBLIC_IP Webserver-1 Webserver-2
+#####  ./configure_nginx_loadbalancer.sh 127.0.0.1 192.2.4.6:8000  192.32.5.8:8000
+############################################################################################################# 
+
+PUBLIC_IP=$1
+firstWebserver=$2
+secondWebserver=$3
+
+[ -z "${PUBLIC_IP}" ] && echo "Please pass the Public IP of your EC2 instance as the argument to the script" && exit 1
+
+[ -z "${firstWebserver}" ] && echo "Please pass the Public IP together with its port number in this format: 127.0.0.1:8000 as the second argument to the script" && exit 1
+
+[ -z "${secondWebserver}" ] && echo "Please pass the Public IP together with its port number in this format: 127.0.0.1:8000 as the third argument to the script" && exit 1
+
+set -x # debug mode
+set -e # exit the script if there is an error
+set -o pipefail # exit the script when there is a pipe failure
+
+
+sudo apt update -y && sudo apt install nginx -y
+sudo systemctl status nginx
+
+if [[ $? -eq 0 ]]; then
+    sudo touch /etc/nginx/conf.d/loadbalancer.conf
+
+    sudo chmod 777 /etc/nginx/conf.d/loadbalancer.conf
+    sudo chmod 777 -R /etc/nginx/
+
+    
+    echo " upstream backend_servers {
+
+            # your are to replace the public IP and Port to that of your webservers
+            server  "${firstWebserver}"; # public IP and port for webserser 1
+            server "${secondWebserver}"; # public IP and port for webserver 2
+
+            }
+
+           server {
+            listen 80;
+            server_name "${PUBLIC_IP}";
+
+            location / {
+                proxy_pass http://backend_servers;   
+            }
+    } " > /etc/nginx/conf.d/loadbalancer.conf
+fi
+
+sudo nginx -t
+
+sudo systemctl restart nginx
+```
+
+**Step 1: The above shell script will be added to a file named `Nginx.sh` on `Nginx-server` with the some modifications made to the script to reflect our webservers using the command `sudo nano Nginx.sh`**
+
+![Alt text](Images/nginx-script.png)
+
+![Alt text](Images/nginx-script1.png)
+
+**Step 2: Make the shell script executable on `Nginx-server` by using the command `sudo chmod +x Nginx.sh`**
+
+![Alt text](Images/nginx-script2.png)
+
+**Step 3: Run the shell script on `Nginx-server` using the command `./Nginx.sh PUBLIC_IP Webserver-1 Webserver-2` where 'PUBLIC_IP' is the public IP of the load balancer (`Nginx-server`), 'Webserver-1' is the public IP and Port of the first web server (`Apache-server1`) and 'Webserver-2' is the public IP and Port of the second web server (`Apache-server2`)**
+
+![Alt text](Images/nginx-script-running.png)
+
+![Alt text](Images/nginx-script-running1.png)
+![Alt text](Images/nginx-script-running2.png)
 
 
 
