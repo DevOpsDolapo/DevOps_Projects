@@ -17,7 +17,7 @@ Some of the benefits of load balancing automation are:
 
 - Optimizes performance and availability
 
-## Automating the Deployment and Configuration Apache Webservers
+## Automating the Deployment and Configuration of Apache Webservers
 
 In the previous project (Project 7), we implemented two Apache backend servers with an Nginx load balancer distributing traffic between both servers. The whole process in Project 7 was done manually. However, for this project we'll be automating the process from start to finish by using a shell script to run our commands.
 
@@ -119,6 +119,30 @@ sudo systemctl restart apache2
 ![Alt text](Images/script-apache11.png)
 
 ![Alt text](Images/script-apache22.png)
+
+**Step 3: Run the shell script on `Apache-server1` and `Apache-server2` using the command `./install.sh PUBLIC_IP` where 'PUBLIC_IP' is the individual public IP of the servers**
+
+![Alt text](Images/script-run-apache1.png)
+
+![Alt text](Images/script-run-apache11.png)
+
+![Alt text](Images/script-run-apache2.png)
+
+![Alt text](Images/script-run-apache22.png)
+
+## Deploying Nginx as a Load Balancer Using a Shell Script
+
+After successfully deploying and configuring the two Apache webservers, we'll use a script to deploy and configure an Nginx load balancer and open `Port 80` to allow connection from anywhere. To do this, we'll take the following steps:
+
+### Provision an EC2 instance running on the Ubuntu OS**
+
+### Open Port 8000 to Allow Traffic from Anywhere
+
+### Connect to the Nginx Load Balancer
+
+### Deploy and Configure the Load Balancer Using a Script
+
+
 
 
 
