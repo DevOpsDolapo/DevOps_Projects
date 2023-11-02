@@ -242,6 +242,23 @@ sudo systemctl restart nginx
 ![Alt text](Images/nginx-script-running1.png)
 ![Alt text](Images/nginx-script-running2.png)
 
+### Confirm that the Setup is Up and Running
+
+Screenshot from `Apache-server1`
+
+![Alt text](Images/apache-server1-screenshot.png)
+
+Screenshot from `Apache-server2`
+
+![Alt text](Images/apache-server2-screenshot.png)
+
+Screenshot from `Nginx-server` showing content from the two webservers
+
+![Alt text](Images/nginx-server1-screenshot.png)
+
+![Alt text](Images/nginx-server2-screenshot.png)
+
+
 
 
 
