@@ -16,3 +16,7 @@ Some of the benefits of load balancing automation are:
 - Improves scalability and flexibility
 
 - Optimizes performance and availability
+
+## Automating the Deployment of Servers
+
+In the previous project (Project 7), we implemented two Apache backend servers with an Nginx load balancer distributing traffic between both servers. The whole process in Project 7 was done manually. However, for this project we'll be automating the process from start to finish.
