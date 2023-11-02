@@ -5,7 +5,6 @@ This project is aimed at implementing a load balancer configuration by automatin
 
 The project will be covering the following:
 
-- Automating the Deployment of Servers
-- Deploying and Configuring Webservers
+- Automating the Deployment and Configuration Apache Webservers
 - Deploying Nginx as a Load Balancer Using a Shell Script
 - Running the Shell Script
