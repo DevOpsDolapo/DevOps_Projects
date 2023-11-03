@@ -5,7 +5,7 @@ Load balancing automation involves using scripts or software tools to create, up
 
 Automating the load balancer configuration can lead to a reduction in human intervention, help cut out configuration mistakes, and aid adjustment to changing traffic patterns and server conditions.
 
-Some of the benefits of load balancing automation are:
+Some of the benefits of load balancer automation are:
 
 - Improves server administration
 
@@ -19,17 +19,17 @@ Some of the benefits of load balancing automation are:
 
 ## Automating the Deployment and Configuration of Apache Webservers
 
-In the previous project (Project 7), we implemented two Apache backend servers with an Nginx load balancer distributing traffic between both servers. The whole process in Project 7 was done manually. However, for this project we'll be automating the process from start to finish by using a shell script to run our commands.
+In the previous project (Project 7), we implemented two Apache backend servers with an Nginx load balancer distributing traffic between both servers. The whole process in Project 7 was done manually. However, for this project we'll be automating the process from start to finish by using a shell script to run the commands.
 
 To automate the deployment and configuration of Apache webserver EC2 instances, we'll need to follow the steps below:
 
-### Provision two EC2 instances running on the Ubuntu OS**
+### Create two EC2 instances running on the Ubuntu OS
 
 **Step 1: Click on the 'Launch instances' tab on the AWS dashboard**
 
 ![Alt text](Images/aws-provision.png)
 
-**Step 2: Fill out the details of the servers, selecting the Ubuntu OS, and attaching (or creating) a key pair, then click on 'Launch instance' at the bottom of the page**
+**Step 2: Fill out the details of the servers, select Ubuntu OS, and attach (or create) a key pair, then click on 'Launch instance' at the bottom of the page**
 
 ![Alt text](Images/aws-provision1.png)
 
@@ -106,7 +106,7 @@ echo "<!DOCTYPE html>
 
 sudo systemctl restart apache2
 ```
-**Step 1: The above shell script will be added to a file named `install.sh` on both `Apache-server1` and `Apache-server2` with the some modifications made to the script to reflect our webservers using the command `sudo nano install.sh`**
+**Step 1: The above shell script will be added to a file named `install.sh` on both `Apache-server1` and `Apache-server2` with some modifications made to the script to reflect our webservers using the command `sudo nano install.sh`**
 
 ![Alt text](Images/script-apache.png)
 
@@ -134,17 +134,19 @@ sudo systemctl restart apache2
 
 After successfully deploying and configuring the two Apache webservers, we'll use a script to deploy and configure an Nginx load balancer and open `Port 80` to allow connection from anywhere. To do this, we'll take the following steps:
 
-### Provision an EC2 instance running on the Ubuntu OS**
+### Create an EC2 instance running on the Ubuntu OS**
 
 **Step 1: Click on the 'Launch instances' tab on the AWS dashboard**
 
 ![Alt text](Images/aws-provision.png)
 
-**Step 2: Just like we did for the Apache servers, fill out the details of the server, selecting the Ubuntu OS, and attaching (or creating) a key pair, then click on 'Launch instance' at the bottom of the page. Confirm that the instance is up and running**
+**Step 2: Just like we did for the Apache servers, fill out the details of the server, select Ubuntu OS, and attach (or create) a key pair, then click on 'Launch instance' at the bottom of the page**
+
+Confirm that the instance is up and running
 
 ![Alt text](Images/nginx-server-running.png)
 
-### Open Port 8000 to Allow Traffic from Anywhere
+### Open Port 80 to Allow Traffic from Anywhere
 
 **Step 1: Edit the 'inbound rules' under the Security Group tab of the EC2 instance**
 
@@ -164,7 +166,7 @@ Click on 'Add rule' to add the necessary rule details and click on 'Save rules'
 
 ### Deploy and Configure the Load Balancer Using a Script
 
-We'll use the shell script below to deploy and configure the load balancer
+We'll use the shell script below to deploy and configure the Nginx load balancer
 
 ```
 #!/bin/bash
@@ -225,17 +227,17 @@ sudo nginx -t
 sudo systemctl restart nginx
 ```
 
-**Step 1: The above shell script will be added to a file named `Nginx.sh` on `Nginx-server` with the some modifications made to the script to reflect our webservers using the command `sudo nano Nginx.sh`**
+**Step 1: The above shell script will be added to a file named `Nginx.sh` on the load balancer with some modifications made to the script to reflect the Apache webservers using the command `sudo nano Nginx.sh`**
 
 ![Alt text](Images/nginx-script.png)
 
 ![Alt text](Images/nginx-script1.png)
 
-**Step 2: Make the shell script executable on `Nginx-server` by using the command `sudo chmod +x Nginx.sh`**
+**Step 2: Make the shell script executable on the load balancer by using the command `sudo chmod +x Nginx.sh`**
 
 ![Alt text](Images/nginx-script2.png)
 
-**Step 3: Run the shell script on `Nginx-server` using the command `./Nginx.sh PUBLIC_IP Webserver-1 Webserver-2` where 'PUBLIC_IP' is the public IP of the load balancer (`Nginx-server`), 'Webserver-1' is the public IP and Port of the first web server (`Apache-server1`) and 'Webserver-2' is the public IP and Port of the second web server (`Apache-server2`)**
+**Step 3: Run the shell script on the load balancer using the command `./Nginx.sh PUBLIC_IP Webserver-1 Webserver-2` where 'PUBLIC_IP' is the public IP of the load balancer (`Nginx-server`), 'Webserver-1' is the public IP and Port of the first web server (`Apache-server1`) and 'Webserver-2' is the public IP and Port of the second web server (`Apache-server2`)**
 
 ![Alt text](Images/nginx-script-running.png)
 
