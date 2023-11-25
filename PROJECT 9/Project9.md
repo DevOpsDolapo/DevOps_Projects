@@ -93,6 +93,31 @@ To attach the storage volumes created in the last section, follow these steps
 
 ![Alt text](Images/aws_volume_attach5.png)
 
+### Implement LVM Storage Configuration on the Web Server
+
+After provisioning the Web Server EC2 instance, the next thing is to configure the LVM Storage Subsystem.
+
+The steps to do this are as follows:
+
+**Step 1: Connect to the Web Server using its public IP address on the Termius software**
+
+![Alt text](Images/termius-connect1.png)
+
+![Alt text](Images/termius-connect2.png)
+
+**Step 2: Use the `lsblk` command to check the block devices attached to the Web Server and the `df -h` command to see all mounts and free space on the Server**
+
+The `lsblk` command shows that `xvdf`, `xvdg`, and `xvdh` are attached.
+![Alt text](Images/webserver-storages1.png)
+
+![Alt text](Images/webserver-storages2.png)
+
+**Step 3: Create a single partition on each of the 3 disks using the `gdisk` utility, using the command `sudo gdisk /dev/xvdf` for the first disk and the relevant names for the other two disks**
+
+
+
+
+
 
 
 
