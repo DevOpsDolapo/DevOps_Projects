@@ -17,4 +17,84 @@ Here is a brief description of each tier in the 3-tier architecture:
 
 **Data Management Tier**: This is the third layer of the 3-tier architecture. It is responsible for managing and storing data. This tier includes data warehouses, databases, or data lakes. The data management tier communicates with the application tier to receive or store data.
 
-For DevOps engineers, a deep understanding of the core components of web solutions and the ability to handle common challenges, troubleshoot issues, and effectively manage a website's resources are essential. Thus, the main crux of this project is implementing a web solution using different technologies. 
+For DevOps engineers, a deep understanding of the core components of web solutions and the ability to handle common challenges, troubleshoot issues, and effectively manage a website's resources are essential. Thus, the main thrust of this project is to implement a web solution using different technologies. 
+
+My 3-tier architecture setup for this project will be:
+
+1. A PC to serve as a client
+
+2. An EC2 Linux server (the web server running on RedHat Linux OS), where I'll install WordPress
+
+3. An EC2 Linux server (the database server running on RedHat Linux OS)
+
+## Configuring a Web Server and Implementing LVM Storage Subsystem on It
+
+To configure a web server, here are the steps to follow:
+
+### Create A Web Server
+
+Launch an EC2 instance to use as the Web Server.  
+
+**Step 1: Login into AWS and then click on `Launch instance` on the EC2 Dashboard**
+
+![Alt text](Images/aws_launch-instance.png)
+
+**Step 2: On the 'Launch an instance' page, fill in the details of the EC2 instance**
+
+![Alt text](Images/aws_launch-instance2.png)
+
+**Step 3: Check that the instance is up and running**
+
+![Alt text](Images/aws_launch-instance3.png)
+
+### Create Storage Volumes
+
+Create 3 storage volumes of 10GiB each in the same Availability Zone (AZ) as the Web Server.
+
+**Step 1: Click on the 'Volumes' link on the EC2 Dashboard**
+
+![Alt text](Images/aws_volume_creation1.png)
+
+**Step 2: On the 'Volumes' page, click on 'Create volume'**
+
+![Alt text](Images/aws_volume_creation2.png)
+
+**Step 3: On the Volume Creation page, enter the Volume settings then click on 'Create volume'**
+
+![Alt text](Images/aws_volume_creation3.png)
+
+![Alt text](Images/aws_volume_creation4.png)
+
+**Step 4: Repeat 'Step 3' to create two more 10GiB volumes**
+
+The three newly created volumes are shown below
+
+![Alt text](Images/aws_volume_creation5.png)
+
+### Attach the Newly Created Storage Volumes to the EC2 Instance
+
+To attach the storage volumes created in the last section, follow these steps
+
+**Step 1: Click on the 'Volume ID' of one of the Volumes to go into the Volume Details**
+
+![Alt text](Images/aws_volume_attach1.png)
+
+**Step 2: Under the 'Actions' tab, click on 'Attach Volume'**
+
+![Alt text](Images/aws_volume_attach2.png)
+
+**Step 3: On the 'Attach volume' page, select the relevant EC2 instance, then click on 'Attach volume' at the bottom of the page**
+
+![Alt text](Images/aws_volume_attach3.png)
+
+![Alt text](Images/aws_volume_attach4.png)
+
+**Step 4: Repeat Steps 1 to 3 above to attach the other Storage Volumes to the EC2 instance, then check under the 'Storage' tab of the EC2 instance to confirm that they have been attached**
+
+![Alt text](Images/aws_volume_attach5.png)
+
+
+
+
+ 
+
