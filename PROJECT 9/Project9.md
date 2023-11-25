@@ -114,6 +114,34 @@ The `lsblk` command shows that `xvdf`, `xvdg`, and `xvdh` are attached.
 
 **Step 3: Create a single partition on each of the 3 disks using the `gdisk` utility, using the command `sudo gdisk /dev/xvdf` for the first disk and the relevant names for the other two disks**
 
+![Alt text](Images/webserver-storages3.png)
+
+![Alt text](Images/webserver-storages4.png)
+
+![Alt text](Images/webserver-storages5.png)
+
+**Step 4: Use the `lsblk` command to view the newly-configured partitions on the disks**
+
+![Alt text](Images/webserver-storages6.png)
+
+**Step 5: Install the `lvm2` package by running the `sudo yum install lvm2` command, then run `sudo lvmdiskscan` command to check for available partitions**
+
+![Alt text](Images/webserver-storages7.png)
+
+![Alt text](Images/webserver-storages8.png)
+
+![Alt text](Images/webserver-storages9.png)
+
+**Step 6: Mark each of the three disks as Physical Volumes (PVs) to be used by LVM by running the command `sudo pvcreate /dev/partition`**
+
+![Alt text](Images/webserver-storages10.png)
+
+**Step 7: Confirm that the Physical Volumes have been created by running the command `sudo pvs`**
+
+![Alt text](Images/webserver-storages11.png)
+
+
+
 
 
 
