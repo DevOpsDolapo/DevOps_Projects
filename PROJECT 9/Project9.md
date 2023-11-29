@@ -163,7 +163,27 @@ The `lsblk` command shows that `xvdf`, `xvdg`, and `xvdh` are attached.
 
 ![Alt text](Images/webserver-storages18.png)
 
-**Step 13: 
+**Step 13: Format the LVs to the `ext4` filesystem by running the commands `sudo mkfs -t ext4 /dev/webdata-vg/apps-lv` and `sudo mkfs -t ext4 /dev/webdata-vg/logs-lv`**
+
+![Alt text](Images/webserver-storages19.png)
+
+![Alt text](Images/webserver-storages20.png)
+
+**Step 14: Create /var/www/html directory to store website files by running the command `sudo mkdir -p /var/www/html` and /home/recovery/logs directory to store backups of log data by running the command `sudo mkdir -p /home/recovery/logs`**
+
+![Alt text](Images/webserver-storages21.png)
+
+**Step 15: Mount `/var/www/html` on the `apps-lv` logical volume by running the command `sudo mount /dev/webdata-vg/apps-lv /var/www/html/`**
+
+![Alt text](Images/webserver-storages22.png)
+
+**Step 16: Back up all the files in `/var/log` into the `/home/recovery/logs` directory. This step is necessary before mounting the filesystem because all the existing data on `/var/log` will be deleted in the next step**
+
+![Alt text](Images/webserver-storages23.png)
+
+**Step 17: Mount `/var/log` on the `logs-lv` logical volume by running the command `sudo mount /dev/webdata-vg/logs-lv /var/log`**
+
+![Alt text](Images/webserver-storages24.png)
 
 
 
