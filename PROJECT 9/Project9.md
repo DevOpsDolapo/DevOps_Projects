@@ -185,6 +185,22 @@ The `lsblk` command shows that `xvdf`, `xvdg`, and `xvdh` are attached.
 
 ![Alt text](Images/webserver-storages24.png)
 
+**Step 18: Restore the backed-up log files back into the `/var/log` directory by running the command `sudo rsync -av /home/recovery/logs/. /var/log`**
+
+![Alt text](Images/webserver-storages25.png)
+
+**Step 19: Update the `/etc/fstab` file to enable auto-mount every time the Web Server is restarted. The UUID of each device will be used to update `/etc/fstab`**
+
+Run `blkid` command to get the UUIDs
+
+![Alt text](Images/webserver-storages26.png)
+
+Then run `sudo vi /etc/fstab`
+
+![Alt text](Images/webserver-storages27.png)
+
+**Step 20: Test the configuration and reload the daemon by running the commands `sudo mount -a` and `sudo systemctl daemon-reload`
+
 
 
 
