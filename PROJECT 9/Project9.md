@@ -136,9 +136,26 @@ The `lsblk` command shows that `xvdf`, `xvdg`, and `xvdh` are attached.
 
 ![Alt text](Images/webserver-storages10.png)
 
-**Step 7: Confirm that the Physical Volumes have been created by running the command `sudo pvs`**
+**Step 7: Confirm that the PVs have been created by running the command `sudo pvs`**
 
 ![Alt text](Images/webserver-storages11.png)
+
+**Step 8: Add all 3 Physical Volumes (PVs) to a Volume Group (VG) named `webdata -vg` using the command `sudo vgcreate webdata-vg /dev/xvdh1 /dev/xvdg1 /dev/xvdf1`**
+
+![Alt text](Images/webserver-storages12.png)
+
+**Step 9: To check if the VG has been successfully created run the command `sudo vgs`**
+
+![Alt text](Images/webserver-storages13.png)
+
+**Step 10: Create 2 logical volumes `apps-lv` and `logs-lv` using the lvcreate command. `apps-lv` will be used to store data for the website and `logs-lv` will be used to store data for logs**
+
+![Alt text](Images/webserver-storages14.png)
+
+
+
+
+
 
 
 
