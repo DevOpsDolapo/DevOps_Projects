@@ -152,7 +152,18 @@ The `lsblk` command shows that `xvdf`, `xvdg`, and `xvdh` are attached.
 
 ![Alt text](Images/webserver-storages14.png)
 
+**Step 11: Verify that the Logical Volume (LV) has been created successfully by running `sudo lvs`**
 
+![Alt text](Images/webserver-storages15.png)
+
+**Step 12: Verify the complete setup by running the commands `sudo vgdisplay -v #view complete setup - VG, PV, and LV` and `sudo lsblk`**
+
+![Alt text](Images/webserver-storages16.png)
+![Alt text](Images/webserver-storages17.png)
+
+![Alt text](Images/webserver-storages18.png)
+
+**Step 13: 
 
 
 
