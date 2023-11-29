@@ -199,8 +199,13 @@ Then run `sudo vi /etc/fstab`
 
 ![Alt text](Images/webserver-storages27.png)
 
-**Step 20: Test the configuration and reload the daemon by running the commands `sudo mount -a` and `sudo systemctl daemon-reload`
+**Step 20: Test the configuration and reload the daemon by running the commands `sudo mount -a` and `sudo systemctl daemon-reload`**
 
+![Alt text](Images/webserver-storages28.png)
+
+**Step 21: Verify the setup by running `df -h`**
+
+![Alt text](Images/webserver-storages29.png)
 
 
 
