@@ -23,9 +23,9 @@ My 3-tier architecture setup for this project will be:
 
 1. A PC to serve as a client
 
-2. An EC2 Linux server (the web server running on RedHat Linux OS), where I'll install WordPress
+2. An EC2 Linux server (the web server running on RedHat Linux OS), where I'll install WordPress. (Due to AWS EC2 charges, I had to switch to an Oracle VirtualBox VM)
 
-3. An EC2 Linux server (the database server running on RedHat Linux OS)
+3. An EC2 Linux server (the database server running on RedHat Linux OS). Due to AWS EC2 charges, I had to switch to an Oracle VirtualBox VM.
 
 ## Configuring a Web Server and Implementing LVM Storage Subsystem on It
 
@@ -418,6 +418,41 @@ cp -R wordpress /var/www/html/
 ![Alt text](Images/wp-images20.png)
 
 ![Alt text](Images/wp-images21.png)
+
+**Step 7: Configure SELinux Policies**
+
+Run the following commands to setup SELinux Policies:
+```
+ sudo chown -R apache:apache /var/www/html/wordpress
+ sudo chcon -h system_u:object_r:httpd_sys_content_t /var/www/html/wordpress -R
+ sudo setsebool -P httpd_can_network_connect=1
+```
+![Alt text](Images/wp-images22.png)
+
+## Installing MySQL on the Database Server
+
+**Step 1: To install MySQL on the database server, run the following commands**
+
+```
+sudo yum update
+sudo yum install mysql-server
+```
+
+![Alt text](Images/wp-images23.png)
+
+![Alt text](Images/wp-images24.png)
+
+![Alt text](Images/wp-images25.png)
+
+![Alt text](Images/wp-images26.png)
+
+**Step 2: Verify that the MySQL service is up and running**
+
+![Alt text](Images/wp-images27.png)
+
+It's not running, so we need to run the `sudo systemctl start mysqld` command to start the service and use the `sudo systemctl enable mysqld` to give it automatic startup at boot time.
+
+![Alt text](Images/wp-images28.png)
 
 
 
