@@ -207,6 +207,43 @@ Then run `sudo vi /etc/fstab`
 
 ![Alt text](Images/webserver-storages29.png)
 
+**Please note: Due to the restrictions on AWS Free Tier EC2 instances and the resultant accruing charges, I'll be switching to Oracle VirtualBox (VMs) running on RHEL7 for the remainder of this project. The outcome of running steps 1 - 21 above on the VM is shown below**
+
+![Alt text](Images/webserver-storages_vm.png)
+
+**To setup the Database server, the relevant steps from 1 - 21 above will be replicated on another VM**
+
+**Step 1: Use the `lsblk` command to check the block devices attached to the Database Server and the `df -h` command to see all mounts and free space on the Server**
+
+The `lsblk` command shows that `sdb`, `sdc`, and `sdd` are attached.
+
+![Alt text](Images/dbserver_storages1.png)
+
+![Alt text](Images/dbserver_storages2.png)
+
+**Step 2: Create a single partition on each of the 3 disks using the `gdisk` utility, using the command `sudo gdisk /dev/sdb` for the first disk and the relevant names for the other two disks**
+
+![Alt text](Images/dbserver_storages3.png)
+
+![Alt text](Images/dbserver_storages4.png)
+
+![Alt text](Images/dbserver_storages5.png)
+
+**Step 3: Use the `lsblk` command to view the newly-configured partitions on the disks**
+
+![Alt text](Images/dbserver_storages6.png)
+
+**Step 4: Run `sudo lvmdiskscan` command to check for available partitions**
+
+![Alt text](Images/dbserver_storages7.png)
+
+
+
+
+
+
+
+
 
 
 
