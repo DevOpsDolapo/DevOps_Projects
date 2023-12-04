@@ -454,6 +454,8 @@ It's not running, so we need to run the `sudo systemctl start mysqld` command to
 
 ![Alt text](Images/wp-images28.png)
 
+![Alt text](Images/wp-images29.png)
+
 
 
 
