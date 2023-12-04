@@ -132,7 +132,7 @@ The `lsblk` command shows that `xvdf`, `xvdg`, and `xvdh` are attached.
 
 ![Alt text](Images/webserver-storages9.png)
 
-**Step 6: Mark each of the three disks as Physical Volumes (PVs) to be used by LVM by running the command `sudo pvcreate /dev/partition`**
+**Step 6: Mark each of the three partitions as Physical Volumes (PVs) to be used by LVM by running the command `sudo pvcreate /dev/partition`**
 
 ![Alt text](Images/webserver-storages10.png)
 
@@ -140,7 +140,7 @@ The `lsblk` command shows that `xvdf`, `xvdg`, and `xvdh` are attached.
 
 ![Alt text](Images/webserver-storages11.png)
 
-**Step 8: Add all 3 Physical Volumes (PVs) to a Volume Group (VG) named `webdata -vg` using the command `sudo vgcreate webdata-vg /dev/xvdh1 /dev/xvdg1 /dev/xvdf1`**
+**Step 8: Add all 3 Physical Volumes (PVs) to a Volume Group (VG) named `webdata-vg` using the command `sudo vgcreate webdata-vg /dev/xvdh1 /dev/xvdg1 /dev/xvdf1`**
 
 ![Alt text](Images/webserver-storages12.png)
 
@@ -152,7 +152,7 @@ The `lsblk` command shows that `xvdf`, `xvdg`, and `xvdh` are attached.
 
 ![Alt text](Images/webserver-storages14.png)
 
-**Step 11: Verify that the Logical Volume (LV) has been created successfully by running `sudo lvs`**
+**Step 11: Verify that the Logical Volumes (LVs) has been created successfully by running `sudo lvs`**
 
 ![Alt text](Images/webserver-storages15.png)
 
@@ -191,7 +191,7 @@ The `lsblk` command shows that `xvdf`, `xvdg`, and `xvdh` are attached.
 
 **Step 19: Update the `/etc/fstab` file to enable auto-mount every time the Web Server is restarted. The UUID of each device will be used to update `/etc/fstab`**
 
-Run `blkid` command to get the UUIDs
+Run `sudo blkid` command to get the UUIDs
 
 ![Alt text](Images/webserver-storages26.png)
 
@@ -207,11 +207,11 @@ Then run `sudo vi /etc/fstab`
 
 ![Alt text](Images/webserver-storages29.png)
 
-**Please note: Due to the restrictions on AWS Free Tier EC2 instances and the resultant accruing charges, I'll be switching to Oracle VirtualBox (VMs) running on RHEL7 for the remainder of this project. The outcome of running steps 1 - 21 above on the VM is shown below**
+**Please note: Due to the restrictions on AWS Free Tier EC2 instances and the resultant accruing charges, I'll be switching to Oracle VirtualBox (VMs) running on RHEL7 for the remainder of this project. The outcome of running steps 1 to 21 above on the VM is shown below**
 
 ![Alt text](Images/webserver-storages_vm.png)
 
-**To setup the Database server, the relevant steps from 1 - 21 above will be replicated on another VM**
+**To setup the Database server, the relevant steps from 1 to 21 above will be replicated on another VM**
 
 **Step 1: Use the `lsblk` command to check the block devices attached to the Database Server and the `df -h` command to see all mounts and free space on the Server**
 
@@ -237,8 +237,85 @@ The `lsblk` command shows that `sdb`, `sdc`, and `sdd` are attached.
 
 ![Alt text](Images/dbserver_storages7.png)
 
+**Step 5: Mark each of the three partitions as Physical Volumes (PVs) to be used by LVM by running the command `sudo pvcreate /dev/partition`**
 
+![Alt text](Images/dbserver_storages8.png)
 
+**Step 6: Confirm that the PVs have been created by running the command `sudo pvs`**
+
+![Alt text](Images/dbserver_storages9.png)
+
+**Step 7: Add all 3 Physical Volumes (PVs) to a Volume Group (VG) named `dbdata-vg` using the command `sudo vgcreate dbdata-vg /dev/sdb1 /dev/sdc1 /dev/sdd1`**
+
+![Alt text](Images/dbserver_storages10.png)
+
+**Step 8: To check if the VG has been successfully created run the command `sudo vgs`**
+
+![Alt text](Images/dbserver_storages11.png)
+
+**Step 9: Create 2 logical volumes `db-lv` and `logs-lv` using the command `sudo lvcreate -n db-lv -L 14G dbdata-vg` and `sudo lvcreate -n logs-lv -L 14G dbdata-vg`**
+
+![Alt text](Images/dbserver_storages12.png)
+
+**Step 10: Verify that the Logical Volumes (LVs) has been created successfully by running `sudo lvs`**
+
+![Alt text](Images/dbserver_storages13.png)
+
+**Step 11: Verify the complete setup by running the commands `sudo vgdisplay -v #view complete setup - VG, PV, and LV` and `sudo lsblk`**
+
+![Alt text](Images/dbserver_storages14.png)
+
+![Alt text](Images/dbserver_storages15.png)
+
+![Alt text](Images/dbserver_storages16.png)
+
+![Alt text](Images/dbserver_storages17.png)
+
+![Alt text](Images/dbserver_storages18.png)
+
+**Step 12: Format the LVs to the `ext4` filesystem by running the commands `sudo mkfs -t ext4 /dev/dbdata-vg/db-lv` and `sudo mkfs -t ext4 /dev/dbdata-vg/logs-lv`**
+
+![Alt text](Images/dbserver_storages19.png)
+
+![Alt text](Images/dbserver_storages20.png)
+
+**Step 13: Create /db directory to store database files by running the command `sudo mkdir -p /db` and /home/recovery/logs directory to store backups of log data by running the command `sudo mkdir -p /home/recovery/logs`**
+
+![Alt text](Images/dbserver_storages21.png)
+
+**Step 14: Mount `/db` on the `db-lv` logical volume by running the command `sudo mount /dev/dbdata-vg/db-lv /db/`**
+
+![Alt text](Images/dbserver_storages22.png)
+
+**Step 15: Back up all the files in `/var/log` into the `/home/recovery/logs` directory. This step is necessary before mounting the filesystem because all the existing data on `/var/log` will be deleted in the next step**
+
+![Alt text](Images/dbserver_storages23.png)
+
+![Alt text](Images/dbserver_storages24.png)
+
+**Step 16: Mount `/var/log` on the `logs-lv` logical volume by running the command `sudo mount /dev/dbdata-vg/logs-lv /var/log`**
+
+![Alt text](Images/dbserver_storages25.png)
+
+**Step 17: Restore the backed-up log files back into the `/var/log` directory by running the command `sudo rsync -av /home/recovery/logs/. /var/log`**
+
+![Alt text](Images/dbserver_storages26.png)
+
+![Alt text](Images/dbserver_storages27.png)
+
+**Step 18: Update the `/etc/fstab` file to enable auto-mount every time the Web Server is restarted. The UUID of each device will be used to update `/etc/fstab`**
+
+Run `sudo blkid` command to get the UUIDs
+
+![Alt text](Images/dbserver_storages28.png)
+
+Then run `sudo vi /etc/fstab`
+
+![Alt text](Images/dbserver_storages29.png)
+
+**Step 19: Test the configuration and reload the daemon by running the commands `sudo mount -a` and `sudo systemctl daemon-reload`**
+
+![Alt text](Images/dbserver_storages30.png)
 
 
 
