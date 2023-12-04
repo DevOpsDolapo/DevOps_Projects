@@ -207,7 +207,9 @@ Then run `sudo vi /etc/fstab`
 
 ![Alt text](Images/webserver-storages29.png)
 
-**Please note: Due to the restrictions on AWS Free Tier EC2 instances and the resultant accruing charges, I'll be switching to Oracle VirtualBox (VMs) running on RHEL7 for the remainder of this project. The outcome of running steps 1 to 21 above on the VM is shown below**
+## Configuring a Database Server and Implementing LVM Storage Subsystem on It
+
+**Please note: Due to the restrictions on AWS Free Tier EC2 instances and the resultant accruing charges, I'll be switching to Oracle VirtualBox (VMs) running on RHEL7 for the remainder of this project. The outcome of running steps 1 to 21 above on the Web Server VM is shown below**
 
 ![Alt text](Images/webserver-storages_vm.png)
 
@@ -316,6 +318,114 @@ Then run `sudo vi /etc/fstab`
 **Step 19: Test the configuration and reload the daemon by running the commands `sudo mount -a` and `sudo systemctl daemon-reload`**
 
 ![Alt text](Images/dbserver_storages30.png)
+
+**Step 20: Verify the setup by running `df -h`**
+
+![Alt text](Images/dbserver_storages31.png)
+
+## Installing WordPress on the Web Server
+
+To install WordPress on the Web Server, we need to follow the steps below:
+
+**Step 1: Update the repository by running the command `sudo yum update -y`**
+
+![Alt text](Images/wp-images1.png)
+
+**Step 2: Install wget, Apache, and its dependencies**
+
+Before I install the above packages, I'll run rpm checks to see if any of them are already installed. The image below shows that `wget` is already installed.
+
+![Alt text](Images/wp-images2.png)
+
+I can go ahead and install the other packages:
+
+![Alt text](Images/wp-images3.png)
+
+![Alt text](Images/wp-images4.png)
+
+From the images above the system could not find two packages (php-msqlnd and php-fpm) in the local repository, so I'll have to download and install them.
+
+![Alt text](Images/wp-images5.png)
+
+![Alt text](Images/wp-images6.png)
+
+![Alt text](Images/wp-images7.png)
+
+![Alt text](Images/wp-images8.png)
+
+**Step 3: Start Apache on the Web Server**
+
+![Alt text](Images/wp-images9.png)
+
+**Step 4: Install PHP and Its Dependencies**
+
+To install PHP and its dependencies, we'll need to run the following commands 
+```
+sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo yum install yum-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+sudo yum module list php
+sudo yum module reset php
+sudo yum module enable php:remi-7.4
+sudo yum install php php-opcache php-gd php-curl php-mysqlnd
+sudo systemctl start php-fpm
+sudo systemctl enable php-fpm
+setsebool -P httpd_execmem 1
+```
+The referenced `epel-release` in the first command is for RHEL8, and since the Web Server is running on a RHEL7 OS, we'll need to download and install a compatible `epel-release`
+
+![Alt text](Images/wp-images10.png)
+
+![Alt text](Images/wp-images11.png)
+
+![Alt text](Images/wp-images12.png)
+
+![Alt text](Images/wp-images13.png)
+
+The `yum-utils` packaged is already installed:
+
+![Alt text](Images/wp-images14.png)
+
+The `yum module` packages referenced in the commands are for RHEL8, so they are not relevant in this case.
+
+PHP packages have already been installed in the last step.
+
+The `php-gd` package is installed below:
+
+![Alt text](Images/wp-images15.png)
+
+![Alt text](Images/wp-images16.png)
+
+**Step 5: Restart Apache on the Web Server**
+
+![Alt text](Images/wp-images17.png)
+
+**Step 6: Download the WordPress package and copy it to the `/var/www/html` directory**
+
+Run these series of commands:
+```
+mkdir wordpress
+cd   wordpress
+sudo wget http://wordpress.org/latest.tar.gz
+sudo tar xzvf latest.tar.gz
+sudo rm -rf latest.tar.gz
+cp wordpress/wp-config-sample.php wordpress/wp-config.php
+cp -R wordpress /var/www/html/
+```
+![Alt text](Images/wp-images18.png)
+
+![Alt text](Images/wp-images19.png)
+
+![Alt text](Images/wp-images20.png)
+
+![Alt text](Images/wp-images21.png)
+
+
+
+
+
+
+
+
 
 
 
