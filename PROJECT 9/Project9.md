@@ -474,13 +474,43 @@ exit
 ```
 ![Alt text](Images/db_creation1.png)
 
-![Alt text](Images/db_creation4.png)
-
-![Alt text](Images/db_creation5.png)
+![Alt text](Images/db_creation4-5.png)
 
 ![Alt text](Images/db_creation6.png)
 
 **Step 3: Configure WordPress to Connect to Remote Database**
+
+**Hint:** It's important to open up MySQL port 3306 on the Database Server. Access should be granted ONLY from the Web Server's IP Address. Specify the source as /32.
+
+To do this, we run the following commands on the Database Server
+
+```
+firewall-cmd --permanent --zone=public --add-rich-rule='
+ rule family="ipv4"
+ source address="10.19.0.79/32"
+ port protocol="tcp" port="3306" accept'
+```
+![Alt text](Images/db_firewall1.png)
+
+**Step 4: Reload the firewall rules to apply changes by running the command ``**
+
+![Alt text](Images/db_firewall2.png)
+
+**Step 5: Verify the firewall rules by running the command `firewall-cmd --list-all`**
+
+![Alt text](Images/db_firewall3.png)
+
+**Step 6: Install `mysql-client` on the Web Server and confirm that we can connect to the Database Server by using the `mysql-client` command**
+
+![Alt text](Images/db_client1.png)
+
+![Alt text](Images/db_client2.png)
+
+![Alt text](Images/db_client3.png)
+
+![Alt text](Images/db_client4.png)
+
+Connect to the Database Server by running the command `sudo mysql -u admin -p -h <DB-Server-Private-IP-address>`
 
 
 
