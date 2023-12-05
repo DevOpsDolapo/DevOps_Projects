@@ -456,6 +456,35 @@ It's not running, so we need to run the `sudo systemctl start mysqld` command to
 
 ![Alt text](Images/wp-images29.png)
 
+## Configuring the Connection Between the Database and WordPress
+
+**Step 1: It's important to run a security script on the MySQL server installation to remove insecure default settings and lockdown access to the database management system. The command to run to set the MySQL password of this installation is `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '********.***'`. For security purposes, the actual password is hidden in asterisks.**
+
+![Alt text](Images/db_creation2.png)
+
+**Step 2: Then run these commands sequentially**
+```
+sudo mysql
+CREATE DATABASE wordpress;
+CREATE USER `myuser`@`<Web-Server-Private-IP-Address>` IDENTIFIED BY 'mypass';
+GRANT ALL ON wordpress.* TO 'myuser'@'<Web-Server-Private-IP-Address>';
+FLUSH PRIVILEGES;
+SHOW DATABASES;
+exit
+```
+![Alt text](Images/db_creation1.png)
+
+![Alt text](Images/db_creation4.png)
+
+![Alt text](Images/db_creation5.png)
+
+![Alt text](Images/db_creation6.png)
+
+**Step 3: Configure WordPress to Connect to Remote Database**
+
+
+
+
 
 
 
