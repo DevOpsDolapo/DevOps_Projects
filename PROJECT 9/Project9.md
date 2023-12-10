@@ -23,9 +23,9 @@ My 3-tier architecture setup for this project will be:
 
 1. A PC to serve as a client
 
-2. An EC2 Linux server (the web server running on RedHat Linux OS), where I'll install WordPress
+2. An EC2 Linux server (the web server running on RedHat Linux OS), where I'll install WordPress. (Due to AWS EC2 charges, I had to switch to an Oracle VirtualBox VM)
 
-3. An EC2 Linux server (the database server running on RedHat Linux OS)
+3. An EC2 Linux server (the database server running on RedHat Linux OS). Due to AWS EC2 charges, I had to switch to an Oracle VirtualBox VM.
 
 ## Configuring a Web Server and Implementing LVM Storage Subsystem on It
 
@@ -132,13 +132,402 @@ The `lsblk` command shows that `xvdf`, `xvdg`, and `xvdh` are attached.
 
 ![Alt text](Images/webserver-storages9.png)
 
-**Step 6: Mark each of the three disks as Physical Volumes (PVs) to be used by LVM by running the command `sudo pvcreate /dev/partition`**
+**Step 6: Mark each of the three partitions as Physical Volumes (PVs) to be used by LVM by running the command `sudo pvcreate /dev/partition`**
 
 ![Alt text](Images/webserver-storages10.png)
 
-**Step 7: Confirm that the Physical Volumes have been created by running the command `sudo pvs`**
+**Step 7: Confirm that the PVs have been created by running the command `sudo pvs`**
 
 ![Alt text](Images/webserver-storages11.png)
+
+**Step 8: Add all 3 Physical Volumes (PVs) to a Volume Group (VG) named `webdata-vg` using the command `sudo vgcreate webdata-vg /dev/xvdh1 /dev/xvdg1 /dev/xvdf1`**
+
+![Alt text](Images/webserver-storages12.png)
+
+**Step 9: To check if the VG has been successfully created run the command `sudo vgs`**
+
+![Alt text](Images/webserver-storages13.png)
+
+**Step 10: Create 2 logical volumes `apps-lv` and `logs-lv` using the lvcreate command. `apps-lv` will be used to store data for the website and `logs-lv` will be used to store data for logs**
+
+![Alt text](Images/webserver-storages14.png)
+
+**Step 11: Verify that the Logical Volumes (LVs) has been created successfully by running `sudo lvs`**
+
+![Alt text](Images/webserver-storages15.png)
+
+**Step 12: Verify the complete setup by running the commands `sudo vgdisplay -v #view complete setup - VG, PV, and LV` and `sudo lsblk`**
+
+![Alt text](Images/webserver-storages16.png)
+![Alt text](Images/webserver-storages17.png)
+
+![Alt text](Images/webserver-storages18.png)
+
+**Step 13: Format the LVs to the `ext4` filesystem by running the commands `sudo mkfs -t ext4 /dev/webdata-vg/apps-lv` and `sudo mkfs -t ext4 /dev/webdata-vg/logs-lv`**
+
+![Alt text](Images/webserver-storages19.png)
+
+![Alt text](Images/webserver-storages20.png)
+
+**Step 14: Create /var/www/html directory to store website files by running the command `sudo mkdir -p /var/www/html` and /home/recovery/logs directory to store backups of log data by running the command `sudo mkdir -p /home/recovery/logs`**
+
+![Alt text](Images/webserver-storages21.png)
+
+**Step 15: Mount `/var/www/html` on the `apps-lv` logical volume by running the command `sudo mount /dev/webdata-vg/apps-lv /var/www/html/`**
+
+![Alt text](Images/webserver-storages22.png)
+
+**Step 16: Back up all the files in `/var/log` into the `/home/recovery/logs` directory. This step is necessary before mounting the filesystem because all the existing data on `/var/log` will be deleted in the next step**
+
+![Alt text](Images/webserver-storages23.png)
+
+**Step 17: Mount `/var/log` on the `logs-lv` logical volume by running the command `sudo mount /dev/webdata-vg/logs-lv /var/log`**
+
+![Alt text](Images/webserver-storages24.png)
+
+**Step 18: Restore the backed-up log files back into the `/var/log` directory by running the command `sudo rsync -av /home/recovery/logs/. /var/log`**
+
+![Alt text](Images/webserver-storages25.png)
+
+**Step 19: Update the `/etc/fstab` file to enable auto-mount every time the Web Server is restarted. The UUID of each device will be used to update `/etc/fstab`**
+
+Run `sudo blkid` command to get the UUIDs
+
+![Alt text](Images/webserver-storages26.png)
+
+Then run `sudo vi /etc/fstab`
+
+![Alt text](Images/webserver-storages27.png)
+
+**Step 20: Test the configuration and reload the daemon by running the commands `sudo mount -a` and `sudo systemctl daemon-reload`**
+
+![Alt text](Images/webserver-storages28.png)
+
+**Step 21: Verify the setup by running `df -h`**
+
+![Alt text](Images/webserver-storages29.png)
+
+## Configuring a Database Server and Implementing LVM Storage Subsystem on It
+
+**Please note: Due to the restrictions on AWS Free Tier EC2 instances and the resultant accruing charges, I'll be switching to Oracle VirtualBox (VMs) running on RHEL7 for the remainder of this project. The outcome of running steps 1 to 21 above on the Web Server VM is shown below**
+
+![Alt text](Images/webserver-storages_vm.png)
+
+**To setup the Database server, the relevant steps from 1 to 21 above will be replicated on another VM**
+
+**Step 1: Use the `lsblk` command to check the block devices attached to the Database Server and the `df -h` command to see all mounts and free space on the Server**
+
+The `lsblk` command shows that `sdb`, `sdc`, and `sdd` are attached.
+
+![Alt text](Images/dbserver_storages1.png)
+
+![Alt text](Images/dbserver_storages2.png)
+
+**Step 2: Create a single partition on each of the 3 disks using the `gdisk` utility, using the command `sudo gdisk /dev/sdb` for the first disk and the relevant names for the other two disks**
+
+![Alt text](Images/dbserver_storages3.png)
+
+![Alt text](Images/dbserver_storages4.png)
+
+![Alt text](Images/dbserver_storages5.png)
+
+**Step 3: Use the `lsblk` command to view the newly-configured partitions on the disks**
+
+![Alt text](Images/dbserver_storages6.png)
+
+**Step 4: Run `sudo lvmdiskscan` command to check for available partitions**
+
+![Alt text](Images/dbserver_storages7.png)
+
+**Step 5: Mark each of the three partitions as Physical Volumes (PVs) to be used by LVM by running the command `sudo pvcreate /dev/partition`**
+
+![Alt text](Images/dbserver_storages8.png)
+
+**Step 6: Confirm that the PVs have been created by running the command `sudo pvs`**
+
+![Alt text](Images/dbserver_storages9.png)
+
+**Step 7: Add all 3 Physical Volumes (PVs) to a Volume Group (VG) named `dbdata-vg` using the command `sudo vgcreate dbdata-vg /dev/sdb1 /dev/sdc1 /dev/sdd1`**
+
+![Alt text](Images/dbserver_storages10.png)
+
+**Step 8: To check if the VG has been successfully created run the command `sudo vgs`**
+
+![Alt text](Images/dbserver_storages11.png)
+
+**Step 9: Create 2 logical volumes `db-lv` and `logs-lv` using the command `sudo lvcreate -n db-lv -L 14G dbdata-vg` and `sudo lvcreate -n logs-lv -L 14G dbdata-vg`**
+
+![Alt text](Images/dbserver_storages12.png)
+
+**Step 10: Verify that the Logical Volumes (LVs) has been created successfully by running `sudo lvs`**
+
+![Alt text](Images/dbserver_storages13.png)
+
+**Step 11: Verify the complete setup by running the commands `sudo vgdisplay -v #view complete setup - VG, PV, and LV` and `sudo lsblk`**
+
+![Alt text](Images/dbserver_storages14.png)
+
+![Alt text](Images/dbserver_storages15.png)
+
+![Alt text](Images/dbserver_storages16.png)
+
+![Alt text](Images/dbserver_storages17.png)
+
+![Alt text](Images/dbserver_storages18.png)
+
+**Step 12: Format the LVs to the `ext4` filesystem by running the commands `sudo mkfs -t ext4 /dev/dbdata-vg/db-lv` and `sudo mkfs -t ext4 /dev/dbdata-vg/logs-lv`**
+
+![Alt text](Images/dbserver_storages19.png)
+
+![Alt text](Images/dbserver_storages20.png)
+
+**Step 13: Create /db directory to store database files by running the command `sudo mkdir -p /db` and /home/recovery/logs directory to store backups of log data by running the command `sudo mkdir -p /home/recovery/logs`**
+
+![Alt text](Images/dbserver_storages21.png)
+
+**Step 14: Mount `/db` on the `db-lv` logical volume by running the command `sudo mount /dev/dbdata-vg/db-lv /db/`**
+
+![Alt text](Images/dbserver_storages22.png)
+
+**Step 15: Back up all the files in `/var/log` into the `/home/recovery/logs` directory. This step is necessary before mounting the filesystem because all the existing data on `/var/log` will be deleted in the next step**
+
+![Alt text](Images/dbserver_storages23.png)
+
+![Alt text](Images/dbserver_storages24.png)
+
+**Step 16: Mount `/var/log` on the `logs-lv` logical volume by running the command `sudo mount /dev/dbdata-vg/logs-lv /var/log`**
+
+![Alt text](Images/dbserver_storages25.png)
+
+**Step 17: Restore the backed-up log files back into the `/var/log` directory by running the command `sudo rsync -av /home/recovery/logs/. /var/log`**
+
+![Alt text](Images/dbserver_storages26.png)
+
+![Alt text](Images/dbserver_storages27.png)
+
+**Step 18: Update the `/etc/fstab` file to enable auto-mount every time the Web Server is restarted. The UUID of each device will be used to update `/etc/fstab`**
+
+Run `sudo blkid` command to get the UUIDs
+
+![Alt text](Images/dbserver_storages28.png)
+
+Then run `sudo vi /etc/fstab`
+
+![Alt text](Images/dbserver_storages29.png)
+
+**Step 19: Test the configuration and reload the daemon by running the commands `sudo mount -a` and `sudo systemctl daemon-reload`**
+
+![Alt text](Images/dbserver_storages30.png)
+
+**Step 20: Verify the setup by running `df -h`**
+
+![Alt text](Images/dbserver_storages31.png)
+
+## Installing WordPress on the Web Server
+
+To install WordPress on the Web Server, we need to follow the steps below:
+
+**Step 1: Update the repository by running the command `sudo yum update -y`**
+
+![Alt text](Images/wp-images1.png)
+
+**Step 2: Install wget, Apache, and its dependencies**
+
+Before I install the above packages, I'll run rpm checks to see if any of them are already installed. The image below shows that `wget` is already installed.
+
+![Alt text](Images/wp-images2.png)
+
+I can go ahead and install the other packages:
+
+![Alt text](Images/wp-images3.png)
+
+![Alt text](Images/wp-images4.png)
+
+From the images above the system could not find two packages (php-msqlnd and php-fpm) in the local repository, so I'll have to download and install them.
+
+![Alt text](Images/wp-images5.png)
+
+![Alt text](Images/wp-images6.png)
+
+![Alt text](Images/wp-images7.png)
+
+![Alt text](Images/wp-images8.png)
+
+**Step 3: Start Apache on the Web Server**
+
+![Alt text](Images/wp-images9.png)
+
+**Step 4: Install PHP and Its Dependencies**
+
+To install PHP and its dependencies, we'll need to run the following commands 
+```
+sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo yum install yum-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+sudo yum module list php
+sudo yum module reset php
+sudo yum module enable php:remi-7.4
+sudo yum install php php-opcache php-gd php-curl php-mysqlnd
+sudo systemctl start php-fpm
+sudo systemctl enable php-fpm
+setsebool -P httpd_execmem 1
+```
+The referenced `epel-release` in the first command is for RHEL8, and since the Web Server is running on a RHEL7 OS, we'll need to download and install a compatible `epel-release`
+
+![Alt text](Images/wp-images10.png)
+
+![Alt text](Images/wp-images11.png)
+
+![Alt text](Images/wp-images12.png)
+
+![Alt text](Images/wp-images13.png)
+
+The `yum-utils` packaged is already installed:
+
+![Alt text](Images/wp-images14.png)
+
+The `yum module` packages referenced in the commands are for RHEL8, so they are not relevant in this case.
+
+PHP packages have already been installed in the last step.
+
+The `php-gd` package is installed below:
+
+![Alt text](Images/wp-images15.png)
+
+![Alt text](Images/wp-images16.png)
+
+**Step 5: Restart Apache on the Web Server**
+
+![Alt text](Images/wp-images17.png)
+
+**Step 6: Download the WordPress package and copy it to the `/var/www/html` directory**
+
+Run these series of commands:
+```
+mkdir wordpress
+cd   wordpress
+sudo wget http://wordpress.org/latest.tar.gz
+sudo tar xzvf latest.tar.gz
+sudo rm -rf latest.tar.gz
+cp wordpress/wp-config-sample.php wordpress/wp-config.php
+cp -R wordpress /var/www/html/
+```
+![Alt text](Images/wp-images18.png)
+
+![Alt text](Images/wp-images19.png)
+
+![Alt text](Images/wp-images20.png)
+
+![Alt text](Images/wp-images21.png)
+
+**Step 7: Configure SELinux Policies**
+
+Run the following commands to setup SELinux Policies:
+```
+ sudo chown -R apache:apache /var/www/html/wordpress
+ sudo chcon -h system_u:object_r:httpd_sys_content_t /var/www/html/wordpress -R
+ sudo setsebool -P httpd_can_network_connect=1
+```
+![Alt text](Images/wp-images22.png)
+
+## Installing MySQL on the Database Server
+
+**Step 1: To install MySQL on the database server, run the following commands**
+
+```
+sudo yum update
+sudo yum install mysql-server
+```
+
+![Alt text](Images/wp-images23.png)
+
+![Alt text](Images/wp-images24.png)
+
+![Alt text](Images/wp-images25.png)
+
+![Alt text](Images/wp-images26.png)
+
+**Step 2: Verify that the MySQL service is up and running**
+
+![Alt text](Images/wp-images27.png)
+
+It's not running, so we need to run the `sudo systemctl start mysqld` command to start the service and use the `sudo systemctl enable mysqld` to give it automatic startup at boot time.
+
+![Alt text](Images/wp-images28.png)
+
+![Alt text](Images/wp-images29.png)
+
+## Configuring the Connection Between the Database and WordPress
+
+**Step 1: It's important to run a security script on the MySQL server installation to remove insecure default settings and lockdown access to the database management system. The command to run to set the MySQL password of this installation is `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '********.***'`. For security purposes, the actual password is hidden in asterisks.**
+
+![Alt text](Images/db_creation2.png)
+
+**Step 2: Then run these commands sequentially**
+```
+sudo mysql
+CREATE DATABASE wordpress;
+CREATE USER `myuser`@`<Web-Server-Private-IP-Address>` IDENTIFIED BY 'mypass';
+GRANT ALL ON wordpress.* TO 'myuser'@'<Web-Server-Private-IP-Address>';
+FLUSH PRIVILEGES;
+SHOW DATABASES;
+exit
+```
+![Alt text](Images/db_creation1.png)
+
+![Alt text](Images/db_creation4-5.png)
+
+![Alt text](Images/db_creation6.png)
+
+**Step 3: Configure WordPress to Connect to Remote Database**
+
+**Hint:** It's important to open up MySQL port 3306 on the Database Server. Access should be granted ONLY from the Web Server's IP Address. Specify the source as /32.
+
+To do this, we run the following commands on the Database Server
+
+```
+firewall-cmd --permanent --zone=public --add-rich-rule='
+ rule family="ipv4"
+ source address="10.19.0.79/32"
+ port protocol="tcp" port="3306" accept'
+```
+![Alt text](Images/db_firewall1.png)
+
+**Step 4: Reload the firewall rules to apply changes by running the command ``**
+
+![Alt text](Images/db_firewall2.png)
+
+**Step 5: Verify the firewall rules by running the command `firewall-cmd --list-all`**
+
+![Alt text](Images/db_firewall3.png)
+
+**Step 6: Install `mysql-client` on the Web Server and confirm that we can connect to the Database Server by using the `mysql-client` command**
+
+![Alt text](Images/db_client1.png)
+
+![Alt text](Images/db_client2.png)
+
+![Alt text](Images/db_client3.png)
+
+![Alt text](Images/db_client4.png)
+
+Connect to the Database Server by running the command `sudo mysql -u admin -p -h <DB-Server-Private-IP-address>`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
