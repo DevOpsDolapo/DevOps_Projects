@@ -510,7 +510,7 @@ firewall-cmd --permanent --zone=public --add-rich-rule='
 
 ![Alt text](Images/db_client4.png)
 
-Connect to the Database Server by running the command `sudo mysql -u admin -p -h <DB-Server-Private-IP-address>`, where `admin` is the database user created earlier and `<DB-Server-Private-IP-address>` is the Private IP address of the database server.
+**Step 7: Connect to the Database Server from the Web Server by running the command `sudo mysql -u admin -p -h <DB-Server-Private-IP-address>`, where `admin` is the database user created earlier and `<DB-Server-Private-IP-address>` is the Private IP address of the database server.**
 
 ![Alt text](Images/db_client5.png)
 
