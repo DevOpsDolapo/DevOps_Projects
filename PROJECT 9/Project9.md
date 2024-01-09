@@ -271,17 +271,13 @@ The `lsblk` command shows that `sdb`, `sdc`, and `sdd` are attached.
 
 ![Alt text](Images/dbserver_storages16.png)
 
-![Alt text](Images/dbserver_storages17.png)
-
 ![Alt text](Images/dbserver_storages18.png)
 
-**Step 12: Format the LVs to the `ext4` filesystem by running the commands `sudo mkfs -t ext4 /dev/dbdata-vg/db-lv`**
+**Step 12: Format the LV to the `ext4` filesystem by running the commands `sudo mkfs -t ext4 /dev/dbdata-vg/db-lv`**
 
 ![Alt text](Images/dbserver_storages19.png)
 
-![Alt text](Images/dbserver_storages20.png)
-
-**Step 13: Create /db directory to store database files by running the command `sudo mkdir -p /db` and /home/recovery/logs directory to store backups of log data by running the command `sudo mkdir -p /home/recovery/logs`**
+**Step 13: Create /db directory to store database files by running the command `sudo mkdir /db`**
 
 ![Alt text](Images/dbserver_storages21.png)
 
@@ -289,23 +285,7 @@ The `lsblk` command shows that `sdb`, `sdc`, and `sdd` are attached.
 
 ![Alt text](Images/dbserver_storages22.png)
 
-**Step 15: Back up all the files in `/var/log` into the `/home/recovery/logs` directory. This step is necessary before mounting the filesystem because all the existing data on `/var/log` will be deleted in the next step**
-
-![Alt text](Images/dbserver_storages23.png)
-
-![Alt text](Images/dbserver_storages24.png)
-
-**Step 16: Mount `/var/log` on the `logs-lv` logical volume by running the command `sudo mount /dev/dbdata-vg/logs-lv /var/log`**
-
-![Alt text](Images/dbserver_storages25.png)
-
-**Step 17: Restore the backed-up log files back into the `/var/log` directory by running the command `sudo rsync -av /home/recovery/logs/. /var/log`**
-
-![Alt text](Images/dbserver_storages26.png)
-
-![Alt text](Images/dbserver_storages27.png)
-
-**Step 18: Update the `/etc/fstab` file to enable auto-mount every time the Web Server is restarted. The UUID of each device will be used to update `/etc/fstab`**
+**Step 15: Update the `/etc/fstab` file to enable auto-mount every time the Database Server is restarted. The UUID of the device will be used to update `/etc/fstab`**
 
 Run `sudo blkid` command to get the UUIDs
 
