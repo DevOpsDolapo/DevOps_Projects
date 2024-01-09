@@ -295,11 +295,11 @@ Then run `sudo vi /etc/fstab`
 
 ![Alt text](Images/dbserver_storages29.png)
 
-**Step 19: Test the configuration and reload the daemon by running the commands `sudo mount -a` and `sudo systemctl daemon-reload`**
+**Step 16: Test the configuration and reload the daemon by running the commands `sudo mount -a` and `sudo systemctl daemon-reload`**
 
 ![Alt text](Images/dbserver_storages30.png)
 
-**Step 20: Verify the setup by running `df -h`**
+**Step 17: Verify the setup by running `df -h`**
 
 ![Alt text](Images/dbserver_storages31.png)
 
@@ -313,25 +313,15 @@ To install WordPress on the Web Server, we need to follow the steps below:
 
 **Step 2: Install wget, Apache, and its dependencies**
 
-Before I install the above packages, I'll run rpm checks to see if any of them are already installed. The image below shows that `wget` is already installed.
+I'll need to run the command `sudo yum -y install wget httpd php php-mysqlnd php-fpm php-json` to install the above packages.
 
 ![Alt text](Images/wp-images2.png)
-
-I can go ahead and install the other packages:
 
 ![Alt text](Images/wp-images3.png)
 
 ![Alt text](Images/wp-images4.png)
 
-From the images above the system could not find two packages (php-msqlnd and php-fpm) in the local repository, so I'll have to download and install them.
-
-![Alt text](Images/wp-images5.png)
-
-![Alt text](Images/wp-images6.png)
-
-![Alt text](Images/wp-images7.png)
-
-![Alt text](Images/wp-images8.png)
+As shown in the information at the start of the installation process, the wget and httpd packages have already been installed.
 
 **Step 3: Start Apache on the Web Server**
 
