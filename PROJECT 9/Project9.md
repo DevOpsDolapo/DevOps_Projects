@@ -255,7 +255,7 @@ The `lsblk` command shows that `sdb`, `sdc`, and `sdd` are attached.
 
 ![Alt text](Images/dbserver_storages11.png)
 
-**Step 9: Create 2 logical volumes `db-lv` and `logs-lv` using the command `sudo lvcreate -n db-lv -L 14G dbdata-vg` and `sudo lvcreate -n logs-lv -L 14G dbdata-vg`**
+**Step 9: Create 1 logical volume `db-lv` using the command `sudo lvcreate -n db-lv -L 20G dbdata-vg`**
 
 ![Alt text](Images/dbserver_storages12.png)
 
