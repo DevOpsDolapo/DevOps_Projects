@@ -259,7 +259,7 @@ The `lsblk` command shows that `sdb`, `sdc`, and `sdd` are attached.
 
 ![Alt text](Images/dbserver_storages12.png)
 
-**Step 10: Verify that the Logical Volumes (LVs) has been created successfully by running `sudo lvs`**
+**Step 10: Verify that the Logical Volume (LV) has been created successfully by running `sudo lvs`**
 
 ![Alt text](Images/dbserver_storages13.png)
 
@@ -275,7 +275,7 @@ The `lsblk` command shows that `sdb`, `sdc`, and `sdd` are attached.
 
 ![Alt text](Images/dbserver_storages18.png)
 
-**Step 12: Format the LVs to the `ext4` filesystem by running the commands `sudo mkfs -t ext4 /dev/dbdata-vg/db-lv` and `sudo mkfs -t ext4 /dev/dbdata-vg/logs-lv`**
+**Step 12: Format the LVs to the `ext4` filesystem by running the commands `sudo mkfs -t ext4 /dev/dbdata-vg/db-lv`**
 
 ![Alt text](Images/dbserver_storages19.png)
 
