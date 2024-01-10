@@ -23,9 +23,9 @@ My 3-tier architecture setup for this project will be:
 
 1. A PC to serve as a client
 
-2. An EC2 Linux server (the web server running on RedHat Linux OS), where I'll install WordPress. (Due to AWS EC2 charges, I had to switch to an Oracle VirtualBox VM)
+2. An EC2 Linux server (the web server running on RedHat Linux OS), where I'll install WordPress. **(Please note: Due to AWS EC2 charges, I had to switch from using an AWS EC2 instance initially to working with an Oracle VirtualBox VM)**
 
-3. An EC2 Linux server (the database server running on RedHat Linux OS). Due to AWS EC2 charges, I had to switch to an Oracle VirtualBox VM.
+3. An EC2 Linux server (the database server running on RedHat Linux OS). **(Please note: Due to AWS EC2 charges, I had to switch from using an AWS EC2 instance initially to working with an Oracle VirtualBox VM)**
 
 ## Configuring a Web Server and Implementing LVM Storage Subsystem on It
 
@@ -209,7 +209,7 @@ Then run `sudo vi /etc/fstab`
 
 ## Configuring a Database Server and Implementing LVM Storage Subsystem on It
 
-**Please note: Due to the restrictions on AWS Free Tier EC2 instances and the resultant accruing charges, I'll be switching to Oracle VirtualBox (VMs) running on RHEL7 for the remainder of this project. The outcome of running steps 1 to 21 above on the Web Server VM is shown below**
+**Please note: Due to the restrictions on AWS Free Tier EC2 instances and the resultant accruing charges, I'll be switching to Oracle VirtualBox (VMs) running on RHEL8 for the remainder of this project. The outcome of running steps 1 to 21 above on the Web Server VM is shown below**
 
 ![Alt text](Images/webserver-storages_vm.png)
 
@@ -365,7 +365,7 @@ sudo wget http://wordpress.org/latest.tar.gz
 sudo tar xzvf latest.tar.gz
 sudo rm -rf latest.tar.gz
 cp wordpress/wp-config-sample.php wordpress/wp-config.php
-cp -R wordpress/. /var/www/html/ #the contents of the wordpress folder should be copied, not the wordpress folder itself
+cp -R wordpress/. /var/www/html/
 ```
 ![Alt text](Images/wp-images18.png)
 
