@@ -323,7 +323,7 @@ I'll need to run the command `sudo yum -y install wget httpd php php-mysqlnd php
 
 As shown in the information at the start of the installation process, the wget and httpd packages have already been installed.
 
-**Step 3: Start Apache on the Web Server**
+**Step 3: Confirm that Apache is running on the Web Server by executing the command `sudo systemctl status httpd`**
 
 ![Alt text](Images/wp-images9.png)
 
@@ -341,8 +341,6 @@ sudo systemctl start php-fpm
 sudo systemctl enable php-fpm
 setsebool -P httpd_execmem 1
 ```
-The referenced `epel-release` in the first command is for RHEL8, and since the Web Server is running on a RHEL7 OS, we'll need to download and install a compatible `epel-release`
-
 ![Alt text](Images/wp-images10.png)
 
 ![Alt text](Images/wp-images11.png)
@@ -351,19 +349,7 @@ The referenced `epel-release` in the first command is for RHEL8, and since the W
 
 ![Alt text](Images/wp-images13.png)
 
-The `yum-utils` packaged is already installed:
-
 ![Alt text](Images/wp-images14.png)
-
-The `yum module` packages referenced in the commands are for RHEL8, so they are not relevant in this case.
-
-PHP packages have already been installed in the last step.
-
-The `php-gd` package is installed below:
-
-![Alt text](Images/wp-images15.png)
-
-![Alt text](Images/wp-images16.png)
 
 **Step 5: Restart Apache on the Web Server**
 
