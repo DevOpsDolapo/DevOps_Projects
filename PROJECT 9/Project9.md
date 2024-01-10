@@ -414,49 +414,40 @@ sudo yum install mysql-server
 
 ![Alt text](Images/wp-images27-1.png)
 
-It's not running, so we need to run the `sudo systemctl start mysqld` command to start the service and use the `sudo systemctl enable mysqld` to give it automatic startup at boot time.
-
-![Alt text](Images/wp-images28.png)
-
-![Alt text](Images/wp-images29.png)
-
 ## Configuring the Connection Between the Database and WordPress
 
-**Step 1: It's important to run a security script on the MySQL server installation to remove insecure default settings and lockdown access to the database management system. The command to run to set the MySQL password of this installation is `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '********.***'`. For security purposes, the actual password is hidden in asterisks.**
+**Step 1: It's important to run a security script on the MySQL server installation to remove insecure default settings and lockdown access to the database management system. 
+
+![Alt text](Images/db_creation1.png)
 
 ![Alt text](Images/db_creation2.png)
 
+![Alt text](Images/db_creation3.png)
+
 **Step 2: Then run these commands sequentially**
 ```
-sudo mysql
+sudo mysql -u root -p
 CREATE DATABASE wordpress;
-CREATE USER `myuser`@`<Web-Server-Private-IP-Address>` IDENTIFIED BY 'mypass';
-GRANT ALL ON wordpress.* TO 'myuser'@'<Web-Server-Private-IP-Address>';
+CREATE USER 'mydbuser'@'%' IDENTIFIED WITH mysql_native_password BY 'mypassword';
+GRANT ALL PRIVILEGES ON *.* TO 'mydbuser'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 SHOW DATABASES;
 exit
 ```
-![Alt text](Images/db_creation1.png)
-
-![Alt text](Images/db_creation4-5.png)
-
-![Alt text](Images/db_creation6.png)
+![Alt text](Images/db_creation4.png)
 
 **Step 3: Configure WordPress to Connect to Remote Database**
 
-**Hint:** It's important to open up MySQL port 3306 on the Database Server. Access should be granted ONLY from the Web Server's IP Address. Specify the source as /32.
-
-To do this, we run the following commands on the Database Server
+**Hint:** It's important to open up MySQL port 3306 on the Database Server. To do this, we run the following commands on the Database Server
 
 ```
-firewall-cmd --permanent --zone=public --add-rich-rule='
- rule family="ipv4"
- source address="10.19.0.79/32"
- port protocol="tcp" port="3306" accept'
+sudo firewall-cmd --zone=public --permanent --add-port=3306/tcp
+sudo firewall-cmd --zone=public --permanent --add-service=mysql
+
 ```
 ![Alt text](Images/db_firewall1.png)
 
-**Step 4: Reload the firewall rules to apply changes by running the command ``**
+**Step 4: Reload the firewall rules to apply changes by running the command `sudo firewall-cmd --reload`**
 
 ![Alt text](Images/db_firewall2.png)
 
