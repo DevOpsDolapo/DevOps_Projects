@@ -355,7 +355,7 @@ setsebool -P httpd_execmem 1
 
 ![Alt text](Images/wp-images17.png)
 
-**Step 6: Download the WordPress package and copy it to the `/var/www/html` directory**
+**Step 6: Download the WordPress package and copy it to the `/var/www/html` directory on the Web Server**
 
 Run these series of commands:
 ```
@@ -387,7 +387,7 @@ Run the following commands to setup SELinux Policies:
 ```
 ![Alt text](Images/wp-images22.png)
 
-## Installing MySQL on the Database Server
+## Installing MySQL on the Web Server and the Database Server
 
 **Step 1: To install MySQL on both the Web Server and the Database Server, run the following commands**
 
@@ -455,19 +455,60 @@ sudo firewall-cmd --zone=public --permanent --add-service=mysql
 
 ![Alt text](Images/db_firewall3.png)
 
-**Step 6: Install `mysql-client` on the Web Server and confirm that we can connect to the Database Server by using the `mysql-client` command**
+**Step 6: Set the Bind Address on the Database Server by editing the database configuration file (`my.cnf`) in `/etc`, running the command `sudo vi /etc/my.cnf`**
+
+![Alt text](Images/db_firewall4-0.png)
+
+The below entries are added to the file:
+
+![Alt text](Images/db_firewall4.png)
+
+**Step 7: Restart the `mysqld service` for the changes to take effect by running the command `sudo systemctl restart mysqld`
+
+![Alt text](Images/db_firewall5.png)
+
+**Step 7: Edit the `wp-config.php` file on the Web Server and populate it with the relevant details which are the `DB_NAME, DB_USER, DB_PASSWORD, and DB_HOST` settings**
 
 ![Alt text](Images/db_client1.png)
 
 ![Alt text](Images/db_client2.png)
 
+**Step 8: Restart the `httpd` service by running the command `sudo systemctl restart httpd`**
+
 ![Alt text](Images/db_client3.png)
+
+**Step 9: Rename the Apache welcome page**
 
 ![Alt text](Images/db_client4.png)
 
-**Step 7: Connect to the Database Server from the Web Server by running the command `sudo mysql -u admin -p -h <DB-Server-Private-IP-address>`, where `admin` is the database user created earlier and `<DB-Server-Private-IP-address>` is the Private IP address of the database server.**
+**Step 10: Connect to the Database Server from the Web Server by running the command `sudo mysql -u 'user' -p -h <DB-Server-Private-IP-address>`, where `user` is the database user created earlier and `<DB-Server-Private-IP-address>` is the Private IP address of the database server.**
 
 ![Alt text](Images/db_client5.png)
+
+From the above, it's clear that the Web Server can access the database hosted on the Database Server.
+
+**Step 11: Let's run a query from the Web Server database client to the Database Server**
+
+![Alt text](Images/db_client6.png)
+
+**Step 11: Enable inbound rules for TCP port 80 on the Web Server**
+
+![Alt text](Images/db_client7.png)
+
+**Step 12: Let's try and access WordPress through the broswer on the Web Server**
+
+![Alt text](Images/wp-page1.png)
+
+![Alt text](Images/wp-page2.png)
+
+![Alt text](Images/wp-page3.png)
+
+![Alt text](Images/wp-page4.png)
+
+![Alt text](Images/wp-page5.png)
+
+![Alt text](Images/wp-page6.png)
+
 
 
 
