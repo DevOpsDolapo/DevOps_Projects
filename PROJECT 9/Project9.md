@@ -365,7 +365,7 @@ sudo wget http://wordpress.org/latest.tar.gz
 sudo tar xzvf latest.tar.gz
 sudo rm -rf latest.tar.gz
 cp wordpress/wp-config-sample.php wordpress/wp-config.php
-cp -R wordpress /var/www/html/
+cp -R wordpress/. /var/www/html/ #the contents of the wordpress folder should be copied, not the wordpress folder itself
 ```
 ![Alt text](Images/wp-images18.png)
 
@@ -374,6 +374,8 @@ cp -R wordpress /var/www/html/
 ![Alt text](Images/wp-images20.png)
 
 ![Alt text](Images/wp-images21.png)
+
+![Alt text](Images/wp-images21-1.png)
 
 **Step 7: Configure SELinux Policies**
 
@@ -387,7 +389,7 @@ Run the following commands to setup SELinux Policies:
 
 ## Installing MySQL on the Database Server
 
-**Step 1: To install MySQL on the database server, run the following commands**
+**Step 1: To install MySQL on both the Web Server and the Database Server, run the following commands**
 
 ```
 sudo yum update
@@ -402,9 +404,15 @@ sudo yum install mysql-server
 
 ![Alt text](Images/wp-images26.png)
 
-**Step 2: Verify that the MySQL service is up and running**
+![Alt text](Images/wp-images26-1.png)
+
+![Alt text](Images/wp-images26-2.png)
+
+**Step 2: Verify that the MySQL service is up and running on both the Web Server and the Database Server**
 
 ![Alt text](Images/wp-images27.png)
+
+![Alt text](Images/wp-images27-1.png)
 
 It's not running, so we need to run the `sudo systemctl start mysqld` command to start the service and use the `sudo systemctl enable mysqld` to give it automatic startup at boot time.
 
