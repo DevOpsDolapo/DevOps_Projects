@@ -495,7 +495,7 @@ From the above, it's clear that the Web Server can access the database hosted on
 
 ![Alt text](Images/db_client7.png)
 
-**Step 12: Let's try and access WordPress through the broswer on the Web Server**
+**Step 12: Let's try and access WordPress through the browser on the Web Server**
 
 ![Alt text](Images/wp-page1.png)
 
