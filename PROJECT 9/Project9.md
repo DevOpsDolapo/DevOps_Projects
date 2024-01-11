@@ -23,247 +23,87 @@ My 3-tier architecture setup for this project will be:
 
 1. A PC to serve as a client
 
-2. An EC2 Linux server (the web server running on RedHat Linux OS), where I'll install WordPress. **(Please note: Due to AWS EC2 charges, I had to switch from using an AWS EC2 instance initially to working with an Oracle VirtualBox VM)**
+2. An Oracle VirtualBox Linux server (the Database Server running on RedHat Linux OS). **(Please note: Due to AWS EC2 charges, I had to switch from using an AWS EC2 instance to working with an Oracle VirtualBox VM)**
 
-3. An EC2 Linux server (the database server running on RedHat Linux OS). **(Please note: Due to AWS EC2 charges, I had to switch from using an AWS EC2 instance initially to working with an Oracle VirtualBox VM)**
-
-## Configuring a Web Server and Implementing LVM Storage Subsystem on It
-
-To configure a web server, here are the steps to follow:
-
-### Create A Web Server
-
-Launch an EC2 instance to use as the Web Server.  
-
-**Step 1: Login into AWS and then click on `Launch instance` on the EC2 Dashboard**
-
-![Alt text](Images/aws_launch-instance.png)
-
-**Step 2: On the 'Launch an instance' page, fill in the details of the EC2 instance**
-
-![Alt text](Images/aws_launch-instance2.png)
-
-**Step 3: Check that the instance is up and running**
-
-![Alt text](Images/aws_launch-instance3.png)
-
-### Create Storage Volumes
-
-Create 3 storage volumes of 10GiB each in the same Availability Zone (AZ) as the Web Server.
-
-**Step 1: Click on the 'Volumes' link on the EC2 Dashboard**
-
-![Alt text](Images/aws_volume_creation1.png)
-
-**Step 2: On the 'Volumes' page, click on 'Create volume'**
-
-![Alt text](Images/aws_volume_creation2.png)
-
-**Step 3: On the Volume Creation page, enter the Volume settings then click on 'Create volume'**
-
-![Alt text](Images/aws_volume_creation3.png)
-
-![Alt text](Images/aws_volume_creation4.png)
-
-**Step 4: Repeat 'Step 3' to create two more 10GiB volumes**
-
-The three newly created volumes are shown below
-
-![Alt text](Images/aws_volume_creation5.png)
-
-### Attach the Newly Created Storage Volumes to the EC2 Instance
-
-To attach the storage volumes created in the last section, follow these steps
-
-**Step 1: Click on the 'Volume ID' of one of the Volumes to go into the Volume Details**
-
-![Alt text](Images/aws_volume_attach1.png)
-
-**Step 2: Under the 'Actions' tab, click on 'Attach Volume'**
-
-![Alt text](Images/aws_volume_attach2.png)
-
-**Step 3: On the 'Attach volume' page, select the relevant EC2 instance, then click on 'Attach volume' at the bottom of the page**
-
-![Alt text](Images/aws_volume_attach3.png)
-
-![Alt text](Images/aws_volume_attach4.png)
-
-**Step 4: Repeat Steps 1 to 3 above to attach the other Storage Volumes to the EC2 instance, then check under the 'Storage' tab of the EC2 instance to confirm that they have been attached**
-
-![Alt text](Images/aws_volume_attach5.png)
-
-### Implement LVM Storage Configuration on the Web Server
-
-After provisioning the Web Server EC2 instance, the next thing is to configure the LVM Storage Subsystem.
-
-The steps to do this are as follows:
-
-**Step 1: Connect to the Web Server using its public IP address on the Termius software**
-
-![Alt text](Images/termius-connect1.png)
-
-![Alt text](Images/termius-connect2.png)
-
-**Step 2: Use the `lsblk` command to check the block devices attached to the Web Server and the `df -h` command to see all mounts and free space on the Server**
-
-The `lsblk` command shows that `xvdf`, `xvdg`, and `xvdh` are attached.
-![Alt text](Images/webserver-storages1.png)
-
-![Alt text](Images/webserver-storages2.png)
-
-**Step 3: Create a single partition on each of the 3 disks using the `gdisk` utility, using the command `sudo gdisk /dev/xvdf` for the first disk and the relevant names for the other two disks**
-
-![Alt text](Images/webserver-storages3.png)
-
-![Alt text](Images/webserver-storages4.png)
-
-![Alt text](Images/webserver-storages5.png)
-
-**Step 4: Use the `lsblk` command to view the newly-configured partitions on the disks**
-
-![Alt text](Images/webserver-storages6.png)
-
-**Step 5: Install the `lvm2` package by running the `sudo yum install lvm2` command, then run `sudo lvmdiskscan` command to check for available partitions**
-
-![Alt text](Images/webserver-storages7.png)
-
-![Alt text](Images/webserver-storages8.png)
-
-![Alt text](Images/webserver-storages9.png)
-
-**Step 6: Mark each of the three partitions as Physical Volumes (PVs) to be used by LVM by running the command `sudo pvcreate /dev/partition`**
-
-![Alt text](Images/webserver-storages10.png)
-
-**Step 7: Confirm that the PVs have been created by running the command `sudo pvs`**
-
-![Alt text](Images/webserver-storages11.png)
-
-**Step 8: Add all 3 Physical Volumes (PVs) to a Volume Group (VG) named `webdata-vg` using the command `sudo vgcreate webdata-vg /dev/xvdh1 /dev/xvdg1 /dev/xvdf1`**
-
-![Alt text](Images/webserver-storages12.png)
-
-**Step 9: To check if the VG has been successfully created run the command `sudo vgs`**
-
-![Alt text](Images/webserver-storages13.png)
-
-**Step 10: Create 2 logical volumes `apps-lv` and `logs-lv` using the lvcreate command. `apps-lv` will be used to store data for the website and `logs-lv` will be used to store data for logs**
-
-![Alt text](Images/webserver-storages14.png)
-
-**Step 11: Verify that the Logical Volumes (LVs) has been created successfully by running `sudo lvs`**
-
-![Alt text](Images/webserver-storages15.png)
-
-**Step 12: Verify the complete setup by running the commands `sudo vgdisplay -v #view complete setup - VG, PV, and LV` and `sudo lsblk`**
-
-![Alt text](Images/webserver-storages16.png)
-![Alt text](Images/webserver-storages17.png)
-
-![Alt text](Images/webserver-storages18.png)
-
-**Step 13: Format the LVs to the `ext4` filesystem by running the commands `sudo mkfs -t ext4 /dev/webdata-vg/apps-lv` and `sudo mkfs -t ext4 /dev/webdata-vg/logs-lv`**
-
-![Alt text](Images/webserver-storages19.png)
-
-![Alt text](Images/webserver-storages20.png)
-
-**Step 14: Create /var/www/html directory to store website files by running the command `sudo mkdir -p /var/www/html` and /home/recovery/logs directory to store backups of log data by running the command `sudo mkdir -p /home/recovery/logs`**
-
-![Alt text](Images/webserver-storages21.png)
-
-**Step 15: Mount `/var/www/html` on the `apps-lv` logical volume by running the command `sudo mount /dev/webdata-vg/apps-lv /var/www/html/`**
-
-![Alt text](Images/webserver-storages22.png)
-
-**Step 16: Back up all the files in `/var/log` into the `/home/recovery/logs` directory. This step is necessary before mounting the filesystem because all the existing data on `/var/log` will be deleted in the next step**
-
-![Alt text](Images/webserver-storages23.png)
-
-**Step 17: Mount `/var/log` on the `logs-lv` logical volume by running the command `sudo mount /dev/webdata-vg/logs-lv /var/log`**
-
-![Alt text](Images/webserver-storages24.png)
-
-**Step 18: Restore the backed-up log files back into the `/var/log` directory by running the command `sudo rsync -av /home/recovery/logs/. /var/log`**
-
-![Alt text](Images/webserver-storages25.png)
-
-**Step 19: Update the `/etc/fstab` file to enable auto-mount every time the Web Server is restarted. The UUID of each device will be used to update `/etc/fstab`**
-
-Run `sudo blkid` command to get the UUIDs
-
-![Alt text](Images/webserver-storages26.png)
-
-Then run `sudo vi /etc/fstab`
-
-![Alt text](Images/webserver-storages27.png)
-
-**Step 20: Test the configuration and reload the daemon by running the commands `sudo mount -a` and `sudo systemctl daemon-reload`**
-
-![Alt text](Images/webserver-storages28.png)
-
-**Step 21: Verify the setup by running `df -h`**
-
-![Alt text](Images/webserver-storages29.png)
+3. An Oracle VirtualBox Linux server (the Web Server running on RedHat Linux OS), where I'll install WordPress. **(Please note: Due to AWS EC2 charges, I had to switch from using an AWS EC2 instance to working with an Oracle VirtualBox VM)**
 
 ## Configuring a Database Server and Implementing LVM Storage Subsystem on It
 
-**Please note: Due to the restrictions on AWS Free Tier EC2 instances and the resultant accruing charges, I'll be switching to Oracle VirtualBox (VMs) running on RHEL8 for the remainder of this project. The outcome of running steps 1 to 21 above on the Web Server VM is shown below**
+After creating a VirtualBox VM and installing RHEL8 on it to setup the Database Server, the next step is to create a LVM storage subsystem on the virtual machine. The steps to do that are as follows:
 
-![Alt text](Images/webserver-storages_vm.png)
+**Step 1: Create three (3) Virtual Hard Disks of 10GiB each named xvdf.vdi, xvdg.vdi, and xvdh.vdi in the Hard Disk Selector panel of Oracle VM Manager**
 
-**To setup the Database server, the relevant steps from 1 to 21 above will be replicated on another VM**
+![Alt text](Images/vm-setup1.png)
 
-**Step 1: Use the `lsblk` command to check the block devices attached to the Database Server and the `df -h` command to see all mounts and free space on the Server**
+![Alt text](Images/vm-setup2.png)
 
-The `lsblk` command shows that `sdb`, `sdc`, and `sdd` are attached.
+![Alt text](Images/vm-setup3.png)
 
-![Alt text](Images/dbserver_storages1.png)
+**Step 2: Attach the Virtual Hard Disks to the Virtual Machine (Db Server)**
 
-![Alt text](Images/dbserver_storages2.png)
+- Click on `Settings` at the top of the Virtual Manager, then click on `Storage` in the pop-up box and select `Controller-SATA`
 
-**Step 2: Create a single partition on each of the 3 disks using the `gdisk` utility, using the command `sudo gdisk /dev/sdb` for the first disk and the relevant names for the other two disks**
+![Alt text](Images/vm-setup4.png)
 
-![Alt text](Images/dbserver_storages3.png)
+![Alt text](Images/vm-setup5.png)
 
-![Alt text](Images/dbserver_storages4.png)
+- Click on the `+` sign to add a hard disk, then select the Virtual Hard Disks that were created earlier and click on `Choose`to add them to the Virtual Machine
 
-![Alt text](Images/dbserver_storages5.png)
+- Click on `Ok`
 
-**Step 3: Use the `lsblk` command to view the newly-configured partitions on the disks**
+![Alt text](Images/vm-setup6.png)
 
-![Alt text](Images/dbserver_storages6.png)
+![Alt text](Images/vm-setup7.png)
 
-**Step 4: Run `sudo lvmdiskscan` command to check for available partitions**
+**Step 3: Start the Virtual Machine and use the `lsblk` command to check the block devices attached to the Database Server**
 
-![Alt text](Images/dbserver_storages7.png)
+![Alt text](Images/vm-setup8.png)
 
-**Step 5: Mark each of the three partitions as Physical Volumes (PVs) to be used by LVM by running the command `sudo pvcreate /dev/partition`**
+**Step 4: Use the `df -h` command to see all mounts and free space on the Server**
 
-![Alt text](Images/dbserver_storages8.png)
+![Alt text](Images/vm-setup9.png)
 
-**Step 6: Confirm that the PVs have been created by running the command `sudo pvs`**
+**Step 5: Create a single partition on each of the 3 disks using the `gdisk` utility, using the command `sudo gdisk /dev/sdb` for the first disk and the relevant names for the other two disks**
 
-![Alt text](Images/dbserver_storages9.png)
+![Alt text](Images/vm-setup10.png)
 
-**Step 7: Add all 3 Physical Volumes (PVs) to a Volume Group (VG) named `dbdata-vg` using the command `sudo vgcreate dbdata-vg /dev/sdb1 /dev/sdc1 /dev/sdd1`**
+![Alt text](Images/vm-setup11.png)
 
-![Alt text](Images/dbserver_storages10.png)
+![Alt text](Images/vm-setup12.png)
 
-**Step 8: To check if the VG has been successfully created run the command `sudo vgs`**
+**Step 6: Use the `lsblk` command to view the newly-configured partitions on the disks**
 
-![Alt text](Images/dbserver_storages11.png)
+![Alt text](Images/vm-setup13.png)
 
-**Step 9: Create 1 logical volume `db-lv` using the command `sudo lvcreate -n db-lv -L 20G dbdata-vg`**
+**Step 7: Run `sudo lvmdiskscan` command to check for available partitions**
+
+![Alt text](Images/vm-setup14.png)
+
+**Step 8: Mark each of the three partitions as Physical Volumes (PVs) to be used by LVM by running the command `sudo pvcreate /dev/partition`**
+
+![Alt text](Images/vm-setup15.png)
+
+**Step 9: Confirm that the PVs have been created by running the command `sudo pvs`**
+
+![Alt text](Images/vm-setup16.png)
+
+**Step 10: Add all 3 Physical Volumes (PVs) to a Volume Group (VG) named `dbdata-vg` using the command `sudo vgcreate dbdata-vg /dev/sdb1 /dev/sdc1 /dev/sdd1`**
+
+![Alt text](Images/vm-setup17.png)
+
+**Step 11: To check if the VG has been successfully created run the command `sudo vgs`**
+
+![Alt text](Images/vm-setup18.png)
+
+**Step 12: Create 1 logical volume `db-lv` using the command `sudo lvcreate -n db-lv -L 20G dbdata-vg`**
 
 ![Alt text](Images/dbserver_storages12.png)
 
-**Step 10: Verify that the Logical Volume (LV) has been created successfully by running `sudo lvs`**
+**Step 13: Verify that the Logical Volume (LV) has been created successfully by running `sudo lvs`**
 
 ![Alt text](Images/dbserver_storages13.png)
 
-**Step 11: Verify the complete setup by running the commands `sudo vgdisplay -v #view complete setup - VG, PV, and LV` and `sudo lsblk`**
+**Step 14: Verify the complete setup by running the commands `sudo vgdisplay -v #view complete setup - VG, PV, and LV` and `sudo lsblk`**
 
 ![Alt text](Images/dbserver_storages14.png)
 
@@ -273,19 +113,19 @@ The `lsblk` command shows that `sdb`, `sdc`, and `sdd` are attached.
 
 ![Alt text](Images/dbserver_storages18.png)
 
-**Step 12: Format the LV to the `ext4` filesystem by running the commands `sudo mkfs -t ext4 /dev/dbdata-vg/db-lv`**
+**Step 15: Format the LV to the `ext4` filesystem by running the commands `sudo mkfs -t ext4 /dev/dbdata-vg/db-lv`**
 
 ![Alt text](Images/dbserver_storages19.png)
 
-**Step 13: Create /db directory to store database files by running the command `sudo mkdir /db`**
+**Step 16: Create /db directory to store database files by running the command `sudo mkdir /db`**
 
 ![Alt text](Images/dbserver_storages21.png)
 
-**Step 14: Mount `/db` on the `db-lv` logical volume by running the command `sudo mount /dev/dbdata-vg/db-lv /db/`**
+**Step 17: Mount `/db` on the `db-lv` logical volume by running the command `sudo mount /dev/dbdata-vg/db-lv /db/`**
 
 ![Alt text](Images/dbserver_storages22.png)
 
-**Step 15: Update the `/etc/fstab` file to enable auto-mount every time the Database Server is restarted. The UUID of the device will be used to update `/etc/fstab`**
+**Step 18: Update the `/etc/fstab` file to enable auto-mount every time the Database Server is restarted. The UUID of the device will be used to update `/etc/fstab`**
 
 Run `sudo blkid` command to get the UUIDs
 
@@ -295,11 +135,11 @@ Then run `sudo vi /etc/fstab`
 
 ![Alt text](Images/dbserver_storages29.png)
 
-**Step 16: Test the configuration and reload the daemon by running the commands `sudo mount -a` and `sudo systemctl daemon-reload`**
+**Step 19: Test the configuration and reload the daemon by running the commands `sudo mount -a` and `sudo systemctl daemon-reload`**
 
 ![Alt text](Images/dbserver_storages30.png)
 
-**Step 17: Verify the setup by running `df -h`**
+**Step 20: Verify the setup by running `df -h`**
 
 ![Alt text](Images/dbserver_storages31.png)
 
