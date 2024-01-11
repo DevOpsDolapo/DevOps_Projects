@@ -63,7 +63,7 @@ After creating a VirtualBox VM and installing RHEL8 on it to setup the Database 
 
 ![Alt text](Images/vm-setup9.png)
 
-**Step 5: Create a single partition on each of the 3 disks using the `gdisk` utility, running the command `sudo gdisk /dev/sdb` for the first disk and the relevant names for the other two disks**
+**Step 5: Create a single partition on each of the three (3) disks using the `gdisk` utility, running the command `sudo gdisk /dev/sdb` for the first disk and the relevant names for the other two disks**
 
 ![Alt text](Images/vm-setup10.png)
 
