@@ -14,3 +14,5 @@ The project will cover the following:
 - Installing MySQL on the Web Server and Database Server
 
 - Configuring the Connection Between the Database and WordPress
+
+- Configuring the Web Server to Connect to the Database Server
