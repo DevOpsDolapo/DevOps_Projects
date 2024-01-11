@@ -23,15 +23,15 @@ My 3-tier architecture setup for this project will be:
 
 1. A PC to serve as a client
 
-2. An Oracle VirtualBox Linux server (the Database Server running on RedHat Linux OS). **(Please note: Due to AWS EC2 charges, I had to switch from using an AWS EC2 instance to working with an Oracle VirtualBox VM)**
+2. An Oracle VirtualBox Linux server (DB001 - the Database Server running on RedHat Linux OS). 
 
-3. An Oracle VirtualBox Linux server (the Web Server running on RedHat Linux OS), where I'll install WordPress. **(Please note: Due to AWS EC2 charges, I had to switch from using an AWS EC2 instance to working with an Oracle VirtualBox VM)**
+3. An Oracle VirtualBox Linux server (WB001 - the Web Server running on RedHat Linux OS), where I'll install WordPress. 
 
-## Configuring a Database Server and Implementing LVM Storage Subsystem on It
+## Configuring the Database Server and Implementing LVM Storage Subsystem on It
 
-After creating a VirtualBox VM and installing RHEL8 on it to setup the Database Server, the next step is to create a LVM storage subsystem on the virtual machine. The steps to do that are as follows:
+After creating a VirtualBox VM and installing RHEL8 on it to setup the Database Server, the next step is to create a LVM storage subsystem on the server. The steps to do that are as follows:
 
-**Step 1: Create three (3) Virtual Hard Disks of 10GiB each named xvdf.vdi, xvdg.vdi, and xvdh.vdi in the Hard Disk Selector panel of Oracle VM Manager**
+**Step 1: Create three (3) Virtual Hard Disks of 10GiB each named xvdf.vdi, xvdg.vdi, and xvdh.vdi in the Hard Disk Selector panel of Oracle VM VirtualBox Manager**
 
 ![Alt text](Images/vm-setup1.png)
 
@@ -39,9 +39,9 @@ After creating a VirtualBox VM and installing RHEL8 on it to setup the Database 
 
 ![Alt text](Images/vm-setup3.png)
 
-**Step 2: Attach the Virtual Hard Disks to the Virtual Machine (Db Server)**
+**Step 2: Attach the Virtual Hard Disks to the Virtual Machine (DB Server)**
 
-- Click on `Settings` at the top of the Virtual Manager, then click on `Storage` in the pop-up box and select `Controller-SATA`
+- Click on `Settings` at the top of the VirtualBox Manager, then click on `Storage` in the pop-up box and select `Controller:SATA`
 
 ![Alt text](Images/vm-setup4.png)
 
@@ -55,7 +55,7 @@ After creating a VirtualBox VM and installing RHEL8 on it to setup the Database 
 
 ![Alt text](Images/vm-setup7.png)
 
-**Step 3: Start the Virtual Machine and use the `lsblk` command to check the block devices attached to the Database Server**
+**Step 3: Start the Virtual Machine and use the `lsblk` command to check the block devices attached to the Database Server (DB001)**
 
 ![Alt text](Images/vm-setup8.png)
 
@@ -63,7 +63,7 @@ After creating a VirtualBox VM and installing RHEL8 on it to setup the Database 
 
 ![Alt text](Images/vm-setup9.png)
 
-**Step 5: Create a single partition on each of the 3 disks using the `gdisk` utility, using the command `sudo gdisk /dev/sdb` for the first disk and the relevant names for the other two disks**
+**Step 5: Create a single partition on each of the 3 disks using the `gdisk` utility, running the command `sudo gdisk /dev/sdb` for the first disk and the relevant names for the other two disks**
 
 ![Alt text](Images/vm-setup10.png)
 
@@ -87,15 +87,15 @@ After creating a VirtualBox VM and installing RHEL8 on it to setup the Database 
 
 ![Alt text](Images/vm-setup16.png)
 
-**Step 10: Add all 3 Physical Volumes (PVs) to a Volume Group (VG) named `dbdata-vg` using the command `sudo vgcreate dbdata-vg /dev/sdb1 /dev/sdc1 /dev/sdd1`**
+**Step 10: Add all 3 Physical Volumes (PVs) to a Volume Group (VG) named `dbdata-vg` by running the command `sudo vgcreate dbdata-vg /dev/sdb1 /dev/sdc1 /dev/sdd1`**
 
 ![Alt text](Images/vm-setup17.png)
 
-**Step 11: To check if the VG has been successfully created run the command `sudo vgs`**
+**Step 11: To check if the VG has been successfully created, run the command `sudo vgs`**
 
 ![Alt text](Images/vm-setup18.png)
 
-**Step 12: Create 1 logical volume `db-lv` using the command `sudo lvcreate -n db-lv -L 20G dbdata-vg`**
+**Step 12: Create one (1) logical volume `db-lv` of 20GiB size by running the command `sudo lvcreate -n db-lv -L 20G dbdata-vg`**
 
 ![Alt text](Images/dbserver_storages12.png)
 
@@ -113,11 +113,11 @@ After creating a VirtualBox VM and installing RHEL8 on it to setup the Database 
 
 ![Alt text](Images/dbserver_storages18.png)
 
-**Step 15: Format the LV to the `ext4` filesystem by running the commands `sudo mkfs -t ext4 /dev/dbdata-vg/db-lv`**
+**Step 15: Format the Logical Volume to the `ext4` filesystem by running the command `sudo mkfs -t ext4 /dev/dbdata-vg/db-lv`**
 
 ![Alt text](Images/dbserver_storages19.png)
 
-**Step 16: Create /db directory to store database files by running the command `sudo mkdir /db`**
+**Step 16: Create the /db directory to store database files by running the command `sudo mkdir /db`**
 
 ![Alt text](Images/dbserver_storages21.png)
 
@@ -145,7 +145,7 @@ Then run `sudo vi /etc/fstab`
 
 ## Configuring a Web Server and Implementing LVM Storage Subsystem on It
 
-To setup the Web Server, steps 1 to 20 above are replicated on another VirtualBox Virtual Machine. The outcome of running steps 1 to 20 above on the Web Server VM is shown below by verifying the setup through the `df -h` command:
+To create and setup the Web Server (WB001), steps 1 to 20 above are replicated on another VirtualBox Virtual Machine. The outcome of running these steps is shown below by verifying the setup through the `df -h` command:
 
 ![Alt text](Images/webserver-storages.png)
 
@@ -159,7 +159,7 @@ To install WordPress on the Web Server, we need to follow the steps below:
 
 **Step 2: Install wget, Apache, and its dependencies**
 
-I'll need to run the command `sudo yum -y install wget httpd php php-mysqlnd php-fpm php-json` to install the above packages.
+Run the command `sudo yum -y install wget httpd php php-mysqlnd php-fpm php-json` to install the necessary packages.
 
 ![Alt text](Images/wp-images2.png)
 
@@ -201,7 +201,7 @@ setsebool -P httpd_execmem 1
 
 ![Alt text](Images/wp-images17.png)
 
-**Step 6: Download the WordPress package and copy it to the `/var/www/html` directory on the Web Server**
+**Step 6: Download the WordPress package, unpack it, and copy it to the `/var/www/html` directory on the Web Server**
 
 Run these series of commands:
 ```
@@ -233,7 +233,7 @@ Run the following commands to setup SELinux Policies:
 ```
 ![Alt text](Images/wp-images22.png)
 
-## Installing MySQL on the Web Server and the Database Server
+## Installing MySQL on the Web Server and Database Server
 
 **Step 1: To install MySQL on both the Web Server and the Database Server, run the following commands**
 
