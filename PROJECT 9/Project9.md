@@ -143,6 +143,12 @@ Then run `sudo vi /etc/fstab`
 
 ![Alt text](Images/dbserver_storages31.png)
 
+## Configuring a Web Server and Implementing LVM Storage Subsystem on It
+
+To setup the Web Server, steps 1 to 20 above are replicated on another VirtualBox Virtual Machine. The outcome of running steps 1 to 20 above on the Web Server VM is shown below by verifying the setup through the `df -h` command:
+
+![Alt text](Images/webserver-storages.png)
+
 ## Installing WordPress on the Web Server
 
 To install WordPress on the Web Server, we need to follow the steps below:
@@ -256,7 +262,7 @@ sudo yum install mysql-server
 
 ## Configuring the Connection Between the Database and WordPress
 
-**Step 1: It's important to run a security script on the MySQL server installation to remove insecure default settings and lockdown access to the database management system. 
+**Step 1: It's important to run a security script on the MySQL server installation on the Database Server to remove insecure default settings and lockdown access to the database management system**
 
 ![Alt text](Images/db_creation1.png)
 
@@ -268,7 +274,7 @@ sudo yum install mysql-server
 ```
 sudo mysql -u root -p
 CREATE DATABASE wordpress;
-CREATE USER 'mydbuser'@'%' IDENTIFIED WITH mysql_native_password BY 'mypassword';
+CREATE USER 'mydbuser'@'%' IDENTIFIED WITH mysql_native_password BY '**********';
 GRANT ALL PRIVILEGES ON *.* TO 'mydbuser'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 SHOW DATABASES;
@@ -287,7 +293,7 @@ sudo firewall-cmd --zone=public --permanent --add-service=mysql
 ```
 ![Alt text](Images/db_firewall1.png)
 
-**Step 4: Reload the firewall rules to apply changes by running the command `sudo firewall-cmd --reload`**
+**Step 4: Reload the firewall rules to apply the changes by running the command `sudo firewall-cmd --reload`**
 
 ![Alt text](Images/db_firewall2.png)
 
@@ -303,39 +309,41 @@ The below entries are added to the file:
 
 ![Alt text](Images/db_firewall4.png)
 
-**Step 7: Restart the `mysqld service` for the changes to take effect by running the command `sudo systemctl restart mysqld`
+**Step 7: Restart the `mysqld service` for the changes to take effect by running the command `sudo systemctl restart mysqld`**
 
 ![Alt text](Images/db_firewall5.png)
 
-**Step 7: Edit the `wp-config.php` file on the Web Server and populate it with the relevant details which are the `DB_NAME, DB_USER, DB_PASSWORD, and DB_HOST` settings**
+## Configuring the Web Server to Connect to the Database Server
+
+**Step 1: Edit the `wp-config.php` file on the Web Server and populate it with the relevant details which are the `DB_NAME, DB_USER, DB_PASSWORD, and DB_HOST` settings**
 
 ![Alt text](Images/db_client1.png)
 
 ![Alt text](Images/db_client2.png)
 
-**Step 8: Restart the `httpd` service by running the command `sudo systemctl restart httpd`**
+**Step 2: Restart the `httpd` service by running the command `sudo systemctl restart httpd`**
 
 ![Alt text](Images/db_client3.png)
 
-**Step 9: Rename the Apache welcome page**
+**Step 3: Rename the Apache welcome page**
 
 ![Alt text](Images/db_client4.png)
 
-**Step 10: Connect to the Database Server from the Web Server by running the command `sudo mysql -u 'user' -p -h <DB-Server-Private-IP-address>`, where `user` is the database user created earlier and `<DB-Server-Private-IP-address>` is the Private IP address of the database server.**
+**Step 4: Connect to the Database Server from the Web Server by running the command `sudo mysql -u 'user' -p -h <DB-Server-Private-IP-address>`, where `user` is the database user created earlier and `<DB-Server-Private-IP-address>` is the Private IP address of the database server.**
 
 ![Alt text](Images/db_client5.png)
 
 From the above, it's clear that the Web Server can access the database hosted on the Database Server.
 
-**Step 11: Let's run a query from the Web Server database client to the Database Server**
+**Step 5: Let's run a query from the Web Server database client to the Database Server**
 
 ![Alt text](Images/db_client6.png)
 
-**Step 11: Enable inbound rules for TCP port 80 on the Web Server**
+**Step 6: Enable inbound rules for TCP port 80 on the Web Server**
 
 ![Alt text](Images/db_client7.png)
 
-**Step 12: Let's try and access WordPress through the browser on the Web Server**
+**Step 7: Access WordPress through the browser on the Web Server**
 
 ![Alt text](Images/wp-page1.png)
 

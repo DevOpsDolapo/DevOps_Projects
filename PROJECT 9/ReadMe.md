@@ -5,12 +5,12 @@ This project is aimed at building and managing a scalable WordPress website on a
 
 The project will cover the following:
 
-- Configuring a Web Server and Implementing LVM Storage Subsystem on It
-
 - Configuring a Database Server and Implementing LVM Storage Subsystem on It
+
+- Configuring a Web Server and Implementing LVM Storage Subsystem on It
 
 - Installing WordPress on the Web Server
 
-- Installing MySQL on the Database Server
+- Installing MySQL on the Web Server and Database Server
 
 - Configuring the Connection Between the Database and WordPress
