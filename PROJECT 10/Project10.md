@@ -107,3 +107,54 @@ To prepare our NFS Server for the tooling solution, we'd need to do the followin
 
 ![Alt text](Images/nfs-server15.png)
 
+- Create three (3) logical volumes `lv-apps`, `lv-logs`, and `lv-opt` by running the `sudo lvcreate` command
+
+![Alt text](Images/nfs-server16.png)
+
+- Verify that the Logical Volume (LV) has been created successfully by running `sudo lvs`
+
+![Alt text](Images/nfs-server17.png)
+
+- Verify the complete setup by running the commands `sudo vgdisplay -v` and `sudo lsblk`
+
+![Alt text](Images/nfs-server18.png)
+
+![Alt text](Images/nfs-server19.png)
+
+![Alt text](Images/nfs-server20.png)
+
+![Alt text](Images/nfs-server21.png)
+
+![Alt text](Images/nfs-server22.png)
+
+- Format the Logical Volumes to the `xfs` filesystem by running the command `sudo mkfs -t xfs <path to logical volume>`
+
+![Alt text](Images/nfs-server23.png)
+
+- Create mount points `/mnt/apps`, `/mnt/logs`, and `/mnt/opt` on `/mnt` using the `mkdir` command as follows:
+
+```
+sudo mkdir /mnt/apps
+sudo mkdir /mnt/logs
+sudo mkdir /mnt/opt
+```
+![Alt text](Images/nfs-server24.png)
+
+- Mount the created mount points as follows:
+
+```
+sudo mount /dev/webdata-vg/lv-apps /mnt/apps
+sudo mount /dev/webdata-vg/lv-logs /mnt/logs
+sudo mount /dev/webdata-vg/lv-opt /mnt/opt
+```
+![Alt text](Images/nfs-server25.png)
+
+**Step 5: Install NFS Server, configure it to start on reboot, and ensure it is up and running**
+
+```
+sudo yum -y update
+sudo yum install nfs-utils -y
+sudo systemctl start nfs-server.service
+sudo systemctl enable nfs-server.service
+sudo systemctl status nfs-server.service
+```
