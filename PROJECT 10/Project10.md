@@ -36,3 +36,9 @@ The tooling components in this project will be running on the following infrastr
 6. **Code Repository**: [GitHub](https://github.com/darey-io/tooling)
 
 The diagram below shows a pictorial representation of the 3-tier architecture setup for this project:
+
+![Alt text](Images/3-tier-architecture_for_tooling_website.png)
+
+The diagram above shows three (3) Web Servers sharing a common Database while at the same time having access to a Network File System (NFS) Server as a shared file storage. Even though the NFS is situated on a completely separate hardware, it acts as a local file system through which the Web Servers have access to the same files.
+
+
