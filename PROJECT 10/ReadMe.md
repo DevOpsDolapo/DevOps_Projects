@@ -1,3 +1,7 @@
+
 ## Implementing a DevOps Tooling Website Solution
 
-The aim of this project is to build a comprehensive DevOps tooling website solution using a 3-tier architecture like we did in the last project. We'll be exploring the integration of various tools and technologies to create a unified platform to aid effective collaboration, automation, and efficiency between the software development and operations teams.
+The aim of this project is to build a comprehensive DevOps tooling website solution using a 3-tier architecture like we did in the last project. We'll be exploring the integration of various tools and technologies to create a unified platform that can aid effective collaboration, automation, and efficiency between the software development and operations teams.
+
+Just like 
+
