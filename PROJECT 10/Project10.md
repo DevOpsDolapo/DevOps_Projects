@@ -1,9 +1,11 @@
 
 ## Implementing a DevOps Tooling Website Solution
 
+As a DevOps Engineer, it's important to know how to implement a tooling website solution that can allow easy and seamless access to DevOps tools within a corporate infrastructure.
 
+For this project, our DevOps tooling website will be running on a 3-tier architecture, which is essentially a client-server architecture that separates the user interface (presentation layer), application processing (application layer), and data management (data layer) into three distinct tiers or layers. 
 
-Our DevOps tooling website will consist of the following tools:
+The DevOps tooling website will consist of the following tools:
 
 1. [Jenkins](https://jenkins.io/) - this is an automation server used to build CI/CD pipelines. It is free and open source.
 
@@ -32,3 +34,5 @@ The tooling components in this project will be running on the following infrastr
 5. **Programming Language**: PHP
 
 6. **Code Repository**: [GitHub](https://github.com/darey-io/tooling)
+
+The diagram below shows a pictorial representation of the 3-tier architecture setup for this project:
