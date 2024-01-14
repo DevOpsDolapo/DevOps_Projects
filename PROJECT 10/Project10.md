@@ -163,3 +163,41 @@ sudo systemctl status nfs-server.service
 ![Alt text](Images/nfs-server27.png)
 
 ![Alt text](Images/nfs-server28.png)
+
+**Step 6: Set permissions that will allow the Web Servers to read, write, and execute files on the NFS Server by running these sets of commands**
+
+```
+sudo chown -R nobody: /mnt/apps
+sudo chown -R nobody: /mnt/logs
+sudo chown -R nobody: /mnt/opt
+
+sudo chmod -R 777 /mnt/apps
+sudo chmod -R 777 /mnt/logs
+sudo chmod -R 777 /mnt/opt
+
+sudo systemctl restart nfs-server.service
+```
+![Alt text](Images/nfs-server29.png)
+
+![Alt text](Images/nfs-server30.png)
+
+![Alt text](Images/nfs-server31.png)
+
+**Step 7: Configure access to NFS for clients within the same subnet by running the following commands**
+
+*For this project, the subnet cidr for the Web Servers and the NFS Server is `10.19.0.0/24`*
+
+```
+sudo vi /etc/exports
+
+/mnt/apps <Subnet-CIDR>(rw,sync,no_all_squash,no_root_squash)
+/mnt/logs <Subnet-CIDR>(rw,sync,no_all_squash,no_root_squash)
+/mnt/opt <Subnet-CIDR>(rw,sync,no_all_squash,no_root_squash)
+```
+![Alt text](Images/nfs-server32.png)
+
+![Alt text](Images/nfs-server33.png)
+
+- Save the changes to the file, then run the following command `sudo exportfs -arv`
+
+![Alt text](Images/nfs-server34.png)
