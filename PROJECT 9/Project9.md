@@ -23,247 +23,87 @@ My 3-tier architecture setup for this project will be:
 
 1. A PC to serve as a client
 
-2. An EC2 Linux server (the web server running on RedHat Linux OS), where I'll install WordPress. (Due to AWS EC2 charges, I had to switch to an Oracle VirtualBox VM)
+2. An Oracle VirtualBox Linux server (DB001 - the Database Server running on RedHat Linux OS). 
 
-3. An EC2 Linux server (the database server running on RedHat Linux OS). Due to AWS EC2 charges, I had to switch to an Oracle VirtualBox VM.
+3. An Oracle VirtualBox Linux server (WB001 - the Web Server running on RedHat Linux OS), where I'll install WordPress. 
 
-## Configuring a Web Server and Implementing LVM Storage Subsystem on It
+## Configuring the Database Server and Implementing LVM Storage Subsystem on It
 
-To configure a web server, here are the steps to follow:
+After creating a VirtualBox VM and installing RHEL8 on it to setup the Database Server, the next step is to create a LVM storage subsystem on the server. The steps to do that are as follows:
 
-### Create A Web Server
+**Step 1: Create three (3) Virtual Hard Disks of 10GiB each named xvdf.vdi, xvdg.vdi, and xvdh.vdi in the Hard Disk Selector panel of Oracle VM VirtualBox Manager**
 
-Launch an EC2 instance to use as the Web Server.  
+![Alt text](Images/vm-setup1.png)
 
-**Step 1: Login into AWS and then click on `Launch instance` on the EC2 Dashboard**
+![Alt text](Images/vm-setup2.png)
 
-![Alt text](Images/aws_launch-instance.png)
+![Alt text](Images/vm-setup3.png)
 
-**Step 2: On the 'Launch an instance' page, fill in the details of the EC2 instance**
+**Step 2: Attach the Virtual Hard Disks to the Virtual Machine (DB Server)**
 
-![Alt text](Images/aws_launch-instance2.png)
+- Click on `Settings` at the top of the VirtualBox Manager, then click on `Storage` in the pop-up box and select `Controller:SATA`
 
-**Step 3: Check that the instance is up and running**
+![Alt text](Images/vm-setup4.png)
 
-![Alt text](Images/aws_launch-instance3.png)
+![Alt text](Images/vm-setup5.png)
 
-### Create Storage Volumes
+- Click on the `+` sign to add a hard disk, then select the Virtual Hard Disks that were created earlier and click on `Choose`to add them to the Virtual Machine
 
-Create 3 storage volumes of 10GiB each in the same Availability Zone (AZ) as the Web Server.
+- Click on `Ok`
 
-**Step 1: Click on the 'Volumes' link on the EC2 Dashboard**
+![Alt text](Images/vm-setup6.png)
 
-![Alt text](Images/aws_volume_creation1.png)
+![Alt text](Images/vm-setup7.png)
 
-**Step 2: On the 'Volumes' page, click on 'Create volume'**
+**Step 3: Start the Virtual Machine and use the `lsblk` command to check the block devices attached to the Database Server (DB001)**
 
-![Alt text](Images/aws_volume_creation2.png)
+![Alt text](Images/vm-setup8.png)
 
-**Step 3: On the Volume Creation page, enter the Volume settings then click on 'Create volume'**
+**Step 4: Use the `df -h` command to see all mounts and free space on the Server**
 
-![Alt text](Images/aws_volume_creation3.png)
+![Alt text](Images/vm-setup9.png)
 
-![Alt text](Images/aws_volume_creation4.png)
+**Step 5: Create a single partition on each of the three (3) disks using the `gdisk` utility, running the command `sudo gdisk /dev/sdb` for the first disk and the relevant names for the other two disks**
 
-**Step 4: Repeat 'Step 3' to create two more 10GiB volumes**
+![Alt text](Images/vm-setup10.png)
 
-The three newly created volumes are shown below
+![Alt text](Images/vm-setup11.png)
 
-![Alt text](Images/aws_volume_creation5.png)
+![Alt text](Images/vm-setup12.png)
 
-### Attach the Newly Created Storage Volumes to the EC2 Instance
+**Step 6: Use the `lsblk` command to view the newly-configured partitions on the disks**
 
-To attach the storage volumes created in the last section, follow these steps
+![Alt text](Images/vm-setup13.png)
 
-**Step 1: Click on the 'Volume ID' of one of the Volumes to go into the Volume Details**
+**Step 7: Run `sudo lvmdiskscan` command to check for available partitions**
 
-![Alt text](Images/aws_volume_attach1.png)
+![Alt text](Images/vm-setup14.png)
 
-**Step 2: Under the 'Actions' tab, click on 'Attach Volume'**
+**Step 8: Mark each of the three partitions as Physical Volumes (PVs) to be used by LVM by running the command `sudo pvcreate /dev/partition`**
 
-![Alt text](Images/aws_volume_attach2.png)
+![Alt text](Images/vm-setup15.png)
 
-**Step 3: On the 'Attach volume' page, select the relevant EC2 instance, then click on 'Attach volume' at the bottom of the page**
+**Step 9: Confirm that the PVs have been created by running the command `sudo pvs`**
 
-![Alt text](Images/aws_volume_attach3.png)
+![Alt text](Images/vm-setup16.png)
 
-![Alt text](Images/aws_volume_attach4.png)
+**Step 10: Add all 3 Physical Volumes (PVs) to a Volume Group (VG) named `dbdata-vg` by running the command `sudo vgcreate dbdata-vg /dev/sdb1 /dev/sdc1 /dev/sdd1`**
 
-**Step 4: Repeat Steps 1 to 3 above to attach the other Storage Volumes to the EC2 instance, then check under the 'Storage' tab of the EC2 instance to confirm that they have been attached**
+![Alt text](Images/vm-setup17.png)
 
-![Alt text](Images/aws_volume_attach5.png)
+**Step 11: To check if the VG has been successfully created, run the command `sudo vgs`**
 
-### Implement LVM Storage Configuration on the Web Server
+![Alt text](Images/vm-setup18.png)
 
-After provisioning the Web Server EC2 instance, the next thing is to configure the LVM Storage Subsystem.
-
-The steps to do this are as follows:
-
-**Step 1: Connect to the Web Server using its public IP address on the Termius software**
-
-![Alt text](Images/termius-connect1.png)
-
-![Alt text](Images/termius-connect2.png)
-
-**Step 2: Use the `lsblk` command to check the block devices attached to the Web Server and the `df -h` command to see all mounts and free space on the Server**
-
-The `lsblk` command shows that `xvdf`, `xvdg`, and `xvdh` are attached.
-![Alt text](Images/webserver-storages1.png)
-
-![Alt text](Images/webserver-storages2.png)
-
-**Step 3: Create a single partition on each of the 3 disks using the `gdisk` utility, using the command `sudo gdisk /dev/xvdf` for the first disk and the relevant names for the other two disks**
-
-![Alt text](Images/webserver-storages3.png)
-
-![Alt text](Images/webserver-storages4.png)
-
-![Alt text](Images/webserver-storages5.png)
-
-**Step 4: Use the `lsblk` command to view the newly-configured partitions on the disks**
-
-![Alt text](Images/webserver-storages6.png)
-
-**Step 5: Install the `lvm2` package by running the `sudo yum install lvm2` command, then run `sudo lvmdiskscan` command to check for available partitions**
-
-![Alt text](Images/webserver-storages7.png)
-
-![Alt text](Images/webserver-storages8.png)
-
-![Alt text](Images/webserver-storages9.png)
-
-**Step 6: Mark each of the three partitions as Physical Volumes (PVs) to be used by LVM by running the command `sudo pvcreate /dev/partition`**
-
-![Alt text](Images/webserver-storages10.png)
-
-**Step 7: Confirm that the PVs have been created by running the command `sudo pvs`**
-
-![Alt text](Images/webserver-storages11.png)
-
-**Step 8: Add all 3 Physical Volumes (PVs) to a Volume Group (VG) named `webdata-vg` using the command `sudo vgcreate webdata-vg /dev/xvdh1 /dev/xvdg1 /dev/xvdf1`**
-
-![Alt text](Images/webserver-storages12.png)
-
-**Step 9: To check if the VG has been successfully created run the command `sudo vgs`**
-
-![Alt text](Images/webserver-storages13.png)
-
-**Step 10: Create 2 logical volumes `apps-lv` and `logs-lv` using the lvcreate command. `apps-lv` will be used to store data for the website and `logs-lv` will be used to store data for logs**
-
-![Alt text](Images/webserver-storages14.png)
-
-**Step 11: Verify that the Logical Volumes (LVs) has been created successfully by running `sudo lvs`**
-
-![Alt text](Images/webserver-storages15.png)
-
-**Step 12: Verify the complete setup by running the commands `sudo vgdisplay -v #view complete setup - VG, PV, and LV` and `sudo lsblk`**
-
-![Alt text](Images/webserver-storages16.png)
-![Alt text](Images/webserver-storages17.png)
-
-![Alt text](Images/webserver-storages18.png)
-
-**Step 13: Format the LVs to the `ext4` filesystem by running the commands `sudo mkfs -t ext4 /dev/webdata-vg/apps-lv` and `sudo mkfs -t ext4 /dev/webdata-vg/logs-lv`**
-
-![Alt text](Images/webserver-storages19.png)
-
-![Alt text](Images/webserver-storages20.png)
-
-**Step 14: Create /var/www/html directory to store website files by running the command `sudo mkdir -p /var/www/html` and /home/recovery/logs directory to store backups of log data by running the command `sudo mkdir -p /home/recovery/logs`**
-
-![Alt text](Images/webserver-storages21.png)
-
-**Step 15: Mount `/var/www/html` on the `apps-lv` logical volume by running the command `sudo mount /dev/webdata-vg/apps-lv /var/www/html/`**
-
-![Alt text](Images/webserver-storages22.png)
-
-**Step 16: Back up all the files in `/var/log` into the `/home/recovery/logs` directory. This step is necessary before mounting the filesystem because all the existing data on `/var/log` will be deleted in the next step**
-
-![Alt text](Images/webserver-storages23.png)
-
-**Step 17: Mount `/var/log` on the `logs-lv` logical volume by running the command `sudo mount /dev/webdata-vg/logs-lv /var/log`**
-
-![Alt text](Images/webserver-storages24.png)
-
-**Step 18: Restore the backed-up log files back into the `/var/log` directory by running the command `sudo rsync -av /home/recovery/logs/. /var/log`**
-
-![Alt text](Images/webserver-storages25.png)
-
-**Step 19: Update the `/etc/fstab` file to enable auto-mount every time the Web Server is restarted. The UUID of each device will be used to update `/etc/fstab`**
-
-Run `sudo blkid` command to get the UUIDs
-
-![Alt text](Images/webserver-storages26.png)
-
-Then run `sudo vi /etc/fstab`
-
-![Alt text](Images/webserver-storages27.png)
-
-**Step 20: Test the configuration and reload the daemon by running the commands `sudo mount -a` and `sudo systemctl daemon-reload`**
-
-![Alt text](Images/webserver-storages28.png)
-
-**Step 21: Verify the setup by running `df -h`**
-
-![Alt text](Images/webserver-storages29.png)
-
-## Configuring a Database Server and Implementing LVM Storage Subsystem on It
-
-**Please note: Due to the restrictions on AWS Free Tier EC2 instances and the resultant accruing charges, I'll be switching to Oracle VirtualBox (VMs) running on RHEL7 for the remainder of this project. The outcome of running steps 1 to 21 above on the Web Server VM is shown below**
-
-![Alt text](Images/webserver-storages_vm.png)
-
-**To setup the Database server, the relevant steps from 1 to 21 above will be replicated on another VM**
-
-**Step 1: Use the `lsblk` command to check the block devices attached to the Database Server and the `df -h` command to see all mounts and free space on the Server**
-
-The `lsblk` command shows that `sdb`, `sdc`, and `sdd` are attached.
-
-![Alt text](Images/dbserver_storages1.png)
-
-![Alt text](Images/dbserver_storages2.png)
-
-**Step 2: Create a single partition on each of the 3 disks using the `gdisk` utility, using the command `sudo gdisk /dev/sdb` for the first disk and the relevant names for the other two disks**
-
-![Alt text](Images/dbserver_storages3.png)
-
-![Alt text](Images/dbserver_storages4.png)
-
-![Alt text](Images/dbserver_storages5.png)
-
-**Step 3: Use the `lsblk` command to view the newly-configured partitions on the disks**
-
-![Alt text](Images/dbserver_storages6.png)
-
-**Step 4: Run `sudo lvmdiskscan` command to check for available partitions**
-
-![Alt text](Images/dbserver_storages7.png)
-
-**Step 5: Mark each of the three partitions as Physical Volumes (PVs) to be used by LVM by running the command `sudo pvcreate /dev/partition`**
-
-![Alt text](Images/dbserver_storages8.png)
-
-**Step 6: Confirm that the PVs have been created by running the command `sudo pvs`**
-
-![Alt text](Images/dbserver_storages9.png)
-
-**Step 7: Add all 3 Physical Volumes (PVs) to a Volume Group (VG) named `dbdata-vg` using the command `sudo vgcreate dbdata-vg /dev/sdb1 /dev/sdc1 /dev/sdd1`**
-
-![Alt text](Images/dbserver_storages10.png)
-
-**Step 8: To check if the VG has been successfully created run the command `sudo vgs`**
-
-![Alt text](Images/dbserver_storages11.png)
-
-**Step 9: Create 2 logical volumes `db-lv` and `logs-lv` using the command `sudo lvcreate -n db-lv -L 14G dbdata-vg` and `sudo lvcreate -n logs-lv -L 14G dbdata-vg`**
+**Step 12: Create one (1) logical volume `db-lv` of 20GiB size by running the command `sudo lvcreate -n db-lv -L 20G dbdata-vg`**
 
 ![Alt text](Images/dbserver_storages12.png)
 
-**Step 10: Verify that the Logical Volumes (LVs) has been created successfully by running `sudo lvs`**
+**Step 13: Verify that the Logical Volume (LV) has been created successfully by running `sudo lvs`**
 
 ![Alt text](Images/dbserver_storages13.png)
 
-**Step 11: Verify the complete setup by running the commands `sudo vgdisplay -v #view complete setup - VG, PV, and LV` and `sudo lsblk`**
+**Step 14: Verify the complete setup by running the commands `sudo vgdisplay -v #view complete setup - VG, PV, and LV` and `sudo lsblk`**
 
 ![Alt text](Images/dbserver_storages14.png)
 
@@ -271,41 +111,21 @@ The `lsblk` command shows that `sdb`, `sdc`, and `sdd` are attached.
 
 ![Alt text](Images/dbserver_storages16.png)
 
-![Alt text](Images/dbserver_storages17.png)
-
 ![Alt text](Images/dbserver_storages18.png)
 
-**Step 12: Format the LVs to the `ext4` filesystem by running the commands `sudo mkfs -t ext4 /dev/dbdata-vg/db-lv` and `sudo mkfs -t ext4 /dev/dbdata-vg/logs-lv`**
+**Step 15: Format the Logical Volume to the `ext4` filesystem by running the command `sudo mkfs -t ext4 /dev/dbdata-vg/db-lv`**
 
 ![Alt text](Images/dbserver_storages19.png)
 
-![Alt text](Images/dbserver_storages20.png)
-
-**Step 13: Create /db directory to store database files by running the command `sudo mkdir -p /db` and /home/recovery/logs directory to store backups of log data by running the command `sudo mkdir -p /home/recovery/logs`**
+**Step 16: Create the /db directory to store database files by running the command `sudo mkdir /db`**
 
 ![Alt text](Images/dbserver_storages21.png)
 
-**Step 14: Mount `/db` on the `db-lv` logical volume by running the command `sudo mount /dev/dbdata-vg/db-lv /db/`**
+**Step 17: Mount `/db` on the `db-lv` logical volume by running the command `sudo mount /dev/dbdata-vg/db-lv /db/`**
 
 ![Alt text](Images/dbserver_storages22.png)
 
-**Step 15: Back up all the files in `/var/log` into the `/home/recovery/logs` directory. This step is necessary before mounting the filesystem because all the existing data on `/var/log` will be deleted in the next step**
-
-![Alt text](Images/dbserver_storages23.png)
-
-![Alt text](Images/dbserver_storages24.png)
-
-**Step 16: Mount `/var/log` on the `logs-lv` logical volume by running the command `sudo mount /dev/dbdata-vg/logs-lv /var/log`**
-
-![Alt text](Images/dbserver_storages25.png)
-
-**Step 17: Restore the backed-up log files back into the `/var/log` directory by running the command `sudo rsync -av /home/recovery/logs/. /var/log`**
-
-![Alt text](Images/dbserver_storages26.png)
-
-![Alt text](Images/dbserver_storages27.png)
-
-**Step 18: Update the `/etc/fstab` file to enable auto-mount every time the Web Server is restarted. The UUID of each device will be used to update `/etc/fstab`**
+**Step 18: Update the `/etc/fstab` file to enable auto-mount every time the Database Server is restarted. The UUID of the device will be used to update `/etc/fstab`**
 
 Run `sudo blkid` command to get the UUIDs
 
@@ -323,6 +143,12 @@ Then run `sudo vi /etc/fstab`
 
 ![Alt text](Images/dbserver_storages31.png)
 
+## Configuring a Web Server and Implementing LVM Storage Subsystem on It
+
+To create and setup the Web Server (WB001), steps 1 to 20 above are replicated on another VirtualBox Virtual Machine. The outcome of running these steps is shown below by verifying the setup through the `df -h` command:
+
+![Alt text](Images/webserver-storages.png)
+
 ## Installing WordPress on the Web Server
 
 To install WordPress on the Web Server, we need to follow the steps below:
@@ -333,27 +159,17 @@ To install WordPress on the Web Server, we need to follow the steps below:
 
 **Step 2: Install wget, Apache, and its dependencies**
 
-Before I install the above packages, I'll run rpm checks to see if any of them are already installed. The image below shows that `wget` is already installed.
+Run the command `sudo yum -y install wget httpd php php-mysqlnd php-fpm php-json` to install the necessary packages.
 
 ![Alt text](Images/wp-images2.png)
-
-I can go ahead and install the other packages:
 
 ![Alt text](Images/wp-images3.png)
 
 ![Alt text](Images/wp-images4.png)
 
-From the images above the system could not find two packages (php-msqlnd and php-fpm) in the local repository, so I'll have to download and install them.
+As shown in the information at the start of the installation process, the wget and httpd packages have already been installed.
 
-![Alt text](Images/wp-images5.png)
-
-![Alt text](Images/wp-images6.png)
-
-![Alt text](Images/wp-images7.png)
-
-![Alt text](Images/wp-images8.png)
-
-**Step 3: Start Apache on the Web Server**
+**Step 3: Confirm that Apache is running on the Web Server by executing the command `sudo systemctl status httpd`**
 
 ![Alt text](Images/wp-images9.png)
 
@@ -371,8 +187,6 @@ sudo systemctl start php-fpm
 sudo systemctl enable php-fpm
 setsebool -P httpd_execmem 1
 ```
-The referenced `epel-release` in the first command is for RHEL8, and since the Web Server is running on a RHEL7 OS, we'll need to download and install a compatible `epel-release`
-
 ![Alt text](Images/wp-images10.png)
 
 ![Alt text](Images/wp-images11.png)
@@ -381,25 +195,13 @@ The referenced `epel-release` in the first command is for RHEL8, and since the W
 
 ![Alt text](Images/wp-images13.png)
 
-The `yum-utils` packaged is already installed:
-
 ![Alt text](Images/wp-images14.png)
-
-The `yum module` packages referenced in the commands are for RHEL8, so they are not relevant in this case.
-
-PHP packages have already been installed in the last step.
-
-The `php-gd` package is installed below:
-
-![Alt text](Images/wp-images15.png)
-
-![Alt text](Images/wp-images16.png)
 
 **Step 5: Restart Apache on the Web Server**
 
 ![Alt text](Images/wp-images17.png)
 
-**Step 6: Download the WordPress package and copy it to the `/var/www/html` directory**
+**Step 6: Download the WordPress package, unpack it, and copy it to the `/var/www/html` directory on the Web Server**
 
 Run these series of commands:
 ```
@@ -409,7 +211,7 @@ sudo wget http://wordpress.org/latest.tar.gz
 sudo tar xzvf latest.tar.gz
 sudo rm -rf latest.tar.gz
 cp wordpress/wp-config-sample.php wordpress/wp-config.php
-cp -R wordpress /var/www/html/
+cp -R wordpress/. /var/www/html/
 ```
 ![Alt text](Images/wp-images18.png)
 
@@ -418,6 +220,8 @@ cp -R wordpress /var/www/html/
 ![Alt text](Images/wp-images20.png)
 
 ![Alt text](Images/wp-images21.png)
+
+![Alt text](Images/wp-images21-1.png)
 
 **Step 7: Configure SELinux Policies**
 
@@ -429,9 +233,9 @@ Run the following commands to setup SELinux Policies:
 ```
 ![Alt text](Images/wp-images22.png)
 
-## Installing MySQL on the Database Server
+## Installing MySQL on the Web Server and Database Server
 
-**Step 1: To install MySQL on the database server, run the following commands**
+**Step 1: To install MySQL on both the Web Server and the Database Server, run the following commands**
 
 ```
 sudo yum update
@@ -446,53 +250,50 @@ sudo yum install mysql-server
 
 ![Alt text](Images/wp-images26.png)
 
-**Step 2: Verify that the MySQL service is up and running**
+![Alt text](Images/wp-images26-1.png)
+
+![Alt text](Images/wp-images26-2.png)
+
+**Step 2: Verify that the MySQL service is up and running on both the Web Server and the Database Server**
 
 ![Alt text](Images/wp-images27.png)
 
-It's not running, so we need to run the `sudo systemctl start mysqld` command to start the service and use the `sudo systemctl enable mysqld` to give it automatic startup at boot time.
-
-![Alt text](Images/wp-images28.png)
-
-![Alt text](Images/wp-images29.png)
+![Alt text](Images/wp-images27-1.png)
 
 ## Configuring the Connection Between the Database and WordPress
 
-**Step 1: It's important to run a security script on the MySQL server installation to remove insecure default settings and lockdown access to the database management system. The command to run to set the MySQL password of this installation is `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '********.***'`. For security purposes, the actual password is hidden in asterisks.**
+**Step 1: It's important to run a security script on the MySQL server installation on the Database Server to remove insecure default settings and lockdown access to the database management system**
+
+![Alt text](Images/db_creation1.png)
 
 ![Alt text](Images/db_creation2.png)
 
+![Alt text](Images/db_creation3.png)
+
 **Step 2: Then run these commands sequentially**
 ```
-sudo mysql
+sudo mysql -u root -p
 CREATE DATABASE wordpress;
-CREATE USER `myuser`@`<Web-Server-Private-IP-Address>` IDENTIFIED BY 'mypass';
-GRANT ALL ON wordpress.* TO 'myuser'@'<Web-Server-Private-IP-Address>';
+CREATE USER 'mydbuser'@'%' IDENTIFIED WITH mysql_native_password BY '**********';
+GRANT ALL PRIVILEGES ON *.* TO 'mydbuser'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 SHOW DATABASES;
 exit
 ```
-![Alt text](Images/db_creation1.png)
-
-![Alt text](Images/db_creation4-5.png)
-
-![Alt text](Images/db_creation6.png)
+![Alt text](Images/db_creation4.png)
 
 **Step 3: Configure WordPress to Connect to Remote Database**
 
-**Hint:** It's important to open up MySQL port 3306 on the Database Server. Access should be granted ONLY from the Web Server's IP Address. Specify the source as /32.
-
-To do this, we run the following commands on the Database Server
+**Hint:** It's important to open up MySQL port 3306 on the Database Server. To do this, we run the following commands on the Database Server
 
 ```
-firewall-cmd --permanent --zone=public --add-rich-rule='
- rule family="ipv4"
- source address="10.19.0.79/32"
- port protocol="tcp" port="3306" accept'
+sudo firewall-cmd --zone=public --permanent --add-port=3306/tcp
+sudo firewall-cmd --zone=public --permanent --add-service=mysql
+
 ```
 ![Alt text](Images/db_firewall1.png)
 
-**Step 4: Reload the firewall rules to apply changes by running the command ``**
+**Step 4: Reload the firewall rules to apply the changes by running the command `sudo firewall-cmd --reload`**
 
 ![Alt text](Images/db_firewall2.png)
 
@@ -500,19 +301,62 @@ firewall-cmd --permanent --zone=public --add-rich-rule='
 
 ![Alt text](Images/db_firewall3.png)
 
-**Step 6: Install `mysql-client` on the Web Server and confirm that we can connect to the Database Server by using the `mysql-client` command**
+**Step 6: Set the Bind Address on the Database Server by editing the database configuration file (`my.cnf`) in `/etc`, running the command `sudo vi /etc/my.cnf`**
+
+![Alt text](Images/db_firewall4-0.png)
+
+The below entries are added to the file:
+
+![Alt text](Images/db_firewall4.png)
+
+**Step 7: Restart the `mysqld service` for the changes to take effect by running the command `sudo systemctl restart mysqld`**
+
+![Alt text](Images/db_firewall5.png)
+
+## Configuring the Web Server to Connect to the Database Server
+
+**Step 1: Edit the `wp-config.php` file on the Web Server and populate it with the relevant details which are the `DB_NAME, DB_USER, DB_PASSWORD, and DB_HOST` settings**
 
 ![Alt text](Images/db_client1.png)
 
 ![Alt text](Images/db_client2.png)
 
+**Step 2: Restart the `httpd` service by running the command `sudo systemctl restart httpd`**
+
 ![Alt text](Images/db_client3.png)
+
+**Step 3: Rename the Apache welcome page**
 
 ![Alt text](Images/db_client4.png)
 
-**Step 7: Connect to the Database Server from the Web Server by running the command `sudo mysql -u admin -p -h <DB-Server-Private-IP-address>`, where `admin` is the database user created earlier and `<DB-Server-Private-IP-address>` is the Private IP address of the database server.**
+**Step 4: Connect to the Database Server from the Web Server by running the command `sudo mysql -u 'user' -p -h <DB-Server-Private-IP-address>`, where `user` is the database user created earlier and `<DB-Server-Private-IP-address>` is the Private IP address of the database server.**
 
 ![Alt text](Images/db_client5.png)
+
+From the above, it's clear that the Web Server can access the database hosted on the Database Server.
+
+**Step 5: Let's run a query from the Web Server database client to the Database Server**
+
+![Alt text](Images/db_client6.png)
+
+**Step 6: Enable inbound rules for TCP port 80 on the Web Server**
+
+![Alt text](Images/db_client7.png)
+
+**Step 7: Access WordPress through the browser on the Web Server**
+
+![Alt text](Images/wp-page1.png)
+
+![Alt text](Images/wp-page2.png)
+
+![Alt text](Images/wp-page3.png)
+
+![Alt text](Images/wp-page4.png)
+
+![Alt text](Images/wp-page5.png)
+
+![Alt text](Images/wp-page6.png)
+
 
 
 
