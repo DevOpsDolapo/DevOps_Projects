@@ -29,7 +29,7 @@ The tooling components in this project will be running on the following infrastr
 
 3. **Database Server**: Ubuntu 20.04 + MySQL
 
-4. **Storage (NFS) Server**: Red Hat Enterprise Linux 8
+4. **Storage (NFS) Server**: Red Hat Enterprise Linux 8 + NFS Server
 
 5. **Programming Language**: PHP
 
@@ -39,6 +39,71 @@ The diagram below shows a pictorial representation of the 3-tier architecture se
 
 ![Alt text](Images/3-tier-architecture_for_tooling_website.png)
 
-The diagram above shows three (3) Web Servers sharing a common Database while at the same time having access to a Network File System (NFS) Server as a shared file storage. Even though the NFS is situated on a completely separate hardware, it acts as a local file system through which the Web Servers have access to the same files.
+The diagram above shows three (3) Web Servers sharing a common Database while at the same time having access to a Network File System (NFS) Server as a shared file storage. Even though the NFS is situated on a completely separate hardware, it acts as a local file system through which the Web Servers can access the same files.
 
+Our setup for this project includes three (3) Web Servers running on RHEL8, One (1) Storage Server running on RHEL8 with NFS Server installed, and one (1) Ubuntu Server (ubuntu 20.04) with MySQL installed, which is our Database Server. The diagram below shows the required systems:
+
+![Alt text](Images/vms-tooling.png)
+
+### Implementing a Website using NFS for the Backend File Storage
+
+To prepare our NFS Server for the tooling solution, we'd need to do the following:
+
+**Step 1: Create three (3) Virtual Hard Disks of 10GiB each named xvdf.vdi, xvdg.vdi, and xvdh.vdi in the Hard Disk Selector panel of Oracle VM VirtualBox Manager**
+
+![Alt text](Images/nfs-server1.png)
+
+![Alt text](Images/nfs-server2.png)
+
+![Alt text](Images/nfs-server3.png)
+
+**Step 2: Add the Virtual Hard Disks that were created in the last step to the NFS Server Virtual Machine**
+
+![Alt text](Images/nfs-server4.png)
+
+**Step 3: Launch the NFS Server machine**
+
+![Alt text](Images/nfs-server.png)
+
+**Step 4: Configure LVM on the NFS Server**
+
+- Run the `lsblk` command to check the block devices attached to the NFS Server (NFS001)**
+
+![Alt text](Images/nfs-server5.png)
+
+- Use the `df -h` command to see all mounts and free space on the Server
+
+![Alt text](Images/nfs-server6.png)
+
+- Create a single partition on each of the three (3) disks using the `gdisk` utility
+
+![Alt text](Images/nfs-server7.png)
+
+![Alt text](Images/nfs-server8.png)
+
+![Alt text](Images/nfs-server9.png)
+
+- Use the `lsblk` command to view the newly-configured partitions on the disks
+
+![Alt text](Images/nfs-server10.png)
+
+- Run `sudo lvmdiskscan` command to check for available partitions
+
+![Alt text](Images/nfs-server11.png)
+
+- Mark each of the three partitions as Physical Volumes (PVs) to be used by LVM by running the command `sudo pvcreate /dev/partition`
+
+![Alt text](Images/nfs-server12.png)
+
+- Confirm that the PVs have been created by running the command `sudo pvs`
+
+![Alt text](Images/nfs-server13.png)
+
+- Add all 3 Physical Volumes (PVs) to a Volume Group (VG) named `webdata-vg` by running the command `sudo vgcreate webdata-vg /dev/sdb1 /dev/sdc1 /dev/sdd1`
+
+![Alt text](Images/nfs-server14.png)
+
+- Check if the VG has been successfully created, by running the command `sudo vgs`
+
+![Alt text](Images/nfs-server15.png)
 
