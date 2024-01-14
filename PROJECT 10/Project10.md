@@ -158,3 +158,8 @@ sudo systemctl start nfs-server.service
 sudo systemctl enable nfs-server.service
 sudo systemctl status nfs-server.service
 ```
+![Alt text](Images/nfs-server26.png)
+
+![Alt text](Images/nfs-server27.png)
+
+![Alt text](Images/nfs-server28.png)
