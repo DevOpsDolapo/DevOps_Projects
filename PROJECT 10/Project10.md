@@ -356,7 +356,7 @@ sudo setsebool -P httpd_execmem 1
 
 ![Alt text](Images/wb-server24.png)
 
-**For WebServer03:**
+**For WebServer003:**
 
 ![Alt text](Images/wb-server25.png)
 
@@ -373,6 +373,22 @@ sudo setsebool -P httpd_execmem 1
 ![Alt text](Images/wb-server31.png)
 
 ![Alt text](Images/wb-server32.png)
+
+**Step 5: Confirm that the Apache files and directories are available in the Web Servers in the `/var/www` directory, and in the NFS Server in `/mnt/apps`**
+
+![Alt text](Images/wb-server33.png)
+
+**On WebServer02:**
+
+![Alt text](Images/wb-server34.png)
+
+**On WebServer03:**
+
+![Alt text](Images/wb-server35.png)
+
+**On NFS Server:**
+
+![Alt text](Images/wb-server36.png)
 
 
 
