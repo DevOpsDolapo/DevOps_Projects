@@ -279,11 +279,11 @@ To install and configure a MySQL DBMS on our Database Server to work with the re
 
   ![Alt text](Images/wb-server2.png)
 
-  For WebServer002:
+  **For WebServer002:**
 
   ![Alt text](Images/wb-server3.png)
 
-  For WebServer003:
+  **For WebServer003:**
 
   ![Alt text](Images/wb-server4.png)
 
@@ -293,13 +293,87 @@ To install and configure a MySQL DBMS on our Database Server to work with the re
 
   ![Alt text](Images/wb-server6.png)
 
-  For WebServer002:
+  **For WebServer002:**
 
   ![Alt text](Images/wb-server7.png)
   
-  For WebServer003:
+  **For WebServer003:**
 
   ![Alt text](Images/wb-server8.png)
+
+  **Step 4: Install Apache and PHP**
+
+  Run the block of code below on the Web Servers to install Apache and PHP on them
+
+  ```
+  sudo yum install httpd -y
+
+sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+
+sudo yum module reset php
+
+sudo yum install php php-opcache php-gd php-curl php-mysqlnd
+
+sudo systemctl start php-fpm
+
+sudo systemctl enable php-fpm
+
+sudo systemctl status php-fpm
+
+sudo setsebool -P httpd_execmem 1
+  ```
+![Alt text](Images/wb-server9.png)
+
+![Alt text](Images/wb-server10.png)
+
+![Alt text](Images/wb-server11.png)
+
+![Alt text](Images/wb-server12.png)
+
+![Alt text](Images/wb-server13.png)
+
+![Alt text](Images/wb-server14.png)
+
+![Alt text](Images/wb-server15.png)
+
+![Alt text](Images/wb-server16.png)
+
+**For WebServer002:**
+
+![Alt text](Images/wb-server17.png)
+
+![Alt text](Images/wb-server18.png)
+
+![Alt text](Images/wb-server19.png)
+
+![Alt text](Images/wb-server20.png)
+
+![Alt text](Images/wb-server21.png)
+
+![Alt text](Images/wb-server22.png)
+
+![Alt text](Images/wb-server23.png)
+
+![Alt text](Images/wb-server24.png)
+
+**For WebServer03:**
+
+![Alt text](Images/wb-server25.png)
+
+![Alt text](Images/wb-server26.png)
+
+![Alt text](Images/wb-server27.png)
+
+![Alt text](Images/wb-server28.png)
+
+![Alt text](Images/wb-server29.png)
+
+![Alt text](Images/wb-server30.png)
+
+![Alt text](Images/wb-server31.png)
+
+![Alt text](Images/wb-server32.png)
+
 
 
 
