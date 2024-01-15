@@ -201,3 +201,34 @@ sudo vi /etc/exports
 - Save the changes to the file, then run the following command `sudo exportfs -arv`
 
 ![Alt text](Images/nfs-server34.png)
+
+- Check which ports are being used by NFS by running the command `rpcinfo -p | grep nfs`
+
+![Alt text](Images/nfs-server35.png)
+
+- Open the above ports by adding firewall rules to allow the NFS Server to be accessible from the clients. It's important to open ports `TCP 111`, `UDP 111`, and `UDP 2049`, in addition to `TCP 2049`. The steps to do this are as follows:
+
+    - Create a new zone to accommodate this configuration by running the command `sudo firewall-cmd --new-zone=special --permanent`, and reload the firewall confirguration by running `sudo firewall-cmd --reload`
+
+    ![Alt text](Images/nfs-server36.png)
+
+    - Add the source ip/cidr to the firewall rule by running the command `sudo firewall-cmd --zone=special --permanent --add-source=10.19.0.0/24`
+
+    ![Alt text](Images/nfs-server37.png)
+
+    - Add the various ports to the firewall rule by running the `sudo firewall-cmd --zone=special --permanent --add-port=111/tcp` and other commands accordingly.
+
+    ![Alt text](Images/nfs-server38.png)
+
+    - Reload the firewall confirguration by running `sudo firewall-cmd --reload`
+
+    ![Alt text](Images/nfs-server39.png)
+
+    - Check if our new zone is now active with the rules in place by running the command `sudo firewall-cmd --zone=special --list-all`
+
+    ![Alt text](Images/nfs-server40.png)
+
+    
+
+
+
