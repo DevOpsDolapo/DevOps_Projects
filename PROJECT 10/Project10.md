@@ -390,6 +390,28 @@ sudo setsebool -P httpd_execmem 1
 
 ![Alt text](Images/wb-server36.png)
 
+**Step 6: Mount the `/mnt/logs` directory from the NFS Server on the `/var/log/httpd` directory of the Web Servers**
+
+![Alt text](Images/wb-server37.png)
+
+**On WebServer02:**
+
+![Alt text](Images/wb-server38.png)
+
+**On WebServer03:**
+
+![Alt text](Images/wb-server39.png)
+
+- Add the change to `fstab` to ensure that it is persistent and will stay after reboot
+
+![Alt text](Images/wb-server40.png)
+
+![Alt text](Images/wb-server41.png)
+
+![Alt text](Images/wb-server42.png)
+
+
+
 
 
 
