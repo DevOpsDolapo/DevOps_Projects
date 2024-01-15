@@ -228,6 +228,87 @@ sudo vi /etc/exports
 
     ![Alt text](Images/nfs-server40.png)
 
+
+### Configuring a Backend Database as Part of the 3-Tier Architecture
+
+To install and configure a MySQL DBMS on our Database Server to work with the remote Web Servers, we need to do the following:
+
+**Step 1: Install MySQL Server on the Database Server**
+
+- First thing to do is to update the Ubuntu DB Server by running the `sudo apt update` command
+
+![Alt text](Images/db-server.png)
+
+- Then we can run the `sudo apt install mysql-server -y` command
+
+![Alt text](Images/db-server1.png)
+
+![Alt text](Images/db-server2.png)
+
+*Step 2: Create a database and name it `tooling`
+
+![Alt text](Images/db-server3.png)
+
+*Step 3: Create a database user and name it `webaccess` and grant it permission to the `tooling` database to do anything only from the webservers `subnet cidr` 
+
+![Alt text](Images/db-server4.png)
+
+ - Confirm that the database has been created
+
+ ![Alt text](Images/db-server5.png)
+
+ ### Preparing the Web Servers
+
+ We need to ensure that the Web Servers can share the same content from our shared storage solutions namely the NFS Server and the MySQL database. For storing the shared files to be used by the Web Servers, we'll use the NFS Server and mount the logical volume created earlier `lv-apps` to `/var/www` where Apache stores files that it serves to users.
+
+ In this setup, our Web Servers are `stateless` - we can remove them or add new ones at anytime without affecting the integrity of the data on the NFS or in the database.
+
+ Our steps are as follows:
+
+ **Step 1: Configure the NFS Client on the Web Servers**
+
+ - Install the NFS client on the Web Servers by running the command `sudo yum install nfs-utils nfs4-acl-tools -y`
+
+ ![Alt text](Images/wb-server.png)
+
+ **Step 2: Create the `/var/www` directory and mount the `/mnt/apps` directory from the NFS Server on it**
+
+  ![Alt text](Images/wb-server1.png)
+
+  **Step 3: Verify that the NFS was mounted by running the `df -h` command
+
+  ![Alt text](Images/wb-server2.png)
+
+  For WebServer002:
+
+  ![Alt text](Images/wb-server3.png)
+
+  For WebServer003:
+
+  ![Alt text](Images/wb-server4.png)
+
+  **Step 3: Add the changes to `fstab` to ensure that they are persistent and will stay after reboot by running the command `sudo vi /etc/fstab` and adding the following line `<NFS-Server-Private-IP-Address>:/mnt/apps /var/www nfs defaults 0 0`**
+
+  ![Alt text](Images/wb-server5.png)
+
+  ![Alt text](Images/wb-server6.png)
+
+  For WebServer002:
+
+  ![Alt text](Images/wb-server7.png)
+  
+  For WebServer003:
+
+  ![Alt text](Images/wb-server8.png)
+
+
+
+
+
+
+
+
+
     
 
 
