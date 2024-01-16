@@ -145,9 +145,19 @@ sudo mkdir /mnt/opt
 ```
 sudo mount /dev/webdata-vg/lv-apps /mnt/apps
 sudo mount /dev/webdata-vg/lv-logs /mnt/logs
-sudo mount /dev/webdata-vg/lv-opt /mnt/opt
+sudo mount /dev/webdata-vg/lv-opt /mnt/opt'
 ```
 ![Alt text](Images/nfs-server25.png)
+
+- Add the changes to `fstab` to ensure that they are persistent and will stay after reboot by running the command `sudo vi /etc/fstab`**
+
+  - Run the `blkid` command to get the `UUID` and filesystem type of the Logical Volumes
+
+  ![Alt text](Images/nfs-server41.png)
+
+  - Populate `fstab` with the necessary details
+
+  ![Alt text](Images/nfs-server42.png)
 
 **Step 5: Install NFS Server, configure it to start on reboot, and ensure it is up and running**
 
