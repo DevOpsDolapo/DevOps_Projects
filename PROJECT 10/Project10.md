@@ -388,11 +388,11 @@ sudo setsebool -P httpd_execmem 1
 
 ![Alt text](Images/wb-server33.png)
 
-**On WebServer02:**
+**On WebServer002:**
 
 ![Alt text](Images/wb-server34.png)
 
-**On WebServer03:**
+**On WebServer003:**
 
 ![Alt text](Images/wb-server35.png)
 
@@ -404,11 +404,11 @@ sudo setsebool -P httpd_execmem 1
 
 ![Alt text](Images/wb-server37.png)
 
-**On WebServer02:**
+**On WebServer002:**
 
 ![Alt text](Images/wb-server38.png)
 
-**On WebServer03:**
+**On WebServer003:**
 
 ![Alt text](Images/wb-server39.png)
 
@@ -419,6 +419,103 @@ sudo setsebool -P httpd_execmem 1
 ![Alt text](Images/wb-server41.png)
 
 ![Alt text](Images/wb-server42.png)
+
+**Step 7: Fork the tooling source code from the `Darey.io Github account` to my Github account**
+
+Here are the steps I followed to fork the `tooling` repository to my Github account from `Darey.io Github account`:
+
+- Navigate to the tooling source code on Github
+
+![Alt text](Images/wb-server43.png)
+
+- Click on `fork` at the top of the page and that takes you to the `Create a new fork` page. Click on `Create fork` at the bottom of the page
+
+![Alt text](Images/wb-server44.png)
+
+![Alt text](Images/wb-server45.png)
+
+- A copy of the `tooling` repository is added to my Github account
+
+![Alt text](Images/wb-server46.png)
+
+**Step 8: Download the `tooling` repository from my Github account to WebServer001**
+
+- Install the `git` package in the Web Server by running the command `sudo yum install git`
+
+![Alt text](Images/wb-server48.png)
+
+![Alt text](Images/wb-server49.png)
+
+- Type `git init` to initialize an empty git repository
+
+![Alt text](Images/wb-server50.png)
+
+- Click on `Code` at the top of the Github account page and copy the repository link
+
+![Alt text](Images/wb-server47.png)
+
+- Type `git clone` in the Web Server terminal and paste the copied link
+
+![Alt text](Images/wb-server51.png)
+
+**Step 9: Deploy the tooling website's code to WebServer001 by copying the contents of the `html` file from the repository to `/var/www/html` on the Web Server**
+
+![Alt text](Images/wb-server52.png)
+
+**Step 10: Open `Port 80` on the WebServers by running the command `sudo firewall-cmd --zone=public --permanent --add-port=80/tcp` and reload the firewall by running the command `sudo firewall-cmd --reload`**
+
+![Alt text](Images/wb-server53.png)
+
+![Alt text](Images/wb-server54.png)
+
+**For WebServer002:**
+
+![Alt text](Images/wb-server59.png)
+
+**For WebServer003:**
+
+![Alt text](Images/wb-server60.png)
+
+**Step 11: Disable SELinux by running the command `sudo setenforce 0`. Make the change permanent by editing the selinux config file using the command `sudo vi /etc/sysconfig/selinux`. Set `SELINUX=disabled`**
+
+![Alt text](Images/wb-server55.png)
+
+![Alt text](Images/wb-server56.png)
+
+![Alt text](Images/wb-server57.png)
+
+**For WebServer002:**
+
+![Alt text](Images/wb-server61.png)
+
+![Alt text](Images/wb-server62.png)
+
+**For WebServer003:**
+
+![Alt text](Images/wb-server63.png)
+
+![Alt text](Images/wb-server64.png)
+
+**Step 12: Start the `httpd` service and enable it to run automatically at boot time**
+
+![Alt text](Images/wb-server58.png)
+
+**For WebServer002:**
+
+![Alt text](Images/wb-server65.png)
+
+**For WebServer003:**
+
+![Alt text](Images/wb-server66.png)
+
+
+
+
+
+
+
+
+
 
 
 
