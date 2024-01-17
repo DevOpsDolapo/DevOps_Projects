@@ -218,7 +218,7 @@ sudo vi /etc/exports
 
 - Open the above ports by adding firewall rules to allow the NFS Server to be accessible from the clients. It's important to open ports `TCP 111`, `UDP 111`, and `UDP 2049`, in addition to `TCP 2049`. The steps to do this are as follows:
 
-    - Create a new zone to accommodate this configuration by running the command `sudo firewall-cmd --new-zone=special --permanent`, and reload the firewall confirguration by running `sudo firewall-cmd --reload`
+    - Create a new zone to accommodate this configuration by running the command `sudo firewall-cmd --new-zone=special --permanent`, and reload the firewall configuration by running `sudo firewall-cmd --reload`
 
     ![Alt text](Images/nfs-server36.png)
 
@@ -266,6 +266,20 @@ To install and configure a MySQL DBMS on our Database Server to work with the re
  - Confirm that the database has been created
 
  ![Alt text](Images/db-server5.png)
+
+ - Open up Port 3306 on the database
+
+ ![Alt text](Images/db-server6.png)
+
+ - Change the `bind-address` and `mysqlx-bind-address` in the `/etc/mysql/mysql.conf.d/mysqld.cnf` to from `127.0.0.1` to `0.0.0.0`
+
+ ![Alt text](Images/db-server7.png)
+
+ ![Alt text](Images/db-server8.png)
+
+ - Restart the `mysql` service by running the command `sudo systemctl restart mysql`
+
+ ![Alt text](Images/db-server9.png)
 
  ### Preparing the Web Servers
 
@@ -462,9 +476,11 @@ Here are the steps I followed to fork the `tooling` repository to my Github acco
 
 ![Alt text](Images/wb-server52.png)
 
-**Step 10: Open `Port 80` on the WebServers by running the command `sudo firewall-cmd --zone=public --permanent --add-port=80/tcp` and reload the firewall by running the command `sudo firewall-cmd --reload`**
+**Step 10: Open `Port 80` and the `http` service on the WebServers by running the command `sudo firewall-cmd --zone=public --permanent --add-port=80/tcp` and `sudo firewall-cmd --zone=public --permanent --add-service=http`. Reload the firewall by running the command `sudo firewall-cmd --reload`**
 
 ![Alt text](Images/wb-server53.png)
+
+![Alt text](Images/wb-server53-1.png)
 
 ![Alt text](Images/wb-server54.png)
 
@@ -507,6 +523,50 @@ Here are the steps I followed to fork the `tooling` repository to my Github acco
 **For WebServer003:**
 
 ![Alt text](Images/wb-server66.png)
+
+**Step 13: Update the website's configuration to connect to the database by editing the `functions.php` file in `/var/www/html`. Edit the `connect to database` section and fill out the necessary details with the `database user`, `database password`, `database name` and `private IP address for the database server`**
+
+![Alt text](Images/wb-server67.png)
+
+![Alt text](Images/wb-server68.png)
+
+**Step 14: Install MySQL client on the Web Servers**
+
+![Alt text](Images/wb-server69.png)
+
+![Alt text](Images/wb-server70.png)
+
+**For WebServer002:**
+
+![Alt text](Images/wb-server71.png)
+
+![Alt text](Images/wb-server72.png)
+
+**For WebServer003:**
+
+![Alt text](Images/wb-server73.png)
+
+![Alt text](Images/wb-server74.png)
+
+**Step 14: Apply the `tooling-db.sql` script to the database by running the command `mysql -h <database-private-ip> -u <db-username> -p <database> < tooling-db.sql`. Ensure you run this command in the `tooling` folder downloaded earlier**
+
+![Alt text](Images/wb-server75.png)
+
+**Step 15: Create a new admin user in MySQL with the username `twuser` and password `mypassword1` using the set of codes below:**
+
+```
+sudo mysql
+show databases;
+use tooling;
+select * from users;
+INSERT INTO users (id, username, password, email, user_type, status) VALUES ('2', 'twuser', 'mypassword1', 'convergys1406@gmail.com', 'admin', '1');
+```
+![Alt text](Images/wb-server76.png)
+
+![Alt text](Images/wb-server77.png)
+
+
+
 
 
 
