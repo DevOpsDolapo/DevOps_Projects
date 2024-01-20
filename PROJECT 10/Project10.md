@@ -145,9 +145,19 @@ sudo mkdir /mnt/opt
 ```
 sudo mount /dev/webdata-vg/lv-apps /mnt/apps
 sudo mount /dev/webdata-vg/lv-logs /mnt/logs
-sudo mount /dev/webdata-vg/lv-opt /mnt/opt
+sudo mount /dev/webdata-vg/lv-opt /mnt/opt'
 ```
 ![Alt text](Images/nfs-server25.png)
+
+- Add the changes to `fstab` to ensure that they are persistent and will stay after reboot by running the command `sudo vi /etc/fstab`**
+
+  - Run the `blkid` command to get the `UUID` and filesystem type of the Logical Volumes
+
+  ![Alt text](Images/nfs-server41.png)
+
+  - Populate `fstab` with the necessary details
+
+  ![Alt text](Images/nfs-server42.png)
 
 **Step 5: Install NFS Server, configure it to start on reboot, and ensure it is up and running**
 
@@ -201,3 +211,384 @@ sudo vi /etc/exports
 - Save the changes to the file, then run the following command `sudo exportfs -arv`
 
 ![Alt text](Images/nfs-server34.png)
+
+- Check which ports are being used by NFS by running the command `rpcinfo -p | grep nfs`
+
+![Alt text](Images/nfs-server35.png)
+
+- Open the above ports by adding firewall rules to allow the NFS Server to be accessible from the clients. It's important to open ports `TCP 111`, `UDP 111`, and `UDP 2049`, in addition to `TCP 2049`. The steps to do this are as follows:
+
+    - Create a new zone to accommodate this configuration by running the command `sudo firewall-cmd --new-zone=special --permanent`, and reload the firewall configuration by running `sudo firewall-cmd --reload`
+
+    ![Alt text](Images/nfs-server36.png)
+
+    - Add the source ip/cidr to the firewall rule by running the command `sudo firewall-cmd --zone=special --permanent --add-source=10.19.0.0/24`
+
+    ![Alt text](Images/nfs-server37.png)
+
+    - Add the various ports to the firewall rule by running the `sudo firewall-cmd --zone=special --permanent --add-port=111/tcp` and other commands accordingly.
+
+    ![Alt text](Images/nfs-server38.png)
+
+    - Reload the firewall confirguration by running `sudo firewall-cmd --reload`
+
+    ![Alt text](Images/nfs-server39.png)
+
+    - Check if our new zone is now active with the rules in place by running the command `sudo firewall-cmd --zone=special --list-all`
+
+    ![Alt text](Images/nfs-server40.png)
+
+
+### Configuring a Backend Database as Part of the 3-Tier Architecture
+
+To install and configure a MySQL DBMS on our Database Server to work with the remote Web Servers, we need to do the following:
+
+**Step 1: Install MySQL Server on the Database Server**
+
+- First thing to do is to update the Ubuntu DB Server by running the `sudo apt update` command
+
+![Alt text](Images/db-server.png)
+
+- Then we can run the `sudo apt install mysql-server -y` command
+
+![Alt text](Images/db-server1.png)
+
+![Alt text](Images/db-server2.png)
+
+*Step 2: Create a database and name it `tooling`
+
+![Alt text](Images/db-server3.png)
+
+*Step 3: Create a database user and name it `webaccess` and grant it permission to the `tooling` database to do anything only from the webservers `subnet cidr` 
+
+![Alt text](Images/db-server4.png)
+
+ - Confirm that the database has been created
+
+ ![Alt text](Images/db-server5.png)
+
+ - Open up Port 3306 on the database
+
+ ![Alt text](Images/db-server6.png)
+
+ - Change the `bind-address` and `mysqlx-bind-address` in the `/etc/mysql/mysql.conf.d/mysqld.cnf` to from `127.0.0.1` to `0.0.0.0`
+
+ ![Alt text](Images/db-server7.png)
+
+ ![Alt text](Images/db-server8.png)
+
+ - Restart the `mysql` service by running the command `sudo systemctl restart mysql`
+
+ ![Alt text](Images/db-server9.png)
+
+ ### Preparing the Web Servers
+
+ We need to ensure that the Web Servers can share the same content from our shared storage solutions namely the NFS Server and the MySQL database. For storing the shared files to be used by the Web Servers, we'll use the NFS Server and mount the logical volume created earlier `lv-apps` to `/var/www` where Apache stores files that it serves to users.
+
+ In this setup, our Web Servers are `stateless` - we can remove them or add new ones at anytime without affecting the integrity of the data on the NFS or in the database.
+
+ Our steps are as follows:
+
+ **Step 1: Configure the NFS Client on the Web Servers**
+
+ - Install the NFS client on the Web Servers by running the command `sudo yum install nfs-utils nfs4-acl-tools -y`
+
+ ![Alt text](Images/wb-server.png)
+
+ **Step 2: Create the `/var/www` directory and mount the `/mnt/apps` directory from the NFS Server on it**
+
+  ![Alt text](Images/wb-server1.png)
+
+  **Step 3: Verify that the NFS was mounted by running the `df -h` command
+
+  ![Alt text](Images/wb-server2.png)
+
+  **For WebServer002:**
+
+  ![Alt text](Images/wb-server3.png)
+
+  **For WebServer003:**
+
+  ![Alt text](Images/wb-server4.png)
+
+  **Step 3: Add the changes to `fstab` to ensure that they are persistent and will stay after reboot by running the command `sudo vi /etc/fstab` and adding the following line `<NFS-Server-Private-IP-Address>:/mnt/apps /var/www nfs defaults 0 0`**
+
+  ![Alt text](Images/wb-server5.png)
+
+  ![Alt text](Images/wb-server6.png)
+
+  **For WebServer002:**
+
+  ![Alt text](Images/wb-server7.png)
+  
+  **For WebServer003:**
+
+  ![Alt text](Images/wb-server8.png)
+
+  **Step 4: Install Apache and PHP**
+
+  Run the block of code below on the Web Servers to install Apache and PHP on them
+
+  ```
+  sudo yum install httpd -y
+
+sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+
+sudo yum module reset php
+
+sudo yum install php php-opcache php-gd php-curl php-mysqlnd
+
+sudo systemctl start php-fpm
+
+sudo systemctl enable php-fpm
+
+sudo systemctl status php-fpm
+
+sudo setsebool -P httpd_execmem 1
+  ```
+![Alt text](Images/wb-server9.png)
+
+![Alt text](Images/wb-server10.png)
+
+![Alt text](Images/wb-server11.png)
+
+![Alt text](Images/wb-server12.png)
+
+![Alt text](Images/wb-server13.png)
+
+![Alt text](Images/wb-server14.png)
+
+![Alt text](Images/wb-server15.png)
+
+![Alt text](Images/wb-server16.png)
+
+**For WebServer002:**
+
+![Alt text](Images/wb-server17.png)
+
+![Alt text](Images/wb-server18.png)
+
+![Alt text](Images/wb-server19.png)
+
+![Alt text](Images/wb-server20.png)
+
+![Alt text](Images/wb-server21.png)
+
+![Alt text](Images/wb-server22.png)
+
+![Alt text](Images/wb-server23.png)
+
+![Alt text](Images/wb-server24.png)
+
+**For WebServer003:**
+
+![Alt text](Images/wb-server25.png)
+
+![Alt text](Images/wb-server26.png)
+
+![Alt text](Images/wb-server27.png)
+
+![Alt text](Images/wb-server28.png)
+
+![Alt text](Images/wb-server29.png)
+
+![Alt text](Images/wb-server30.png)
+
+![Alt text](Images/wb-server31.png)
+
+![Alt text](Images/wb-server32.png)
+
+**Step 5: Confirm that the Apache files and directories are available in the Web Servers in the `/var/www` directory, and in the NFS Server in `/mnt/apps`**
+
+![Alt text](Images/wb-server33.png)
+
+**On WebServer002:**
+
+![Alt text](Images/wb-server34.png)
+
+**On WebServer003:**
+
+![Alt text](Images/wb-server35.png)
+
+**On NFS Server:**
+
+![Alt text](Images/wb-server36.png)
+
+**Step 6: Mount the `/mnt/logs` directory from the NFS Server on the `/var/log/httpd` directory of the Web Servers**
+
+![Alt text](Images/wb-server37.png)
+
+**On WebServer002:**
+
+![Alt text](Images/wb-server38.png)
+
+**On WebServer003:**
+
+![Alt text](Images/wb-server39.png)
+
+- Add the change to `fstab` to ensure that it is persistent and will stay after reboot
+
+![Alt text](Images/wb-server40.png)
+
+![Alt text](Images/wb-server41.png)
+
+![Alt text](Images/wb-server42.png)
+
+**Step 7: Fork the tooling source code from the `Darey.io Github account` to my Github account**
+
+Here are the steps I followed to fork the `tooling` repository to my Github account from `Darey.io Github account`:
+
+- Navigate to the tooling source code on Github
+
+![Alt text](Images/wb-server43.png)
+
+- Click on `fork` at the top of the page and that takes you to the `Create a new fork` page. Click on `Create fork` at the bottom of the page
+
+![Alt text](Images/wb-server44.png)
+
+![Alt text](Images/wb-server45.png)
+
+- A copy of the `tooling` repository is added to my Github account
+
+![Alt text](Images/wb-server46.png)
+
+**Step 8: Download the `tooling` repository from my Github account to WebServer001**
+
+- Install the `git` package in the Web Server by running the command `sudo yum install git`
+
+![Alt text](Images/wb-server48.png)
+
+![Alt text](Images/wb-server49.png)
+
+- Type `git init` to initialize an empty git repository
+
+![Alt text](Images/wb-server50.png)
+
+- Click on `Code` at the top of the Github account page and copy the repository link
+
+![Alt text](Images/wb-server47.png)
+
+- Type `git clone` in the Web Server terminal and paste the copied link
+
+![Alt text](Images/wb-server51.png)
+
+**Step 9: Deploy the tooling website's code to WebServer001 by copying the contents of the `html` file from the repository to `/var/www/html` on the Web Server**
+
+![Alt text](Images/wb-server52.png)
+
+**Step 10: Open `Port 80` and the `http` service on the WebServers by running the command `sudo firewall-cmd --zone=public --permanent --add-port=80/tcp` and `sudo firewall-cmd --zone=public --permanent --add-service=http`. Reload the firewall by running the command `sudo firewall-cmd --reload`**
+
+![Alt text](Images/wb-server53.png)
+
+![Alt text](Images/wb-server53-1.png)
+
+![Alt text](Images/wb-server54.png)
+
+**For WebServer002:**
+
+![Alt text](Images/wb-server59.png)
+
+**For WebServer003:**
+
+![Alt text](Images/wb-server60.png)
+
+**Step 11: Disable SELinux by running the command `sudo setenforce 0`. Make the change permanent by editing the selinux config file using the command `sudo vi /etc/sysconfig/selinux`. Set `SELINUX=disabled`**
+
+![Alt text](Images/wb-server55.png)
+
+![Alt text](Images/wb-server56.png)
+
+![Alt text](Images/wb-server57.png)
+
+**For WebServer002:**
+
+![Alt text](Images/wb-server61.png)
+
+![Alt text](Images/wb-server62.png)
+
+**For WebServer003:**
+
+![Alt text](Images/wb-server63.png)
+
+![Alt text](Images/wb-server64.png)
+
+**Step 12: Start the `httpd` service and enable it to run automatically at boot time**
+
+![Alt text](Images/wb-server58.png)
+
+**For WebServer002:**
+
+![Alt text](Images/wb-server65.png)
+
+**For WebServer003:**
+
+![Alt text](Images/wb-server66.png)
+
+**Step 13: Update the website's configuration to connect to the database by editing the `functions.php` file in `/var/www/html`. Edit the `connect to database` section and fill out the necessary details with the `database user`, `database password`, `database name` and `private IP address for the database server`**
+
+![Alt text](Images/wb-server67.png)
+
+![Alt text](Images/wb-server68.png)
+
+**Step 14: Install MySQL client on the Web Servers**
+
+![Alt text](Images/wb-server69.png)
+
+![Alt text](Images/wb-server70.png)
+
+**For WebServer002:**
+
+![Alt text](Images/wb-server71.png)
+
+![Alt text](Images/wb-server72.png)
+
+**For WebServer003:**
+
+![Alt text](Images/wb-server73.png)
+
+![Alt text](Images/wb-server74.png)
+
+**Step 14: Apply the `tooling-db.sql` script to the database by running the command `mysql -h <database-private-ip> -u <db-username> -p <database> < tooling-db.sql`. Ensure you run this command in the `tooling` folder downloaded earlier**
+
+![Alt text](Images/wb-server75.png)
+
+**Step 15: Create a new admin user in MySQL with the username `twuser` and password `mypassword1` using the set of codes below:**
+
+```
+sudo mysql
+show databases;
+use tooling;
+select * from users;
+INSERT INTO users (id, username, password, email, user_type, status) VALUES ('2', 'twuser', 'mypassword1', 'convergys1406@gmail.com', 'admin', '1');
+```
+![Alt text](Images/wb-server76.png)
+
+![Alt text](Images/wb-server77.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+

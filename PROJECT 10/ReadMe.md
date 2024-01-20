@@ -11,6 +11,6 @@ This project will cover the following:
 
 - Implementing a Website using NFS for the Backend File Storage
 
-- Configuring a Backend Database as Part of 3-Tier Architecture
+- Configuring a Backend Database as Part of a 3-Tier Architecture
 
 - Preparing the Web Servers
