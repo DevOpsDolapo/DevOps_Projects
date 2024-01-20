@@ -482,9 +482,13 @@ Here are the steps I followed to fork the `tooling` repository to my Github acco
 
 ![Alt text](Images/wb-server51.png)
 
-**Step 9: Deploy the tooling website's code to WebServer001 by copying the contents of the `html` file from the repository to `/var/www/html` on the Web Server**
+**Step 9: Deploy the tooling website's code to WebServer001 by copying the contents of the `html` file from the repository to `/var/www/html` on the Web Server. The same content will exist on WebServer002 and WebServer003**
 
 ![Alt text](Images/wb-server52.png)
+
+![Alt text](Images/wb-server52-1.png)
+
+![Alt text](Images/wb-server52-2.png)
 
 **Step 10: Open `Port 80` and the `http` service on the WebServers by running the command `sudo firewall-cmd --zone=public --permanent --add-port=80/tcp` and `sudo firewall-cmd --zone=public --permanent --add-service=http`. Reload the firewall by running the command `sudo firewall-cmd --reload`**
 
@@ -522,7 +526,13 @@ Here are the steps I followed to fork the `tooling` repository to my Github acco
 
 ![Alt text](Images/wb-server64.png)
 
-**Step 12: Start the `httpd` service and enable it to run automatically at boot time**
+**Step 12: Edit the `httpd.conf` file under the `ServerName` section with the Web Server IP Address to allow the httpd service recognise it**
+
+  ![Alt text](Images/wb-server58-1.png)
+
+  ![Alt text](Images/wb-server58-2.png)
+
+  - Start the `httpd` service and enable it to run automatically at boot time**
 
 ![Alt text](Images/wb-server58.png)
 
@@ -562,13 +572,33 @@ Here are the steps I followed to fork the `tooling` repository to my Github acco
 
 ![Alt text](Images/wb-server75.png)
 
-**Step 15: Open the tooling website from the browser and login with the necessary credentials `user: admin` and `password: admin`**
+**Step 15: Open the tooling website from the browser using WebServer001 IP Address and login with the necessary credentials `user: admin` and `password: admin`**
 
 ![Alt text](Images/tw-pic.png)
 
 ![Alt text](Images/tw-pic1.png)
 
 ![Alt text](Images/tw-pic2.png)
+
+**For WebServer002**
+
+Open the tooling website from the browser using WebServer002 IP Address and login with the necessary credentials `user: admin` and `password: admin`**
+
+![Alt text](Images/tw-pic3.png)
+
+![Alt text](Images/tw-pic4.png)
+
+![Alt text](Images/tw-pic5.png)
+
+**For WebServer003**
+
+Open the tooling website from the browser using WebServer003 IP Address and login with the necessary credentials `user: admin` and `password: admin`**
+
+![Alt text](Images/tw-pic6.png)
+
+![Alt text](Images/tw-pic7.png)
+
+![Alt text](Images/tw-pic8.png)
 
 
 
