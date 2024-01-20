@@ -35,7 +35,7 @@ The tooling components in this project will be running on the following infrastr
 
 6. **Code Repository**: [GitHub](https://github.com/darey-io/tooling)
 
-The diagram below shows a pictorial representation of the 3-tier architecture setup for this project:
+The diagram below shows a pictorial representation of the 3-tier architecture setup for the DevOps Tooling Website project:
 
 ![Alt text](Images/3-tier-architecture_for_tooling_website.png)
 
