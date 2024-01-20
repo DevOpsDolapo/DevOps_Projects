@@ -570,15 +570,9 @@ Here are the steps I followed to fork the `tooling` repository to my Github acco
 
 ![Alt text](Images/tw-pic2.png)
 
-**Step 16: Create a new user on the website, so we don't log in with the admin credentials every time by clicking on `add user`**
 
-![Alt text](Images/tw-pic3.png)
 
-**Step 17: Fill in the necessary details and click on `Create user`**
 
-![Alt text](Images/tw-pic4.png)
-
-![Alt text](Images/tw-pic5.png)
 
 
 
