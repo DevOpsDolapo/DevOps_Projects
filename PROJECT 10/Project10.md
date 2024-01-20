@@ -259,9 +259,19 @@ To install and configure a MySQL DBMS on our Database Server to work with the re
 
 ![Alt text](Images/db-server3.png)
 
-*Step 3: Create a database user and name it `webaccess` and grant it permission to the `tooling` database to do anything only from the webservers `subnet cidr` 
+*Step 3: Create a database user and name it `webaccess` and grant it permission to the `tooling` database to do anything only from the webservers `subnet cidr`.
+
+***Note: Since this version of RHEL8 supplies MySQL8 and PHP7.2. The command to create the use is slightly different. This is necessary to take care of any compatibility issues.***
 
 ![Alt text](Images/db-server4.png)
+
+![Alt text](Images/db-server4-1.png)
+
+![Alt text](Images/db-server4-2.png)
+
+- Also, change the default authentication plugin by adding `default-authentication-plugin=mysql_native_password` to the SQL configuration file at `/etc/mysql/mysql.conf.d/mysqld.cnf`
+
+![Alt text](Images/db-server4-3.png)
 
  - Confirm that the database has been created
 
@@ -552,18 +562,27 @@ Here are the steps I followed to fork the `tooling` repository to my Github acco
 
 ![Alt text](Images/wb-server75.png)
 
-**Step 15: Create a new admin user in MySQL with the username `twuser` and password `mypassword1` using the set of codes below:**
+**Step 15: Open the tooling website from the browser and login with the necessary credentials `user: admin` and `password: admin`**
 
-```
-sudo mysql
-show databases;
-use tooling;
-select * from users;
-INSERT INTO users (id, username, password, email, user_type, status) VALUES ('2', 'twuser', 'mypassword1', 'convergys1406@gmail.com', 'admin', '1');
-```
-![Alt text](Images/wb-server76.png)
+![Alt text](Images/tw-pic.png)
 
-![Alt text](Images/wb-server77.png)
+![Alt text](Images/tw-pic1.png)
+
+![Alt text](Images/tw-pic2.png)
+
+**Step 16: Create a new user on the website, so we don't log in with the admin credentials every time by clicking on `add user`**
+
+![Alt text](Images/tw-pic3.png)
+
+**Step 17: Fill in the necessary details and click on `Create user`**
+
+![Alt text](Images/tw-pic4.png)
+
+![Alt text](Images/tw-pic5.png)
+
+
+
+
 
 
 
