@@ -35,7 +35,7 @@ The tooling components in this project will be running on the following infrastr
 
 6. **Code Repository**: [GitHub](https://github.com/darey-io/tooling)
 
-The diagram below shows a pictorial representation of the 3-tier architecture setup for this project:
+The diagram below shows a pictorial representation of the 3-tier architecture setup for the DevOps Tooling Website project:
 
 ![Alt text](Images/3-tier-architecture_for_tooling_website.png)
 
@@ -259,9 +259,19 @@ To install and configure a MySQL DBMS on our Database Server to work with the re
 
 ![Alt text](Images/db-server3.png)
 
-*Step 3: Create a database user and name it `webaccess` and grant it permission to the `tooling` database to do anything only from the webservers `subnet cidr` 
+*Step 3: Create a database user and name it `webaccess` and grant it permission to the `tooling` database to do anything only from the webservers `subnet cidr`.
+
+***Note: Since this version of RHEL8 supplies MySQL8 and PHP7.2. The command to create the use is slightly different. This is necessary to take care of any compatibility issues.***
 
 ![Alt text](Images/db-server4.png)
+
+![Alt text](Images/db-server4-1.png)
+
+![Alt text](Images/db-server4-2.png)
+
+- Also, change the default authentication plugin by adding `default-authentication-plugin=mysql_native_password` to the SQL configuration file at `/etc/mysql/mysql.conf.d/mysqld.cnf`
+
+![Alt text](Images/db-server4-3.png)
 
  - Confirm that the database has been created
 
@@ -472,9 +482,13 @@ Here are the steps I followed to fork the `tooling` repository to my Github acco
 
 ![Alt text](Images/wb-server51.png)
 
-**Step 9: Deploy the tooling website's code to WebServer001 by copying the contents of the `html` file from the repository to `/var/www/html` on the Web Server**
+**Step 9: Deploy the tooling website's code to WebServer001 by copying the contents of the `html` file from the repository to `/var/www/html` on the Web Server. The same content will exist on WebServer002 and WebServer003**
 
 ![Alt text](Images/wb-server52.png)
+
+![Alt text](Images/wb-server52-1.png)
+
+![Alt text](Images/wb-server52-2.png)
 
 **Step 10: Open `Port 80` and the `http` service on the WebServers by running the command `sudo firewall-cmd --zone=public --permanent --add-port=80/tcp` and `sudo firewall-cmd --zone=public --permanent --add-service=http`. Reload the firewall by running the command `sudo firewall-cmd --reload`**
 
@@ -512,7 +526,13 @@ Here are the steps I followed to fork the `tooling` repository to my Github acco
 
 ![Alt text](Images/wb-server64.png)
 
-**Step 12: Start the `httpd` service and enable it to run automatically at boot time**
+**Step 12: Edit the `httpd.conf` file under the `ServerName` section with the Web Server IP Address to allow the httpd service recognise it**
+
+  ![Alt text](Images/wb-server58-1.png)
+
+  ![Alt text](Images/wb-server58-2.png)
+
+  - Start the `httpd` service and enable it to run automatically at boot time**
 
 ![Alt text](Images/wb-server58.png)
 
@@ -552,18 +572,41 @@ Here are the steps I followed to fork the `tooling` repository to my Github acco
 
 ![Alt text](Images/wb-server75.png)
 
-**Step 15: Create a new admin user in MySQL with the username `twuser` and password `mypassword1` using the set of codes below:**
+**Step 15: Open the tooling website from the browser using WebServer001 IP Address and login with the necessary credentials `user: admin` and `password: admin`**
 
-```
-sudo mysql
-show databases;
-use tooling;
-select * from users;
-INSERT INTO users (id, username, password, email, user_type, status) VALUES ('2', 'twuser', 'mypassword1', 'convergys1406@gmail.com', 'admin', '1');
-```
-![Alt text](Images/wb-server76.png)
+![Alt text](Images/tw-pic.png)
 
-![Alt text](Images/wb-server77.png)
+![Alt text](Images/tw-pic1.png)
+
+![Alt text](Images/tw-pic2.png)
+
+**For WebServer002**
+
+Open the tooling website from the browser using WebServer002 IP Address and login with the necessary credentials `user: admin` and `password: admin`**
+
+![Alt text](Images/tw-pic3.png)
+
+![Alt text](Images/tw-pic4.png)
+
+![Alt text](Images/tw-pic5.png)
+
+**For WebServer003**
+
+Open the tooling website from the browser using WebServer003 IP Address and login with the necessary credentials `user: admin` and `password: admin`**
+
+![Alt text](Images/tw-pic6.png)
+
+![Alt text](Images/tw-pic7.png)
+
+![Alt text](Images/tw-pic8.png)
+
+
+
+
+
+
+
+
 
 
 
