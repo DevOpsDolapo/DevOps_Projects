@@ -7,7 +7,7 @@ The aim of this project is to automate our processes from Project 7 to 10 where 
 
 This project will cover the following:
 
-- Installing and Configuring a Jenkins/Ansible Server as a Bastion Host
+- Installing and Configuring a Jenkins/Ansible Server
 
 - Preparing a Development Environment using Visual Studio Code
 
