@@ -9,7 +9,17 @@ This project will cover the following:
 
 - Installing and Configuring a Jenkins/Ansible Server as a Bastion Host
 
-- 
+- Preparing a Development Environment using Visual Studio Code
+
+- Carrying Out Ansible Development
+
+- Setting Up and Ansible Inventory
+
+- Creating a Common Playbook
+
+- Updating GIT with the Latest Code
+
+- Running Ansible Tests
 
 
 
