@@ -35,9 +35,9 @@ Our architecture will be running on the following infrastructure components:
 
 ### Installing and Configuring a Jenkins/Ansible Server
 
-With our Jenkins/Ansible server already installed and running Ubuntu 20.04, we can go ahead to install Jenkins on our server as follows:
+With our Jenkins/Ansible server (JAN001) already installed and running Ubuntu 20.04, we can go ahead to install Jenkins on the server as follows:
 
-**Step 1: Install Java  - a key requirement for Jenkins to work**
+**Step 1: Install Java - a key requirement for Jenkins to work**
 
 - Install the latest Java JRE by running the command `sudo apt install default-jre`
 
@@ -53,7 +53,7 @@ With our Jenkins/Ansible server already installed and running Ubuntu 20.04, we c
 
 **Step 2: Install Jenkins**
 
-To install Jenkins on the Jenkins/Ansible Server, we'll need to do the following:
+To install Jenkins on `JAN001`, we'll need to do the following:
 
 - Add the Jenkins repository key to the server by running the command `curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null`
 
@@ -83,13 +83,13 @@ To install Jenkins on the Jenkins/Ansible Server, we'll need to do the following
 
 ![Alt text](Images/jen-server10.png)
 
-- Set up the Jenkins installation by visiting Jenkins using the domain name or IP address of the Jenkins/Ansible Server along with port `8080`. For our server this will be `10.19.0.119:8080` This takes us to the `Unlock Jenkins` page
+- Set up the Jenkins installation by visiting Jenkins using the domain name or IP address of `JAN001` along with port `8080`. For our server this will be `10.19.0.119:8080` This takes us to the `Unlock Jenkins` page
 
 ![Alt text](Images/jen-server11-0.png)
 
 ![Alt text](Images/jen-server11.png)
 
-- Display the password in the Jenkins/Ansible Server's terminal by running the command `sudo cat /var/lib/jenkins/secrets/initialAdminPassword` 
+- Display the password in `JAN001` terminal by running the command `sudo cat /var/lib/jenkins/secrets/initialAdminPassword` 
 
 ![Alt text](Images/jen-server12.png)
 
@@ -118,6 +118,8 @@ To install Jenkins on the Jenkins/Ansible Server, we'll need to do the following
 - Click on `Start using Jenkins` to visit the main Jenkins dashboard:
 
 ![Alt text](Images/jen-server19.png)
+
+**Step 3: Install and Configure Ansible on the Jenkins/Ansible Server**
 
 
 
