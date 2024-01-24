@@ -103,15 +103,21 @@ To install Jenkins on the Jenkins/Ansible Server, we'll need to do the following
 
 ![Alt text](Images/jen-server15.png)
 
-- Once the installation is complete, create the first administrative user by filling out the form with the necessary details
+- Once the installation is complete, create the first administrative user by filling out the form with the necessary details, then click on `save and continue`
 
+![Alt text](Images/jen-server16.png)
 
+- On the `Instance Configuration` page, confirm the preferred URL for your Jenkins instance. Use either the domain name for your server or the server’s IP address, then click on `Save and Finish`
 
-- On the `Instance Configuration` page, confirm the preferred URL for your Jenkins instance. Use either the domain name for your server or the server’s IP address:
+![Alt text](Images/jen-server17.png)
 
+- After confirming the appropriate information, click Save and Finish. You’ll receive a confirmation page confirming that “Jenkins is Ready!”
 
+![Alt text](Images/jen-server18.png)
 
-- After confirming the appropriate information, click Save and Finish. You’ll receive a confirmation page confirming that “Jenkins is Ready!”:
+- Click on `Start using Jenkins` to visit the main Jenkins dashboard:
+
+![Alt text](Images/jen-server19.png)
 
 
 
