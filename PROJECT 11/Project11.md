@@ -41,6 +41,33 @@ With our Jenkins/Ansible server already installed and running Ubuntu 20.04, we c
 
 - Install the latest Java JRE by running the command `sudo apt install default-jre`
 
+![Alt text](Images/jen-server.png)
+
+![Alt text](Images/jen-server1.png)
+
+- To compile and run some specific Java-based software, we'll need to install Java JDK by running the command `sudo apt install default-jdk`
+
+![Alt text](Images/jen-server2.png)
+
+![Alt text](Images/jen-server3.png)
+
+- To install Jenkins, we'll need to do the following:
+
+    - Add the Jenkins repository key to the server by running the command `curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null`
+
+    ![Alt text](Images/jen-server4.png)
+
+    - Append the Debian package repository address to the Server's `sources.list` by running the command `echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null`
+
+    ![Alt text](Images/jen-server5.png)
+
+    - Update the server by running the `sudo apt update` command
+
+    ![Alt text](Images/jen-server6.png)
+
+    - Install Jenkins by running the `sudo apt install jenkins` command
+
+    ![Alt text](Images/jen-server7.png)
 
 
 
