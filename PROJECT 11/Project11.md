@@ -121,6 +121,30 @@ To install Jenkins on `JAN001`, we'll need to do the following:
 
 **Step 3: Install and Configure Ansible on the Jenkins/Ansible Server**
 
+- Create a new repository called `ansible-config-mgt` in GitHub
+
+    - Login into GitHub and go to the repositories page. Click on `New` on the right hand side of the page.
+
+    ![Alt text](Images/github-repo.png)
+
+    - On the `Create a new repository` page, fill in all the details for the new repository and click on `Create repository` at the bottom of the page
+
+    ![Alt text](Images/github-repo1.png)
+
+    ![Alt text](Images/github-repo2.png)
+
+- Install Ansible in `JAN001` by running the commands `sudo apt update` and `sudo apt install ansible`
+
+![Alt text](Images/jen-server20.png)
+
+![Alt text](Images/jen-server21.png)
+
+![Alt text](Images/jen-server22.png)
+
+
+
+
+
 
 
 
