@@ -141,6 +141,10 @@ To install Jenkins on `JAN001`, we'll need to do the following:
 
 ![Alt text](Images/jen-server22.png)
 
+- Check the version of Ansible running by using the command `ansible --version`
+
+![Alt text](Images/jen-server23.png)
+
 
 
 
