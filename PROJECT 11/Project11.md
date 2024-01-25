@@ -145,6 +145,79 @@ To install Jenkins on `JAN001`, we'll need to do the following:
 
 ![Alt text](Images/jen-server23.png)
 
+**Step 4: Configure a Jenkins Build Job to Archive the `ansible-config-mgt` Repository**
+
+This job archives the repository content every time a change is made to it.
+
+- Create a new Freestyle project `ansible` in Jenkins and connect it to the `ansible-config-mgt` repository
+
+    - Login into Jenkins and click on `Create a job` in the dashboard
+
+    ![Alt text](Images/jen-server24.png)
+
+    - Fill in the name of the job - `ansible`, select on `Freestyle project` and click on `OK`
+
+    ![Alt text](Images/jen-server25.png)
+
+    - Copy the URL of the `ansible-config-mgt` repository from GitHub, then select `Git` under `Source Code Management` in Jenkins and add the URL
+
+    ![Alt text](Images/jen-server27.png)
+
+    ![Alt text](Images/jen-server26.png)
+
+    - Under the `Branches to build` section, change the Branch specifier to `main`
+
+    ![Alt text](Images/jen-server26-1.png)
+
+    - Scroll down to `Build Triggers` and click on `GitHub hook trigger for GITScm polling`
+
+    ![Alt text](Images/jen-server28.png)
+
+    - Configure a webhook in GitHub and set the webhook to trigger the `ansible` build. Go to `Settings`, then `Webhooks` and `Add webhook`
+
+    ![Alt text](Images/jen-server29.png)
+
+    ![Alt text](Images/jen-server30.png)
+
+    ![Alt text](Images/jen-server31.png)
+
+    - Under `Payload URL` option, add the `<jenkins_url:8080/github-webhook`. Set `Content type` to `application/json`, and click on `Add webhook` at the bottom of the page.
+
+    *Note: Ensure that the Jenkins Server is reachable from the internet, otherwise it won't be reachable from GitHub, which is a public service, and the attempt to add a webhook will fail. Thus open up `Port 80` on the Jenkins/Ansible Server by running the command `sudo ufw allow 80`*
+
+    ![Alt text](Images/jen-server32.png)
+
+    - Configure a post-build job to archive all artifacts by clicking on `Archive the artifacts` under the `Post-build actions` section. Enter `**` in the field then `Apply` and `Save`
+
+    ![Alt text](Images/jen-server33.png)
+
+    - Click on `Build Now` to confirm if the setup is fine and check `Build History` for the result of our first build. 
+
+    ![Alt text](Images/jen-server34.png)
+
+    ![Alt text](Images/jen-server35.png)
+
+    - Test the setup by making some changes in the `README.md` file in the `main` branch on GitHub and ensure that the build starts automatically in Jenkins and the file is saved in the `` folder
+
+    
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
