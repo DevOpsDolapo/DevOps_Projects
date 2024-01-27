@@ -277,7 +277,7 @@ To begin Ansible development, go through the following steps:
 
 ![Alt text](Images/jen-server53.png)
 
-- Create an inventory file for each environment (Development, Staging, Testing, and Production) named `dev`, `staging`, `uat`, and `prod` using the .ini extension.
+- Create an inventory file for each environment (Development, Staging, Testing, and Production) named `dev`, `staging`, `uat`, and `prod`
 
 ![Alt text](Images/jen-server54.png)
 
