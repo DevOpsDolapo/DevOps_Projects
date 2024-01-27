@@ -199,11 +199,15 @@ This job archives the repository content every time a change is made to it.
 
     ![Alt text](Images/jen-server35.png)
 
-    - Test the setup by making some changes in the `README.md` file in the `main` branch on GitHub and ensure that the build starts automatically in Jenkins and the file is saved in the `` folder
+    - Test the setup by making some changes in the `README.md` file in the `main` branch on GitHub and ensure that the build starts automatically in Jenkins and the file is saved in the `/var/lib/jenkins/jobs/ansible/builds/<build_number>/archive/` folder
 
     ![Alt text](Images/jen-server36.png)
 
+    ![Alt text](Images/jen-server35-1.png)
+
     ![Alt text](Images/jen-server37.png)
+
+    ![Alt text](Images/jen-server38.png)
 
     
 
