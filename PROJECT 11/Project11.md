@@ -261,6 +261,26 @@ To begin Ansible development, go through the following steps:
 
 ![Alt text](Images/jen-server48.png)
 
+- Create a directory `playbooks` in the new branch by running the `mkdir playbooks` command. The directory will be used to store the playbook files.
+
+![Alt text](Images/jen-server49.png)
+
+- Create a directory `inventory` to organise the hosts, by running the `mkdir inventory` command
+
+![Alt text](Images/jen-server51.png)
+
+![Alt text](Images/jen-server50.png)
+
+![Alt text](Images/jen-server52.png)
+
+- Create a playbook named `common.yml` inside the `playbooks` folder
+
+![Alt text](Images/jen-server53.png)
+
+- Create an inventory file for each environment (Development, Staging, Testing, and Production) named `dev`, `staging`, `uat`, and `prod` using the .ini extension.
+
+![Alt text](Images/jen-server54.png)
+
 
 
 
