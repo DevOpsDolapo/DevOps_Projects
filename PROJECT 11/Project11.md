@@ -33,7 +33,7 @@ Our architecture will be running on the following infrastructure components:
 
 8. **Visual Studio Code**: For preparing our development environment
 
-### Installing and Configuring a Jenkins/Ansible Server
+### Install and Configure a Jenkins/Ansible Server
 
 With our Jenkins/Ansible server (JAN001) already installed and running Ubuntu 20.04, we can go ahead to install Jenkins on the server as follows:
 
@@ -209,7 +209,7 @@ This job archives the repository content every time a change is made to it.
 
     ![Alt text](Images/jen-server38.png)
 
-### Preparing a Development Environment using Visual Studio Code
+### Prepare a Development Environment using Visual Studio Code
 
 Visual Studio Code is an integrated development environment (IDE) or Source Code Editor for writing and debugging code. To prepare our development environment using VS Code, we need to first install VS Code, then follow these steps:
 
@@ -261,11 +261,11 @@ To begin Ansible development, go through the following steps:
 
 ![Alt text](Images/jen-server48.png)
 
-- Create a directory `playbooks` in the new branch by running the `mkdir playbooks` command. The directory will be used to store the playbook files.
+**Step 3: Create a directory `playbooks` in the new branch by running the `mkdir playbooks` command. The directory will be used to store the playbook files**
 
 ![Alt text](Images/jen-server49.png)
 
-- Create a directory `inventory` to organise the hosts, by running the `mkdir inventory` command
+**Step 4: Create a directory `inventory` to organise the hosts, by running the `mkdir inventory` command**
 
 ![Alt text](Images/jen-server51.png)
 
@@ -273,13 +273,19 @@ To begin Ansible development, go through the following steps:
 
 ![Alt text](Images/jen-server52.png)
 
-- Create a playbook named `common.yml` inside the `playbooks` folder
+**Step 5: Create a playbook named `common.yml` inside the `playbooks` folder**
 
 ![Alt text](Images/jen-server53.png)
 
-- Create an inventory file for each environment (Development, Staging, Testing, and Production) named `dev`, `staging`, `uat`, and `prod`
+**Step 6: Create an inventory file for each environment (Development, Staging, Testing, and Production) named `dev`, `staging`, `uat`, and `prod`**
 
 ![Alt text](Images/jen-server54.png)
+
+### Set Up an Ansible Inventory
+
+
+
+
 
 
 
