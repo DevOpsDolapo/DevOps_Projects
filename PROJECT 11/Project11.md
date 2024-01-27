@@ -199,7 +199,7 @@ This job archives the repository content every time a change is made to it.
 
     ![Alt text](Images/jen-server35.png)
 
-    - Test the setup by making some changes in the `README.md` file in the `main` branch on GitHub and ensure that the build starts automatically in Jenkins and the file is saved in the `/var/lib/jenkins/jobs/ansible/builds/<build_number>/archive/` folder
+    - Test the setup by making some changes in the `README.md` file in the `main` branch on GitHub and ensure that the build starts automatically in Jenkins and the file is saved in the `/var/lib/jenkins/jobs/ansible/builds/<build_number>/archive/` folder on `JAN001`
 
     ![Alt text](Images/jen-server36.png)
 
@@ -208,6 +208,68 @@ This job archives the repository content every time a change is made to it.
     ![Alt text](Images/jen-server37.png)
 
     ![Alt text](Images/jen-server38.png)
+
+### Preparing a Development Environment using Visual Studio Code
+
+Visual Studio Code is an integrated development environment (IDE) or Source Code Editor for writing and debugging code. To prepare our development environment using VS Code, we need to first install VS Code, then follow these steps:
+
+**Step 1: Install `Remote Development` extension in VS Code**
+
+- In VS Code, go to `Extensions` and search for `Remote Development`, then install it
+
+![Alt text](Images/jen-server40.png)
+
+- Clone the `ansible-config-mgt` repository from GitHub to JAN001 by running the command `git clone <ansible-config-mgt repo link>`
+
+![Alt text](Images/jen-server39.png)
+
+### Carry Out Ansible Development
+
+To begin Ansible development, go through the following steps:
+
+**Step 1: Clone the `ansible-config-mgt` repository from GitHub to VS Code**
+
+- Click on `Clone Repository` in VS Code. Then click on the `Clone from GitHub` drop down that shows up just under the search box at the top of VS Code
+
+![Alt text](Images/jen-server41.png)
+
+- Choose the repository you want to clone from the list
+
+![Alt text](Images/jen-server42.png)
+
+- Choose the repository location from the pop-up box
+
+![Alt text](Images/jen-server43.png)
+
+- The repository is cloned, and the system asks if you want to open it. Click Open
+
+![Alt text](Images/jen-server44.png)
+
+![Alt text](Images/jen-server45.png)
+
+**Step 2: Create a new branch that would be used to develop new features**
+
+- Go to the terminal on VS Code, and run the `git branch` command to confirm the current branch.
+
+![Alt text](Images/jen-server46.png)
+
+- Run `git status` to check the status of the current branch
+
+![Alt text](Images/jen-server47.png)
+
+- Run `git checkout -b <new branch name>` to create a new branch
+
+![Alt text](Images/jen-server48.png)
+
+
+
+
+
+
+
+
+
+
 
     
 
