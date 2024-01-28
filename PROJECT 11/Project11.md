@@ -199,7 +199,7 @@ This job archives the repository content every time a change is made to it.
 
     ![Alt text](Images/jen-server35.png)
 
-    - Test the setup by making some changes in the `README.md` file in the `main` branch on GitHub and ensure that the build starts automatically in Jenkins and the file is saved in the `/var/lib/jenkins/jobs/ansible/builds/<build_number>/archive/` folder on `JAN001`
+    - Test the setup by making some changes in the `README.md` file in the `main` branch on GitHub and ensure that the build starts automatically in Jenkins and the file is saved in the `/var/lib/jenkins/jobs/ansible/builds/<build_number>/archive/` directory on `JAN001`
 
     ![Alt text](Images/jen-server36.png)
 
@@ -301,7 +301,7 @@ ssh-add <path-to-private-key>
 
 ![Alt text](Images/jen-server57.png)
 
-*Step 3: Transfer the public key from `JAN001` to all the other servers in the setup using the `ssh-copy-id` command**
+**Step 3: Transfer the public key from `JAN001` to all the other servers in the setup using the `ssh-copy-id` command. This configures `passwordless ssh` from the `Jenkins/Ansible Server` to all the other servers** 
 
 - **For the LoadBalancer:**
 
@@ -334,6 +334,168 @@ ssh-add <path-to-private-key>
 ![Alt text](Images/jen-server62.png)
 
 ![Alt text](Images/jen-server62-1.png)
+
+**Step 4: Connect the `Jenkins/Ansible Server - JAN001` to VS Code**
+
+- Open the `Ansible-Config-Mgt` project on VS Code and navigate through `File > Open file` to the `ssh config` file at `C:/Users/Pumping!!!/.ssh/config`. This will open the config file in VS Code
+
+![Alt text](Images/jen-server63.png)
+
+- Fill in the necessary details in the config file
+```
+Host #Any generic name
+HostName #IP Address of the server we're trying to connect to
+User #Username of the server account
+ForwardAgent
+```
+- Save and click on the `Open a Remote Window` button at the bottom of the page
+
+![Alt text](Images/jen-server64.png)
+
+- From the pop-up, click on `Connect to host` and choose the name of the host you entered in the config file
+
+![Alt text](Images/jen-server65.png)
+
+- Choose the platform (OS) of the host you're trying to connect to
+
+![Alt text](Images/jen-server66.png)
+
+- Enter the user password and the system will connect
+
+![Alt text](Images/jen-server67.png)
+
+- Test if we can connect to one of the servers through `passwordless ssh`
+
+![Alt text](Images/jen-server68.png)
+
+**Step 5: Update the `inventory/dev.yml` file**
+
+- Edit the `dev.yml` file with the block of code below ensuring that the correct details are filled in
+
+```
+[nfs]
+<NFS-Server-Private-IP-Address> ansible_ssh_user=ec2-user
+
+[webservers]
+<Web-Server1-Private-IP-Address> ansible_ssh_user=ec2-user
+<Web-Server2-Private-IP-Address> ansible_ssh_user=ec2-user
+
+[db]
+<Database-Private-IP-Address> ansible_ssh_user=ec2-user 
+
+[lb]
+<Load-Balancer-Private-IP-Address> ansible_ssh_user=ubuntu
+```
+![Alt text](Images/jen-server69.png)
+
+### Create a Common Playbook
+
+We need to create a common playbook to give ansible instructions on the operations we want to perform on the servers in `dev.yml`. The multi-machine tasks in our playbook are common to systems within the infrastructure.
+
+- Update the `playbooks/common.yml` file with the follow block of code
+
+```
+---
+- name: update web, nfs and db servers
+  hosts: webservers, nfs, db
+  become: yes
+  tasks:
+    - name: ensure wireshark is at the latest version
+      yum:
+        name: wireshark
+        state: latest
+   
+
+- name: update LB server
+  hosts: lb
+  become: yes
+  tasks:
+    - name: Update apt repo
+      apt: 
+        update_cache: yes
+
+    - name: ensure wireshark is at the latest version
+      apt:
+        name: wireshark
+        state: latest
+
+```
+![Alt text](Images/jen-server70.png)
+
+### Update GIT with the Latest Code
+
+We need to push the recent changes we made locally to our `ansible-config-mgt` repository to GitHub
+
+- Using the block of code below use git commands to add, commit, and push the branch to GitHub
+
+```
+git status
+
+git add <selected files>
+
+git commit -m "commit message"
+```
+![Alt text](Images/jen-server71.png)
+
+- Create a Pull request for `prj-11-automate` on GitHub
+
+    - Go to the `ansible-config-mgt` repository on GitHub, then click on the button that says `Compare & pull request`
+
+    ![Alt text](Images/jen-server72.png)
+
+    - On the `Open a pull request` page, click on `Create a pull request` at the bottom of the page
+
+    ![Alt text](Images/jen-server73.png)
+
+    - Click on `Merge pull request` on the next page
+
+    ![Alt text](Images/jen-server74.png)
+
+    - Click on `Confirm merge`
+
+    ![Alt text](Images/jen-server75.png)
+
+    - We should get a notification saying our Pull request is successful
+
+    ![Alt text](Images/jen-server76.png)
+
+    - Checking on Jenkins to see if the changes made to our repository on VS Code is reflecting
+
+    ![Alt text](Images/jen-server77.png)
+
+    ![Alt text](Images/jen-server78.png)
+
+    - Further changes made to our files in the `ansible-config-mgt` repository on VS Code also reflect on Jenkins 
+
+    ![Alt text](Images/jen-server79.png)
+
+    ![Alt text](Images/jen-server80.png)
+
+    ![Alt text](Images/jen-server81.png)
+
+- Confirm if Jenkins has saved all the files (build artifacts) to the `/var/lib/jenkins/jobs/ansible/builds/<build_number>/archive/` directory on `JAN001`. We'll check in `Build 13` as shown in the last build on Jenkins web.
+
+![Alt text](Images/jen-server82.png)
+
+- Checkout from the current branch into the main branch and pull down all the changes into the main branch
+
+![Alt text](Images/jen-server83.png)
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
