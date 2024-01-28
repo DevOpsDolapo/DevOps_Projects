@@ -219,10 +219,6 @@ Visual Studio Code is an integrated development environment (IDE) or Source Code
 
 ![Alt text](Images/jen-server40.png)
 
-- Clone the `ansible-config-mgt` repository from GitHub to JAN001 by running the command `git clone <ansible-config-mgt repo link>`
-
-![Alt text](Images/jen-server39.png)
-
 ### Carry Out Ansible Development
 
 To begin Ansible development, go through the following steps:
@@ -480,6 +476,40 @@ git commit -m "commit message"
 - Checkout from the current branch into the main branch and pull down all the changes into the main branch
 
 ![Alt text](Images/jen-server83.png)
+
+### Run Ansible Tests
+
+Now we can run our first Ansible test by executing the `ansible-playbook` command to confirm that the playbook actually works. 
+
+- Clone the `ansible-config-mgt` repository from GitHub to JAN001 by running the command `git clone <ansible-config-mgt repo link>`
+
+![Alt text](Images/jen-server39.png)
+
+- Reconnect the `Jenkins/Ansible Server - JAN001` to VS Code
+
+- Change Directory to `ansible-config-mgt`
+
+![Alt text](Images/jen-server84.png)
+
+- Run the playbook using the command `ansible-playbook -i inventory/dev.yml playbooks/common.yml`
+
+![Alt text](Images/jen-server85.png)
+
+- Confirm that `wireshark` has been installed on the target servers
+
+![Alt text](Images/jen-server86.png)
+
+![Alt text](Images/jen-server87.png)
+
+![Alt text](Images/jen-server88.png)
+
+![Alt text](Images/jen-server89.png)
+
+![Alt text](Images/jen-server90.png)
+
+
+
+
 
 
 
