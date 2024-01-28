@@ -283,6 +283,63 @@ To begin Ansible development, go through the following steps:
 
 ### Set Up an Ansible Inventory
 
+An inventory is where we define the hosts and group of hosts where our playbook will be implementing its commands, tasks, and modules. By default, Ansible uses TCP port 22 so it has to `ssh` into our target servers from the `Jenkins/Ansible Server - JAN001`. For this to work, we'll need to implement the `ssh-agent` concept.
+
+**Step 1: Generate the ssh keypair by running the command `ssh-keygen` on `JAN001`**
+
+![Alt text](Images/jen-server55.png)
+
+**Step 2: Run the following block of code to setup `ssh-agent`**
+
+```
+eval `ssh-agent -s`
+ssh-add <path-to-private-key>
+```
+![Alt text](Images/jen-server56.png)
+
+- Confirm the key has been added by running the command `ssh-add -l`
+
+![Alt text](Images/jen-server57.png)
+
+*Step 3: Transfer the public key from `JAN001` to all the other servers in the setup using the `ssh-copy-id` command**
+
+- **For the LoadBalancer:**
+
+![Alt text](Images/jen-server58.png)
+
+- Confirm that the key has been added
+
+![Alt text](Images/jen-server58-1.png)
+
+- **For the Database Server:**
+
+![Alt text](Images/jen-server60.png)
+
+![Alt text](Images/jen-server60-1.png)
+
+- **For the NFS Server:**
+
+![Alt text](Images/jen-server59.png)
+
+![Alt text](Images/jen-server59-1.png)
+
+- **For WebServer001:**
+
+![Alt text](Images/jen-server61.png)
+
+![Alt text](Images/jen-server61-1.png)
+
+- **For WebServer002:**
+
+![Alt text](Images/jen-server62.png)
+
+![Alt text](Images/jen-server62-1.png)
+
+
+
+
+
+
 
 
 
