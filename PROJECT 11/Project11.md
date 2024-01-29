@@ -520,23 +520,24 @@ Now we can run our first Ansible test by executing the `ansible-playbook` comman
 Task to check firewall status on the servers. Created a playbook `firewall.yml` and populated with the following code on VS Code:
   ```
   ---
-- name: Check Firewall Status on WebServer001, WebServer002, NFSServer001, and DBServer001
+- name: Check Firewall Status on Web Servers, NFS Server, and Database Server
   hosts: webservers, nfs, db
   become: yes
   tasks:
-    - name: Check firewall status on RHEL servers 
+    - name: Check firewall status on RHEL servers
       command: "sudo systemctl status firewalld"
       register: firewall_status
 
     - name: Print firewall status
       debug:
         msg: "Firewall status on {{ inventory_hostname }} is {{ firewall_status.stdout }}"
-   
-- name: Check Firewall Status on LoadBalancer Server - LoadBal001
+
+
+- name: Check Firewall Status on LoadBalancer Server
   hosts: lb
   become: yes
   tasks:
-    - name: Check firewall status on Ubuntu server
+    - name: Check firewall status on Ubuntu Load Balancer server
       command: "sudo ufw status"
       register: firewall_status
 
