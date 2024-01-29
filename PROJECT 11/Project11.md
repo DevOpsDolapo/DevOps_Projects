@@ -145,6 +145,10 @@ To install Jenkins on `JAN001`, we'll need to do the following:
 
 ![Alt text](Images/jen-server23.png)
 
+At this stage, the setup looks like this:
+
+![Alt text](Images/ansible-automate.drawio.png)
+
 **Step 4: Configure a Jenkins Build Job to Archive the `ansible-config-mgt` Repository**
 
 This job archives the repository content every time a change is made to it.
@@ -476,6 +480,10 @@ git commit -m "commit message"
 - Checkout from the current branch into the main branch and pull down all the changes into the main branch
 
 ![Alt text](Images/jen-server83.png)
+
+The complete setup looks like this:
+
+![Alt text](Images/ansible-automate1.drawio.png)
 
 ### Run Ansible Tests
 
