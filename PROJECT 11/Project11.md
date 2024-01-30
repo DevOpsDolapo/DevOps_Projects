@@ -515,70 +515,73 @@ Now we can run our first Ansible test by executing the `ansible-playbook` comman
 
 ![Alt text](Images/jen-server90.png)
 
+### Optional Additional Ansible Task
+
+Task to check firewall status on the servers. Created a playbook `firewall.yml` and populated with the following code on VS Code:
+  ```
+  ---
+- name: Check Firewall Status on Web Servers, NFS Server, and Database Server
+  hosts: webservers, nfs, db
+  become: yes
+  tasks:
+    - name: Check firewall status on RHEL servers
+      command: "sudo systemctl status firewalld"
+      register: firewall_status
+
+    - name: Print firewall status
+      debug:
+        msg: "Firewall status on {{ inventory_hostname }} is {{ firewall_status.stdout }}"
+
+
+- name: Check Firewall Status on LoadBalancer Server
+  hosts: lb
+  become: yes
+  tasks:
+    - name: Check firewall status on Ubuntu Load Balancer server
+      command: "sudo ufw status"
+      register: firewall_status
+
+    - name: Print firewall status
+      debug:
+        msg: "Firewall status on {{ inventory_hostname }} is {{ firewall_status.stdout }}"
+  ```
+- Run the `git status` command to show recent updates to the repository
+
+![Alt text](Images/jen-server91.png)
+
+- Run `git add .` and `git commit -m` 
+
+![Alt text](Images/jen-server92.png)
+
+- Run `git push origin <branch>`
+
+![Alt text](Images/jen-server93.png)
+
+- Check on Jenkins to confirm build is successful
+
+![Alt text](Images/jen-server97.png)
+
+- Go to GitHub to process the `Pull Request`
+
+![Alt text](Images/jen-server94.png)
+
+- Pull Request is successfully merged
+
+![Alt text](Images/jen-server95.png)
+
+- Checkout from current branch into main branch
+
+![Alt text](Images/jen-server96.png)
+
+- Run the playbook command `ansible-playbook -i inventory/dev.yml playbooks/firewall.yml` in VS Code
+
+![Alt text](Images/jen-server98.png)
+
+![Alt text](Images/jen-server99.png)
+
+![Alt text](Images/jen-server100.png)
 
 
 
 
 
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
