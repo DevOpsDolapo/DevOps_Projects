@@ -288,6 +288,17 @@ We'll configure two (2) new Web Servers as UAT using a dedicated role to make ou
 
 ![Alt text](Images/refac44.png)
 
+### Commit and Test
+
+**Step 1: Commit the changes, create a Pull Request and merge them to the main branch, ensure the webhook triggers two consequent Jenkins jobs, they ran successfully and copied all the files to the Jenkins-Ansible server into /home/vboxuser/ansible-config-mgt/ directory.**
+
+
+**Step 2: Now run the playbook against your uat inventory**
+
+
+
+
+
 
 
 
