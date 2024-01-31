@@ -162,10 +162,6 @@ In our current Jenkins setup, every new change in the codes creates a separate d
 
 ![Alt text](Images/refac30.png)
 
-- Clone repository down to `JAN001`
-
-
-
 - Run `site.yml`against the `dev` servers by running the code
 
 ```
@@ -216,7 +212,7 @@ We'll configure two (2) new Web Servers as UAT using a dedicated role to make ou
 
 ![Alt text](Images/refac40.png)
 
-- Uncomment the roles_path in the `/etc/ansible/ansible.cfg` file, and provide a full path to your roles directory using `roles_path = /home/ubuntu/ansible-config-mgt/roles`, so Ansible knows where to find configured roles
+- Uncomment the roles_path in the `/etc/ansible/ansible.cfg` file, and provide a full path to your roles directory using `roles_path = /home/vboxuser/ansible-config-mgt/roles`, so Ansible knows where to find configured roles
 
 ![Alt text](Images/refac41.png)
 
@@ -290,8 +286,29 @@ We'll configure two (2) new Web Servers as UAT using a dedicated role to make ou
 
 ### Commit and Test
 
-**Step 1: Commit the changes, create a Pull Request and merge them to the main branch, ensure the webhook triggers two consequent Jenkins jobs, they ran successfully and copied all the files to the Jenkins-Ansible server into /home/vboxuser/ansible-config-mgt/ directory.**
+**Step 1: Commit the changes, create a Pull Request and merge them to the main branch, ensure the webhook triggers two consequent Jenkins jobs, they ran successfully and copied all the files to the Jenkins-Ansible server into /home/vboxuser/ansible-config-mgt/ directory**
 
+![Alt text](Images/refac45.png)
+
+![Alt text](Images/refac46.png)
+
+![Alt text](Images/refac47.png)
+
+- Create a Pull Request for `Refactor` on GitHub
+
+![Alt text](Images/refac48.png)
+
+![Alt text](Images/refac49.png)
+
+- Check on Jenkins to see if the jobs were triggered
+
+![Alt text](Images/refac50.png)
+
+![Alt text](Images/refac51.png)
+
+- Checkout from the current branch into the main branch and pull down all the changes into the main branch
+
+![Alt text](Images/refac52.png)
 
 **Step 2: Now run the playbook against your uat inventory**
 
