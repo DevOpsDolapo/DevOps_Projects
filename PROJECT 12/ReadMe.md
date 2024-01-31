@@ -9,7 +9,7 @@ This project will cover the following:
 
 - Improving Jenkins Pipeline To make it Neater
 - Refactoring Ansible Code by Importing other Playbooks
-- Configuring UAT Webservers with a Role Webserver
+- Configuring UAT Webservers with the Role Command
 - Referencing Webserver role
 - Committing and Testing
 

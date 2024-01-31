@@ -25,7 +25,7 @@ Our architecture will be running on the same infrastructure components as Projec
 
 9. **UAT Web Servers**: Red Hat Enterprise Linux 8
 
-### Improving Jenkins Pipeline To make it Neater
+### Improving Jenkins Pipeline To make it Better
 
 In our current Jenkins setup, every new change in the codes creates a separate directory which is not very convenient when we want to run some commands from one place. Besides, each subsequent change consumes space on the Jenkins server. We'll improve this setup by using the `Copy Artifact` plugin.
 
@@ -185,6 +185,16 @@ ansible-playbook -i inventory/dev.yml playbooks/site.yml
 ![Alt text](Images/refac36.png)
 
 ![Alt text](Images/refac37.png)
+
+### Configure UAT Webservers with the Role Command
+
+We'll configure two (2) new Web Servers as UAT using a dedicated role to make our configuration reusable. Since I'm using Oracle VM VirtualBox for this project. I've created two new VirtualBox VMs as our UAT WebServers `(WAT001 and WAT002)`
+
+
+
+
+
+
 
 
 
