@@ -71,6 +71,24 @@ In our current Jenkins setup, every new change in the codes creates a separate d
 
 ![Alt text](Images/refac13.png)
 
+**Step 3: Run a test by editing the `README` file for `ansible-config-mgt` repository. Both Jenkins jobs should complete one after the other**
+
+- The initial state of both Jenkins jobs is shown below
+
+![Alt text](Images/refac14.png)
+
+![Alt text](Images/refac15.png)
+
+![Alt text](Images/refac16.png)
+
+![Alt text](Images/refac17.png)
+
+![Alt text](Images/refac18.png)
+
+![Alt text](Images/refac19.png)
+
+![Alt text](Images/refac20.png)
+
 
 
     
