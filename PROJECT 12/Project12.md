@@ -216,7 +216,77 @@ We'll configure two (2) new Web Servers as UAT using a dedicated role to make ou
 
 ![Alt text](Images/refac40.png)
 
+- Uncomment the roles_path in the `/etc/ansible/ansible.cfg` file, and provide a full path to your roles directory using `roles_path = /home/ubuntu/ansible-config-mgt/roles`, so Ansible knows where to find configured roles
 
+![Alt text](Images/refac41.png)
+
+**Step 2: Write configuration tasks for the webserver role**
+
+- Go into the `tasks` directory under `roles` in `ansible-config-mgt` and edit the `main.yml` file with configuration tasks to do the following:
+
+  - Install and configure Apache (httpd service)
+  - Clone the Tooling website from GitHub https://github.com/DevOpsDolapo/tooling.git
+  - Ensure the tooling website code is deployed to /var/www/html on each of the two (2) UAT Webservers (WAT001 and WAT002)
+  - Make sure httpd service is started
+
+- The block of code to achieve the above tasks is
+
+```
+---
+- name: install apache
+  become: true
+  ansible.builtin.yum:
+    name: "httpd"
+    state: present
+
+- name: install git
+  become: true
+  ansible.builtin.yum:
+    name: "git"
+    state: present
+
+- name: clone a repo
+  become: true
+  ansible.builtin.git:
+    repo: https://github.com/DevOpsDolapo/tooling.git
+    dest: /var/www/html
+    force: yes
+
+- name: copy html content to one level up
+  become: true
+  command: cp -r /var/www/html/html/ /var/www/
+
+- name: Start service httpd, if not started
+  become: true
+  ansible.builtin.service:
+    name: httpd
+    state: started
+
+- name: recursively remove /var/www/html/html/ directory
+  become: true
+  ansible.builtin.file:
+    path: /var/www/html/html
+    state: absent
+```
+![Alt text](Images/refac42.png)
+
+### Reference the Webserver Role
+
+**Step 1: In the `static-assignments` folder, create a new assignment for `uat-webservers` called `uat-webservers.yml`. This is where we will reference the role**
+
+- Run the code block below to reference the role
+
+```
+---
+- hosts: uat-webservers
+  roles:
+     - webserver
+```
+![Alt text](Images/refac43.png)
+
+- Refer the `uat-webservers.yml` role inside `site.yml`
+
+![Alt text](Images/refac44.png)
 
 
 
