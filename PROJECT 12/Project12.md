@@ -310,7 +310,25 @@ We'll configure two (2) new Web Servers as UAT using a dedicated role to make ou
 
 ![Alt text](Images/refac52.png)
 
-**Step 2: Now run the playbook against your uat inventory**
+**Step 2: Now run the playbook against the uat inventory**
+
+- Run the command `ansible-playbook -i inventory/uat.yml playbooks/site.yml` on the remote SSH connection to the Jenkins-Ansible server on VS Code
+
+![Alt text](Images/refac53.png)
+
+![Alt text](Images/refac54.png)
+
+- Both the UAT Webservers are now configured and we can reach them from the browser using `http://<Web-UAT-Server-Public-IP-or-Public-DNS-Name>/index.php`
+
+![Alt text](Images/refac55.png)
+
+![Alt text](Images/refac56.png)
+
+- The final Ansible architecture looks something like this
+
+![Alt text](Images/ansible-refactoring.drawio.png)
+
+
 
 
 

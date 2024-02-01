@@ -515,7 +515,7 @@ Now we can run our first Ansible test by executing the `ansible-playbook` comman
 
 ![Alt text](Images/jen-server90.png)
 
-### Optional Additional Ansible Task
+### Optional Additional Ansible Task To Do
 
 Task to check firewall status on the servers. Created a playbook `firewall.yml` and populated with the following code on VS Code:
   ```
