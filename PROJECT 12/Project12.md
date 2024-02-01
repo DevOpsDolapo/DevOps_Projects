@@ -26,6 +26,7 @@ Our architecture will be running on the same infrastructure components as Projec
 9. **UAT Web Servers**: Red Hat Enterprise Linux 8
 
 ### Improving Jenkins Pipeline To make it Better
+### Improving Jenkins Pipeline To make it Better
 
 In our current Jenkins setup, every new change in the codes creates a separate directory which is not very convenient when we want to run some commands from one place. Besides, each subsequent change consumes space on the Jenkins server. We'll improve this setup by using the `Copy Artifact` plugin.
 
@@ -161,10 +162,6 @@ In our current Jenkins setup, every new change in the codes creates a separate d
 
 ![Alt text](Images/refac30.png)
 
-- Clone repository down to `JAN001`
-
-
-
 - Run `site.yml`against the `dev` servers by running the code
 
 ```
@@ -186,9 +183,135 @@ ansible-playbook -i inventory/dev.yml playbooks/site.yml
 
 ![Alt text](Images/refac37.png)
 
-### Configure UAT Webservers with the Role Command
+### Configure UAT Webservers Using Roles
 
 We'll configure two (2) new Web Servers as UAT using a dedicated role to make our configuration reusable. Since I'm using Oracle VM VirtualBox for this project. I've created two new VirtualBox VMs as our UAT WebServers `(WAT001 and WAT002)`
+
+**Step 1: Create a `roles` directory**
+
+- Create the directory in the `ansible-config-mgt` repository with the structure below
+
+```
+└── webserver
+    ├── README.md
+    ├── defaults
+    │   └── main.yml
+    ├── handlers
+    │   └── main.yml
+    ├── meta
+    │   └── main.yml
+    ├── tasks
+    │   └── main.yml
+    └── templates
+```
+![Alt text](Images/refac38.png)
+
+![Alt text](Images/refac39.png)
+
+- Update the `ansible-config-mgt/inventory/uat.yml` file with the IP addresses of the UAT Webservers
+
+![Alt text](Images/refac40.png)
+
+- Uncomment the roles_path in the `/etc/ansible/ansible.cfg` file, and provide a full path to your roles directory using `roles_path = /home/vboxuser/ansible-config-mgt/roles`, so Ansible knows where to find configured roles
+
+![Alt text](Images/refac41.png)
+
+**Step 2: Write configuration tasks for the webserver role**
+
+- Go into the `tasks` directory under `roles` in `ansible-config-mgt` and edit the `main.yml` file with configuration tasks to do the following:
+
+  - Install and configure Apache (httpd service)
+  - Clone the Tooling website from GitHub https://github.com/DevOpsDolapo/tooling.git
+  - Ensure the tooling website code is deployed to /var/www/html on each of the two (2) UAT Webservers (WAT001 and WAT002)
+  - Make sure httpd service is started
+
+- The block of code to achieve the above tasks is
+
+```
+---
+- name: install apache
+  become: true
+  ansible.builtin.yum:
+    name: "httpd"
+    state: present
+
+- name: install git
+  become: true
+  ansible.builtin.yum:
+    name: "git"
+    state: present
+
+- name: clone a repo
+  become: true
+  ansible.builtin.git:
+    repo: https://github.com/DevOpsDolapo/tooling.git
+    dest: /var/www/html
+    force: yes
+
+- name: copy html content to one level up
+  become: true
+  command: cp -r /var/www/html/html/ /var/www/
+
+- name: Start service httpd, if not started
+  become: true
+  ansible.builtin.service:
+    name: httpd
+    state: started
+
+- name: recursively remove /var/www/html/html/ directory
+  become: true
+  ansible.builtin.file:
+    path: /var/www/html/html
+    state: absent
+```
+![Alt text](Images/refac42.png)
+
+### Reference the Webserver Role
+
+**Step 1: In the `static-assignments` folder, create a new assignment for `uat-webservers` called `uat-webservers.yml`. This is where we will reference the role**
+
+- Run the code block below to reference the role
+
+```
+---
+- hosts: uat-webservers
+  roles:
+     - webserver
+```
+![Alt text](Images/refac43.png)
+
+- Refer the `uat-webservers.yml` role inside `site.yml`
+
+![Alt text](Images/refac44.png)
+
+### Commit and Test
+
+**Step 1: Commit the changes, create a Pull Request and merge them to the main branch, ensure the webhook triggers two consequent Jenkins jobs, they ran successfully and copied all the files to the Jenkins-Ansible server into /home/vboxuser/ansible-config-mgt/ directory**
+
+![Alt text](Images/refac45.png)
+
+![Alt text](Images/refac46.png)
+
+![Alt text](Images/refac47.png)
+
+- Create a Pull Request for `Refactor` on GitHub
+
+![Alt text](Images/refac48.png)
+
+![Alt text](Images/refac49.png)
+
+- Check on Jenkins to see if the jobs were triggered
+
+![Alt text](Images/refac50.png)
+
+![Alt text](Images/refac51.png)
+
+- Checkout from the current branch into the main branch and pull down all the changes into the main branch
+
+![Alt text](Images/refac52.png)
+
+**Step 2: Now run the playbook against your uat inventory**
+
 
 
 
