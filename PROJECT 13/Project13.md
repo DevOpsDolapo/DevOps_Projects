@@ -13,5 +13,36 @@ Generally, the recommendation is to use static assignments for playbooks, becaus
 
 **Step 1: Create a new branch `dynamic-assignments` in the `https://github.com/DevOpsDolapo/ansible-config-mgt.git` GitHub repository**
 
-- Create a new folder and name it `dynamic-assignments`
+![Alt text](Images/dynam1.png)
 
+- Create a new folder and name it `dynamic-assignments`, and inside the folder, create a new file and name it `env-vars.yml`
+
+![Alt text](Images/dynam2.png)
+
+- Since we'll be configuring multiple environments with unique attributes such as servername, ip-address etc., we'll need a way to set values to variables per specific environment. 
+
+    - Create a folder `env-vars` to keep each environment's variables file, then for each environment, create new YAML files to set variables
+
+    ![Alt text](Images/dynam3.png)
+
+    - Paste the code block below into the `env-vars.yml` file
+```
+---
+- name: collate variables from env specific file, if it exists
+  hosts: all
+  tasks:
+    - name: looping through list of available files
+      include_vars: "{{ item }}"
+      with_first_found:
+        - files:
+            - dev.yml
+            - stage.yml
+            - prod.yml
+            - uat.yml
+          paths:
+            - "{{ playbook_dir }}/../env-vars"
+      tags:
+        - always
+
+```
+![Alt text](Images/dynam4.png)
