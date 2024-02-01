@@ -324,6 +324,10 @@ We'll configure two (2) new Web Servers as UAT using a dedicated role to make ou
 
 ![Alt text](Images/refac56.png)
 
+- The final Ansible architecture looks something like this
+
+![Alt text](Images/ansible-refactoring.drawio.png)
+
 
 
 
