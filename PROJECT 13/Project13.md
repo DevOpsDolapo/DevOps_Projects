@@ -85,3 +85,35 @@ git switch roles-feature
 ![Alt text](Images/dynam7.png)
 
 ![Alt text](Images/dynam8.png)
+
+- Edit the roles configuration to use correct credentials for MySQL required for the `tooling` website
+
+  - Type `cd /mysql/defaults` 
+
+  ![Alt text](Images/dynam10.png)
+
+  - Edit the `main.yml` file by running `sudo vi main/yml`. Edit the `Databases` and `Users` sections
+
+  ![Alt text](Images/dynam11.png)
+
+  - Change the permission of the `roles` folder recursively so every user can access it
+
+    ![Alt text](Images/dynam12.png)
+
+- Upload the changes to GitHub by running the code block below
+```
+git add .
+git commit -m "Commit new role files into GitHub"
+git push --set-upstream origin roles-feature
+```
+![Alt text](Images/dynam13.png)
+
+![Alt text](Images/dynam14.png)
+
+- Create a Pull Request and merge it to main branch on GitHub
+![Alt text](Images/dynam15.png)
+
+
+
+
+
