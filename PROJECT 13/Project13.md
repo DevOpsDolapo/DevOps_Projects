@@ -19,13 +19,13 @@ Generally, the recommendation is to use static assignments for playbooks, becaus
 
 ![Alt text](Images/dynam2.png)
 
-- Since we'll be configuring multiple environments with unique attributes such as servername, ip-address etc., we'll need a way to set values to variables per specific environment. 
+**Step 2: Since we'll be configuring multiple environments with unique attributes such as servername, ip-address etc., we'll need a way to set values to variables per specific environment** 
 
-    - Create a folder `env-vars` to keep each environment's variables file, then for each environment, create new YAML files to set variables
+- Create a folder `env-vars` to keep each environment's variables file, then for each environment, create new YAML files to set variables
 
     ![Alt text](Images/dynam3.png)
 
-    - Paste the code block below into the `env-vars.yml` file
+- Paste the code block below into the `env-vars.yml` file
 ```
 ---
 - name: collate variables from env specific file, if it exists
@@ -46,3 +46,42 @@ Generally, the recommendation is to use static assignments for playbooks, becaus
 
 ```
 ![Alt text](Images/dynam4.png)
+
+### Updating site.yml with Dynamic Assignments
+
+- Update the site.yml file with the code block below
+```
+---
+- hosts: all
+- name: Include dynamic variables 
+  tasks:
+  import_playbook: ../static-assignments/common.yml 
+  include: ../dynamic-assignments/env-vars.yml
+  tags:
+    - always
+
+- hosts: uat-webservers
+- name: Webserver assignment
+  import_playbook: ../static-assignments/uat-webservers.yml
+```
+![Alt text](Images/dynam5.png)
+
+- Create a community role for MySQL database to install the MySQL package, create a database, and configure users. 
+
+*Note: Rather than creating a new role, we'll be taking advantage of tons of roles that have already been developed by other open source engineers out there. These roles are actually production ready, and dynamic to accomodate most Linux flavours. With `Ansible Galaxy` again, we can simply download a ready to use ansible role.*
+
+- We will be using a MySQL role developed by geerlingguy. To do that, run the below code block inside `ansible-config-mgt` directory on the Jenkins-Ansible Server (JAN001)
+```
+git init
+git pull https://github.com/<your-name>/ansible-config-mgt.git
+git remote add origin https://github.com/<your-name>/ansible-config-mgt.git
+git branch roles-feature
+git switch roles-feature
+```
+![Alt text](Images/dynam6.png)
+
+- Inside the `roles` directory create your new MySQL role with `ansible-galaxy install geerlingguy.mysql` and rename the folder to `mysql` by running the command `mv geerlingguy.mysql/ mysql`
+
+![Alt text](Images/dynam7.png)
+
+![Alt text](Images/dynam8.png)
