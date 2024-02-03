@@ -282,8 +282,20 @@ Fo Apache
 
 ![alt text](Images/dynam45.png)
 
-**Step 
-Once everything is confir
+### Commit and Pull 
+
+Once everything is confirmed to be working fine, we can commit changes in `roles-feature`and push to the `main` branch
+
+![alt text](Images/dynam46.png)
+
+![alt text](Images/dynam47.png)
+
+![alt text](Images/dynam48.png)
+
+![alt text](Images/dynam49.png)
+
+![alt text](Images/dynam50.png)
+
 
 
 
