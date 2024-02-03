@@ -282,7 +282,7 @@ Fo Apache
 
 ![alt text](Images/dynam45.png)
 
-### Commit and Pull 
+### Commit and Push to Main Branch
 
 Once everything is confirmed to be working fine, we can commit changes in `roles-feature`and push to the `main` branch
 
