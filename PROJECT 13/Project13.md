@@ -131,7 +131,7 @@ git push --set-upstream origin roles-feature
 
 ![Alt text](Images/dynam19.png)
 
-- Edit the `dev.yml` file in the inventory folder to comment out all the other server instances, leaving only the database instance
+- Edit the `dev.yml` file in the inventory folder to comment out all the other server instances, leaving only the database details
 
 ![Alt text](Images/dynam20.png)
 
