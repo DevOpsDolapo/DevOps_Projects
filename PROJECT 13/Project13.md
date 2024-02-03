@@ -66,7 +66,7 @@ Generally, the recommendation is to use static assignments for playbooks, becaus
 ```
 ![Alt text](Images/dynam5.png)
 
-- Create a community role for MySQL database to install the MySQL package, create a database, and configure users. 
+### Create a community role for MySQL database to install the MySQL package, create a database, and configure users. 
 
 *Note: Rather than creating a new role, we'll be taking advantage of tons of roles that have already been developed by other open source engineers out there. These roles are actually production ready, and dynamic to accomodate most Linux flavours. With `Ansible Galaxy` again, we can simply download a ready to use ansible role.*
 
@@ -85,3 +85,69 @@ git switch roles-feature
 ![Alt text](Images/dynam7.png)
 
 ![Alt text](Images/dynam8.png)
+
+- Edit the roles configuration to use correct credentials for MySQL required for the `tooling` website
+
+  - Type `cd /mysql/defaults` 
+
+  ![Alt text](Images/dynam10.png)
+
+  - Edit the `main.yml` file by running `sudo vi main/yml`. Edit the `Databases` and `Users` sections
+
+  ![Alt text](Images/dynam11.png)
+
+  - Change the permission of the `roles` folder recursively so every user can access it
+
+    ![Alt text](Images/dynam12.png)
+
+- Upload the changes to GitHub by running the code block below
+```
+git add .
+git commit -m "Commit new role files into GitHub"
+git push --set-upstream origin roles-feature
+```
+![Alt text](Images/dynam13.png)
+
+![Alt text](Images/dynam14.png)
+
+- Create a Pull Request and merge it to main branch on GitHub
+![Alt text](Images/dynam15.png)
+
+- Create a `db.yml` file in the `static assignments` folder 
+
+![Alt text](Images/dynam16.png)
+
+- Refer the `db role` in `site.yml`
+
+![Alt text](Images/dynam17.png)
+
+- Remove the `ansible.builtin.` parameter from the entries in `main.yml` file in the `/roles/mysql/defaults` folder
+
+![Alt text](Images/dynam18.png)
+
+![Alt text](Images/dynam19.png)
+
+- Edit the `dev.yml` file in the inventory folder to comment out all the other server instances, leaving only the database instance
+
+![Alt text](Images/dynam20.png)
+
+- Install the MySQL package, create a database, and configure users by running the code `ansible-playbook -i inventory/dev.yml playbooks/site.yml`
+
+![Alt text](Images/dynam21.png)
+
+![Alt text](Images/dynam22.png)
+
+- Check if MySQL is installed and running on the Database Server `DB001` and the `tooling` database is created
+
+![Alt text](Images/dynam23.png)
+
+![Alt text](Images/dynam24.png)
+
+
+
+
+
+
+
+
+
