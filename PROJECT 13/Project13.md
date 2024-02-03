@@ -193,13 +193,11 @@ For Apache
 ```
 #loadbalancer
 loadbalancer_name: "myapp1"
-<loadbalancer-hostname>: "192.168.0.13 weight=3"
+<loadbalancer-hostname>: "192.168.0.14 weight=3"
 
 enable_apache_lb: false
 load_balancer_is_required: false
 ```
-![alt text](Images/dynam28.png)
-
 ![alt text](Images/dynam28-1.png)
 
 - Create a `loadbalancers.yml` file in the `static assignments` folder and populate it with the code block below:
@@ -237,8 +235,6 @@ enable_apache_lb: true
 load_balancer_is_required: true
 ```
 - Add the loadbalancer details to the `/inventory/dev.yml` file
-
-![alt text](Images/dynam31.png)
 
 ![alt text](Images/dynam31-1.png)
 
@@ -286,6 +282,8 @@ Fo Apache
 
 ![alt text](Images/dynam45.png)
 
+**Step 
+Once everything is confir
 
 
 
