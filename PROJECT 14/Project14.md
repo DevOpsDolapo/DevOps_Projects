@@ -103,6 +103,7 @@ The network ID will be assigned based on the below-given rules:
 
 - They are used to denote a particular host on the local network and should not be routed.
 
+### Advanced Topics in IP Addressing
 
 
 
