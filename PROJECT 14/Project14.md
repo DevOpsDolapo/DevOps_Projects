@@ -85,4 +85,25 @@ Class D addresses are only used for multicasting applications. Class D is never 
 
 Class E IP addresses are defined by including the starting four network address bits as 1, which allows you two to incorporate addresses from 240.0.0.0 to 255.255.255.255. However, E class is reserved, and its usage is never defined. Therefore, many network implementations discard these addresses as undefined or illegal. Example of a Class E IP address is `243.164.89.28`
 
+#### Limitations of Classful IP addressing
+
+- Risk of running out of address space soon 
+
+- Class boundaries do not encourage efficient allocation of address space 
+
+#### Rules for Assigning Network ID
+
+The network ID will be assigned based on the below-given rules:
+
+- The network ID cannot start with 127 because 127 belongs to class A address and is reserved for internal loopback functions
+
+- All bits of network ID set to 1 are reserved for use as an IP broadcast address and cannot be used
+
+- All bits of network ID are set to 0
+
+- They are used to denote a particular host on the local network and should not be routed.
+
+
+
+
 
