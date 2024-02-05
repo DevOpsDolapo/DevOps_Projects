@@ -10,3 +10,9 @@ In this project, we'll be;
 - Introducing dynamic assignment into our structure
 
 - Updating site.yml with dynamic assignments
+
+- Creating a community role for MySQL database to install the MySQL package, create a database, and configure users
+
+- Creating community roles for Nginx and Apache
+
+- Committing and Pushing to Main Branch
