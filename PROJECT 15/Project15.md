@@ -102,13 +102,13 @@ We'll need these to make our subnets work as public subnets:
 
 This is like creating a plot of land with direct road (internet) access. Here's how it is done:
 
-- Go to the AWS VPC page
-- Find 'Subnets', click on it, then click 'Create subnet'
-- Give this new plot a name, select the big plot (VPC) you want to divide, and leave the IP settings as they are
-- Create an internet gateway if there are no existing ones
-- Attach an Internet Gateway to the VPC
-- Edit the route table, add a default route to the Internet Gateway (IGW)
-- Update subnet associations to allow traffic to flow to and from the internet
+1.  Go to the AWS VPC page
+2.  Find 'Subnets', click on it, then click 'Create subnet'
+3.  Give this new plot a name, select the big plot (VPC) you want to divide, and leave the IP settings as they are
+4.  Create an internet gateway if there are no existing ones
+5.  Attach an Internet Gateway to the VPC
+6.  Edit the route table, add a default route to the Internet Gateway (IGW)
+7.  Update subnet associations to allow traffic to flow to and from the internet
 
 **Steps 1 to 3** have been done in the previous section, so we'll do **Steps 4 to 7**
 
@@ -166,6 +166,19 @@ This is like creating a plot of land with direct road (internet) access. Here's 
 
 We can run EC2 instances in the public subnets if they need Internet access.
 
+#### NAT Gateway and Private Subnets
+
+##### Introduction to Private Subnets and NAT Gateway
+
+In our AWS Virtual Private Cloud (VPC), private subnets are secluded areas where we can place resources that should not be directly exposed to the internet. But what if these resources need to access the internet for updates or downloads? This is where the NAT Gateway comes in.
+
+A private subnet in AWS is like a secure room inside the house (VPC) with no windows or doors to the street (internet). Anything we place in this room (like a database) is not directly accessible from the outside world.
+
+##### Understanding NAT Gateway
+A Network Address Translation (NAT) Gateway acts like a secure door that only opens one way. It allows your resources inside the private subnet to access the internet for things like updates and downloads, but it doesn't allow anything from the internet to enter your private subnet.
+
+A Network Address Translation (NAT) allows instances in our private subnet to connect to outside services like Databases but restricts external services from connecting to these instances.
+
 ##### Creating a Private Subnet
 
 Since we've associated the only route table created earlier with the `Public subnets` for intenet access. We would need to create another route table for the `Private subnets` that doesn't have internet access (a private route table)
@@ -189,6 +202,11 @@ Since we've associated the only route table created earlier with the `Public sub
 ![Alt text](Images/aws35.png)
 
 ![Alt text](Images/aws36.png)
+
+##### Creating a NAT Gateway and Linking It to a Private Subnet
+
+This guide gives a step-by-step on how to create a NAT Gateway and how to link it to our private subnet. We'll also cover how to configure a route in our routing table to direct outbound internet traffic from our private subnet to the NAT
+Gateway.
 
 
 
