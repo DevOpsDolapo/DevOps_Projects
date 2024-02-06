@@ -208,7 +208,49 @@ Since we've associated the only route table created earlier with the `Public sub
 This guide gives a step-by-step on how to create a NAT Gateway and how to link it to our private subnet. We'll also cover how to configure a route in our routing table to direct outbound internet traffic from our private subnet to the NAT
 Gateway.
 
+**Step 1: Go to `VPC` > `NAT Gateways` and click on `Create NAT Gateway`**
 
+![Alt text](Images/aws37.png)
+
+**Step 2: Create a NAT Gateway named under one of the private subnets by filling in the necessary details. It's mandatory to allocate an Elastic IP to our NAT Gateway. Click on `Create NAT gateway` when done**
+```
+Name - choose a name for the NAT Gateway
+Subnet - choose one of the existing private subnets
+Connectivity type - Public
+Elastic IP - Click on `Allocate Elastic IP` to generate one if non exists
+```
+
+![Alt text](Images/aws38.png)
+
+![Alt text](Images/aws39.png)
+
+![Alt text](Images/aws40.png)
+
+**Step 3: Edit the route table created earlier for the private subnet and add a default route to the Network Address Translation (NAT) Gateway**
+
+- Click on `Route tables` and then click on the `Route table ID` for `private-route`
+
+![Alt text](Images/aws41.png)
+
+- Click on `Edit routes`, then `Add routes`. Select `0.0.0.0/0`, choose `NAT Gateway` from the drop down and select the NAT Gateway created earlier, then click on `Save Changes` 
+
+![Alt text](Images/aws42.png)
+
+![Alt text](Images/aws43.png)
+
+![Alt text](Images/aws44.png)
+
+![Alt text](Images/aws45.png)
+
+![Alt text](Images/aws46.png)
+
+- Our route table is already associated with the two private subnets
+
+![Alt text](Images/aws47.png)
+
+- Our VPC Resource Map is shown below
+
+![Alt text](Images/aws48.png)
 
 
 
