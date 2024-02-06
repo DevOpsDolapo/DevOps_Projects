@@ -48,9 +48,9 @@ As soon as the VPC is created, it's assigned with a `vpc-id` and there's a route
 
 Now we have a VPC and a route table, but won't be able to put anything inside or create an EC2 instance because it requires subnets.
 
-#### Creating and Configuring Subnets
+### Creating and Configuring Subnets
 
-##### What are Subnets?
+#### What are Subnets?
 
 Subnets are like smaller segments within a VPC that helps us organize and manage resources. Subnets are like dividing an office building into smaller sections, where each section represents a department. Subnets are created to organize and manage the network effectively.
 
@@ -80,7 +80,7 @@ All the subnets just created will be visible on the console
 
 *Note: It's possible to deploy EC2 instances into the VPC by selecting one of the subnets, but the public subnet doesn't have any Internet access at this stage. When we select a public subnet > route, it uses the main route table and only has the local route, no default route for Internet access.*
 
-#### Understanding Public and Private Subnets in AWS VPC - Internet Gateway and Routing Table
+### Understanding Public and Private Subnets in AWS VPC - Internet Gateway and Routing Table
 
 In the world of AWS VPC, subnets are individual plots in a piece of land (VPC). Some of these plots (subnets) have direct road access (internet access) - these are public subnets. Others are more private, tucked away without direct road access - these are private subnets.
 
@@ -166,20 +166,18 @@ This is like creating a plot of land with direct road (internet) access. Here's 
 
 We can run EC2 instances in the public subnets if they need Internet access.
 
-#### NAT Gateway and Private Subnets
-
-##### Introduction to Private Subnets and NAT Gateway
+### Introduction to Private Subnets and NAT Gateway
 
 In our AWS Virtual Private Cloud (VPC), private subnets are secluded areas where we can place resources that should not be directly exposed to the internet. But what if these resources need to access the internet for updates or downloads? This is where the NAT Gateway comes in.
 
 A private subnet in AWS is like a secure room inside the house (VPC) with no windows or doors to the street (internet). Anything we place in this room (like a database) is not directly accessible from the outside world.
 
-##### Understanding NAT Gateway
+#### Understanding NAT Gateway
 A Network Address Translation (NAT) Gateway acts like a secure door that only opens one way. It allows your resources inside the private subnet to access the internet for things like updates and downloads, but it doesn't allow anything from the internet to enter your private subnet.
 
 A Network Address Translation (NAT) allows instances in our private subnet to connect to outside services like Databases but restricts external services from connecting to these instances.
 
-##### Creating a Private Subnet
+#### Creating a Private Subnet
 
 Since we've associated the only route table created earlier with the `Public subnets` for intenet access. We would need to create another route table for the `Private subnets` that doesn't have internet access (a private route table)
 
@@ -203,7 +201,7 @@ Since we've associated the only route table created earlier with the `Public sub
 
 ![Alt text](Images/aws36.png)
 
-##### Creating a NAT Gateway and Linking It to a Private Subnet
+#### Creating a NAT Gateway and Linking It to a Private Subnet
 
 This guide gives a step-by-step on how to create a NAT Gateway and how to link it to our private subnet. We'll also cover how to configure a route in our routing table to direct outbound internet traffic from our private subnet to the NAT
 Gateway.
@@ -248,9 +246,51 @@ Elastic IP - Click on `Allocate Elastic IP` to generate one if non exists
 
 ![Alt text](Images/aws47.png)
 
-- Our VPC Resource Map is shown below
+- Our VPC Resource map is shown below
 
 ![Alt text](Images/aws48.png)
+
+### - Understanding the Differences between Security Groups and Network Access Control Lists
+
+Security groups and Network Access Control Lists (ACLs) are both important tools for securing our network on the AWS cloud, but they serve different purposes and have different use cases.
+
+#### Security Groups
+
+Security groups can be likened to a bouncer at a club who controls the flow of traffic to and from the resources in a cloud computing environment. Imagine you have a club, and you want to ensure that only authorized individuals can enter
+and exit. In this analogy, the club represents your cloud resources (such as virtual machines or instances), and the bouncer represents the security group.
+
+Just like a bouncer checks the IDs and credentials of people at the club's entrance, a security group examines the IP addresses and ports of incoming and outgoing network traffic. It acts as a virtual firewall that filters traffic based on predefined rules. These rules specify which types of traffic are allowed or denied. For example, a security group can be configured to allow incoming HTTP traffic (on port 80) to a web server, but block all other types of incoming traffic. Similarly, it can permit outgoing traffic from the web server to external databases on a specific port, while restricting all other outbound connections.
+
+By enforcing these rules, security groups act as a line of defense, helping to protect our resources from unauthorized access and malicious attacks. They ensure that only the traffic that meets the defined criteria is allowed to reach our resources, while blocking or rejecting any unauthorized or potentially harmful traffic.
+
+It's important to note that security groups operate at the instance level, meaning they are associated with specific instances and can control traffic at a granular level. They can be customized and updated as needed to adapt to changing
+security requirements. 
+
+Overall, security groups provide an essential layer of security for our cloud resources by allowing you to define and manage access control policies, much like a bouncer regulates who can enter and exit a club.
+
+![Alt text](Images/aws49.png)
+
+#### Network Access Control Lists (NACLs)
+
+Network ACLs (Access Control Lists) can be likened to a security guard for a building, responsible for controlling inbound and outbound traffic at the subnet level in a cloud computing environment. Imagine you have a building with multiple rooms and entry points, and you want to ensure that only authorized individuals can enter and exit. In this analogy, the building represents your subnet, and the security guard represents the network ACL. 
+
+Similar to a security guard who verifies IDs and credentials before allowing entry into the building, a network ACL examines the IP addresses and ports of incoming and outgoing network traffic. It serves as a virtual barrier or perimeter
+security, defining rules that dictate which types of traffic are permitted or denied.
+
+For instance, a network ACL can be configured to allow incoming SSH (Secure Shell) traffic (on port 22) to a specific subnet, while blocking all other types of incoming traffic. It can also permit outgoing traffic from the subnet to a specific range of IP addresses on a certain port, while disallowing any other outbound connections.
+
+By implementing these rules, network ACLs act as a crucial line of defense, safeguarding your entire subnet from unauthorized access and malicious attacks. They ensure that only traffic meeting the specified criteria is allowed to enter
+or exit the subnet, while blocking or rejecting any unauthorized or potentially harmful traffic.
+
+It's important to note that network ACLs operate at the subnet level, meaning they control traffic for all instances within a subnet. They provide a broader scope of security compared to security groups, which operate at the instance level. Network ACLs are typically stateless, meaning that inbound and outbound traffic is evaluated separately, and specific rules must be defined for both directions.
+
+In summary, network ACLs function as a virtual security guard for your subnet, regulating inbound and outbound traffic at a broader level. They operate similarly to a security guard who controls access to a building by examining IDs, ensuring that only traffic meeting the defined rules is allowed to pass, and thereby providing protection against unauthorized access and malicious activities for your entire subnet.
+
+![Alt text](Images/aws50.png)
+
+In summary, security groups and network ACLs are both important tools for securing your network on the AWS cloud, but they serve different purposes and have different use cases. Security groups are like a bouncer at a club controlling inbound and outbound traffic to and from your resources at the individual resource level. Network ACLs, on the other hand, are like a security guard for a building, controlling inbound and outbound traffic at the subnet level.
+
+
 
 
 

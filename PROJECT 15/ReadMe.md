@@ -9,10 +9,12 @@ The project will be covering the following key areas:
 
 - What is an Amazon VPC?
 
-- Internet Gateway and Routing Table
+- Creating and Configuring Subnets
 
-- NAT Gateway and Private Subnets
+- Understanding Public and Private Subnets in AWS VPC - Internet Gateway and Routing Table
 
-- Security Group and Network ACLs
+- Introduction to Private Subnets and NAT Gateway
+
+- Understanding the Differences between Security Groups and Network Access Control Lists
 
 - VPC Peering and VPN Connection
